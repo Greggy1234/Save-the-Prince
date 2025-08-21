@@ -20,6 +20,10 @@ body {
     display: none;
 }
 
+.aboslute {
+    position:absolute;
+}
+
 
 /* Front page */
 #start-game-button {

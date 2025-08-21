@@ -9,13 +9,19 @@ body {
 }
 
 #main-viewing-area {
-    width:750px;
-    height:70vh;
-    margin:auto;
+    width: 750px;
+    height: 70vh;
+    margin: auto;
     background-color: white;
     text-align: center;
 }
 
 .hidden {
-    display:none;
+    display: none;
+}
+
+
+/* Front page */
+#start-game-button {
+    margin:auto;
 }

@@ -20,7 +20,7 @@ let letter3 = "";
 
 /**
  * The loading screen function
- * This is the first thing a player does. They input their name, and it gets stored to the global variable knightName
+ * This is reused every time a player moves from one area to the next
  */
 
 
@@ -30,14 +30,17 @@ let letter3 = "";
  * The naming of the knight function
  * This is the first thing a player does. They input their name, and it gets stored to the global variable knightName
  */
-
-
-
-
-
-
-
-
+document.getElementById("knight-name-container").addEventListener("submit", function (e) {
+    e.preventDefault();
+    knightName = document.getElementById("knight-name").value;
+    if (knightName === "") {
+        alert("You must give your knight a name so the masses can recognise you across the land (and so we know what to put on your gravestone)");
+        return;
+    }
+    console.log(knightName);
+    document.getElementById("knight-name-container").innerHTML = `<p>Knight ${knightName} is ready for action!<br>Click below to start being a hero</p>`;
+    document.getElementById("start-game-button").classList.remove("hidden");
+})
 
 // Game hub area code
 /**

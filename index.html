@@ -12,11 +12,20 @@
     <div id="main-viewing-area">
         <!-- Top part of the application. Will stay constant as the player goes through different games and pages -->
         <header id="header">
-
+            <h1>Save the Prince logo here</h1>            
         </header>
         <!-- Front page of the game when someone loads up the game. Players can enter their names for their knight -->
         <section id="front-page">
-
+            <h2>Front page of game </h2>
+            <form id="knight-name-container">
+                <label for="knight-name">What is your knight's name? </label>
+                <br>
+                <input type="text" id="knight-name" name="knight-name">
+                <br>
+                <button type="submit" id="knight-name-submit-button" value="Submit">Submit!</button>
+            </form>
+            <button id="start-game-button" class="hidden" data-current-page-id="front-page"
+                data-next-page-id="loading-area">Start searching for danger</button>
         </section>
 
         <!-- The loading screen animation screen. This gets used as a way to link areas within the game -->

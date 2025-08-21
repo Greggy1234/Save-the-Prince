@@ -23,13 +23,56 @@ document.addEventListener("DOMContentLoaded", function () {
  * The changing section function
  * This is the first thing a player does. They input their name, and it gets stored to the global variable knightName
  */
-
+function changeSection(e) {
+    console.log(e);
+    let currentLink = e.getAttribute("data-current-page-id");
+    let nextLink = e.getAttribute("data-next-page-id");
+    console.log(currentLink);
+    console.log(nextLink);
+    document.getElementById(nextLink).classList.remove("hidden");
+    document.getElementById(currentLink).classList.add("hidden");
+    if (nextLink === "loading-area") {
+        loadingScreen(currentLink);
+    }
+}
 
 /**
  * The loading screen function
  * This is reused every time a player moves from one area to the next
  */
-
+function loadingScreen(loadingTextChange) {
+    const hero = document.getElementById("hero");
+    let heroWidth = parseInt(hero.style.width);
+    let width = parseInt(document.getElementById("loading-area").offsetWidth);
+    let position = 0;
+    let maxPosition = 20;
+    hero.style.left = 3 + "px";
+    hero.style.bottom = 10 + "px";
+    document.getElementById("loading-link").innerHTML = '';
+    const heading = document.getElementById("loading-text");
+    if (loadingTextChange = "front-page") {
+        heading.innerHTML = "SEARCHING FOR DANGER<br>...";
+    } else {
+        heading.innerHTML = "LOADING<br>...";
+    }
+    const loadingAnimation = setInterval(function () {
+        position++;
+        hero.style.left = (width / maxPosition * position - ((heroWidth / maxPosition) * position)) + "px";
+        if (position % 2 === 0) {
+            hero.setAttribute("src", "assets/images/sprite-hero-still-right.png");
+        } else if (position % 2 === 1) {
+            hero.setAttribute("src", "assets/images/sprite-hero-walk-right.png");
+            heading.innerText = heading.innerText + ".";
+        }
+        if (position === maxPosition) {
+            clearInterval(loadingAnimation);
+            hero.style.right = 3 + "px";
+            hero.style.left = "";
+            document.getElementById("loading-link").innerHTML += '<a href="#" onclick="changeDiv(this);" id="to-hub-area-button" data-current-page-id="loading-area" data-next-page-id="game-hub-area">You hear a scream. Click here to explore</a>';
+            hero.style.bottom = parseInt(hero.style.bottom) + 18.4 + "px";
+        }
+    }, 250)
+}
 
 
 // Front page code

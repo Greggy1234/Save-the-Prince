@@ -7,9 +7,16 @@ let letter3 = "";
 
 // Button element event listeners
 // Once the DOM is loaded, all the buttons throughout the game will have an event listener and will be directed to the corresponding function
-
-
-
+document.addEventListener("DOMContentLoaded", function () {
+    let buttons = document.getElementsByTagName("button");
+    for (let button of buttons) {
+        button.addEventListener("click", function () {
+            if (this.getAttribute("id") === "start-game-button") {
+                changeSection(this);
+            }
+        })
+    }
+})
 
 // Global JavaScript code. The following apply throughout the whole game and are used for multiple sections
 /**

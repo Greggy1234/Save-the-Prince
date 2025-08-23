@@ -10,7 +10,7 @@ body {
 
 #main-viewing-area {
     width: 730px;
-    height: 70vh;
+    height: 600px;
     margin: auto;
     background-color: white;
     text-align: center;
@@ -25,7 +25,7 @@ body {
 }
 
 .hero-size {
-    width:30px;
+    width: 30px;
 }
 
 .hidden {
@@ -33,21 +33,64 @@ body {
 }
 
 .relative {
-    position:relative;
+    position: relative;
 }
 
 .aboslute {
     position: absolute;
 }
 
+.bottom-left-sprite {
+    padding-left: 10px;
+}
 
-/* Front page */
+.bottom-right-sprite {
+    padding-right: 20px;
+}
+
+/* Front page styles */
 #start-game-button {
     margin: auto;
 }
 
 
-/* Loading screen */
+/* Loading screen styles */
 #loading-area-hero-container {
-    height:35vh;
+    height: 35vh;
+}
+
+
+
+/* Hub area styles */
+#top-row-games,
+#bottom-row-games {
+    display: flex;
+    justify-content: space-around;
+}
+
+.game-box {
+    padding: 15px;
+}
+
+#game-hub-text-area-container {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0px;
+}
+
+
+#game-hub-text-area-box {
+    border: 2px solid red;
+    width: 700px;
+    height: 15vh;
+}
+
+.npc-size {
+    width: 35px;
+}
+
+#game-hub-area-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
 }

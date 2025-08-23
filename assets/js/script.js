@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
+            } else if(button.getAttribute("id") === "hub-area-action-button") {
+                speechUpdateGameHub();
             }
         })
     }
@@ -112,12 +114,12 @@ function speechUpdateGameHub() {
                         My name's Eric, and this is the Grasslands. Something awful has happened`;
                         hubAreaButton.innerText = "Next";
                         npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        npcSpeakerName.style.display = "block";
+                        npcSpeakerName.classList.remove("hidden");
                         break;
                     case 2:
                         gameHubTextArea.innerText = `...you're a lot shorter than I thought you would be.`;
                         npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        npcSpeakerName.innerText = "Eric:";
+                        npcSpeakerName.innerText = "Eric";
                         document.getElementById("game-hub-area-text").innerText = "The Grasslands"
                         break;
                     case 3:
@@ -148,14 +150,14 @@ function speechUpdateGameHub() {
                         document.getElementById("game-three-hub-area").style.backgroundColor = "yellow";
                         break;
                     case 9:
-                        gameHubTextArea.innerText = `That's the end of my info du- I mean explanation of the challenges. 
+                        gameHubTextArea.innerText = `That's the end of my info du- I mean explanation. 
                         Please hurry. I'm terrified of what's happening to our dear prince!`;
                         npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                         break;
                     case 10:
                         gameHubTextArea.innerText = `You've found your danger knight ${knightName}. Are you up for the challenge? 
                         (If you're not you can just exit the game)`;
-                        npcSpeakerName.style.display = "none";
+                        npcSpeakerName.classList.add("hidden");
                         hubAreaButton.innerText = "Yes. I'm ready for the challenge";
                         npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                         break;

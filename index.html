@@ -31,18 +31,54 @@
         <!-- The loading screen animation screen. This gets used as a way to link areas within the game -->
         <section id="loading-area" class="hidden">
             <h2 id="loading-text">SEARCHING FOR DANGER<br>...</h2>
-            <div id="loading-link" class="hidden"><a href="#" id="to-hub-area-button"
-                    data-current-page-id="loading-area" data-next-page-id="game-hub-area">You hear a scream. Click here
-                    to explore</a></div>
-            <div style="position:relative; height:35vh;">
-                <img id="hero" src="assets/images/sprite-hero-still-right.png" alt="small black dot"
-                    style="position:absolute; left:3px; bottom:10px; width:30px;">
+            <div id="loading-link" class="hidden">
+                <button type="button" href="#" id="to-hub-area-button" data-current-page-id="loading-area"
+                    data-next-page-id="game-hub-area">You hear a scream. Click here
+                    to explore</button>
+            </div>
+            <div id="loading-area-hero-container" class="relative">
+                <img id="hero" src="assets/images/sprite-hero-still-right.png" alt="Hero Sprite"
+                    class="aboslute hero-left-position-left hero-bottom-position-left hero-size">
             </div>
         </section>
 
         <!-- The main area of the game. This is where the player can choose the challenges -->
         <section id="game-hub-area" class="hidden">
-
+            <h2 id="game-hub-area-text">Unknown Area</h2>
+            <div style="display:flex; justify-content: space-around;" id="top-row-games">
+                <div id="game-one-hub-area" style="padding:30px;">
+                    <a href="#">GAME 1</a>
+                </div>
+                <div id="game-two-hub-area" style="padding:30px;">
+                    <a href="#">GAME 2</a>
+                </div>
+            </div>
+            <div style="display:flex; justify-content: space-around;" id="bottom-row-games">
+                <div id="game-three-hub-area" style="padding:30px;">
+                    <a href="#">GAME 3</a>
+                </div>
+                <div id="game-four-hub-area" style="padding:30px;">
+                    <a href="#">GAME 4</a>
+                </div>
+            </div>
+            <div style="display:flex; justify-content: center;">
+                <div id="speech-box" style="border:2px solid red; width:700px; height:15vh;">
+                    <p id="npc-speaker-name" style="display:none;">Screaming Man:</p>
+                    <p id="game-hub-text-area">There is weird man who is screaming</p>
+                </div>
+            </div>
+            <div style="display:flex; justify-content: space-between; align-items: end;">
+                <div style="padding-left: 10px;">
+                    <img id="hero" src="assets/images/sprite-hero-still-right.png" alt="hero"
+                        style="left:3px; bottom:10px; width:30px;">
+                </div>
+                <button id="hub-area-action-button" onclick="speechUpdateGameHub();">Talk to the screaming
+                    man</button>
+                <div style="padding-right: 20px;">
+                    <img id="npc" src="assets/images/sprite-npc-1-still left.png" alt="npc"
+                        style="right:3px; bottom:10px; width:30px;" data-npc-text-cycle="1" data-npc-text-tree="A">
+                </div>
+            </div>
         </section>
 
         <!-- The first challange area of the game. This is the copy the pattern game -->

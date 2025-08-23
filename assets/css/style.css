@@ -1,6 +1,6 @@
 /* Fonts */
 
-/* CSS Variables */
+/* CSS variables */
 
 
 /* Global styles */
@@ -9,23 +9,45 @@ body {
 }
 
 #main-viewing-area {
-    width: 750px;
+    width: 730px;
     height: 70vh;
     margin: auto;
     background-color: white;
     text-align: center;
 }
 
+.hero-left-position-left {
+    left: 2px;
+}
+
+.hero-bottom-position-left {
+    bottom: 10px;
+}
+
+.hero-size {
+    width:30px;
+}
+
 .hidden {
     display: none;
 }
 
+.relative {
+    position:relative;
+}
+
 .aboslute {
-    position:absolute;
+    position: absolute;
 }
 
 
 /* Front page */
 #start-game-button {
-    margin:auto;
+    margin: auto;
+}
+
+
+/* Loading screen */
+#loading-area-hero-container {
+    height:35vh;
 }

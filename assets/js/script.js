@@ -14,8 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
-            } else if(button.getAttribute("id") === "hub-area-action-button") {
+            } else if (button.getAttribute("id") === "hub-area-action-button") {
                 speechUpdateGameHub();
+            } else if (button.getAttribute("id") === "game-one-start-game") {
+                setThenRunGameOne();
             }
         })
     }
@@ -44,8 +46,8 @@ function changeSection(e) {
  * This is reused every time a player moves from one area to the next
  */
 function loadingScreen(loadingTextChange) {
-    const hero = document.getElementById("hero");
-    let heroWidth = parseInt(document.getElementById("hero").offsetWidth);
+    const hero = document.getElementById("hero-loading");
+    let heroWidth = parseInt(document.getElementById("hero-loading").offsetWidth);
     let width = parseInt(document.getElementById("loading-area").offsetWidth);
     let position = 0;
     let maxPosition = 20;
@@ -103,84 +105,71 @@ document.getElementById("knight-name-container").addEventListener("submit", func
  */
 
 function speechUpdateGameHub() {
-            let npcSpeakerName = document.getElementById("npc-speaker-name");
-            let gameHubTextArea = document.getElementById("game-hub-text-area");
-            let hubAreaButton = document.getElementById("hub-area-action-button");
-            let npc = document.getElementById("npc");
-            if (npc.getAttribute("data-npc-text-tree") === "A") {
-                switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
-                    case 1:
-                        gameHubTextArea.innerText = `Oh thank god you showed up knight ${knightName}!                        
+    const npcSpeakerName = document.getElementById("npc-speaker-name");
+    const gameHubTextArea = document.getElementById("game-hub-text-area");
+    const hubAreaButton = document.getElementById("hub-area-action-button");
+    const npc = document.getElementById("npc");
+    if (npc.getAttribute("data-npc-text-tree") === "A") {
+        switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
+            case 1:
+                gameHubTextArea.innerText = `Oh thank god you showed up knight ${knightName}!                        
                         My name's Eric, and this is the Grasslands. Something awful has happened`;
-                        hubAreaButton.innerText = "Next";
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        npcSpeakerName.classList.remove("hidden");
-                        break;
-                    case 2:
-                        gameHubTextArea.innerText = `...you're a lot shorter than I thought you would be.`;
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        npcSpeakerName.innerText = "Eric";
-                        document.getElementById("game-hub-area-text").innerText = "The Grasslands"
-                        break;
-                    case 3:
-                        gameHubTextArea.innerText = `Anyway, the prince has been locked away by 4 awful monsters.`;
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        break;
-                    case 4:
-                        gameHubTextArea.innerText = `You have to complete the challenges these monsters have set to save him.`;
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        break;
-                    case 5:
-                        gameHubTextArea.innerText = `You can complete the first 3 challenges in any order, and each one grants a letter. Once you get all 3 letters, you can unlock the door to the fourth and final challenge.`;
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        break;
-                    case 6:
-                        gameHubTextArea.innerText = `Challenge 1 is in the minotaur's lava domain. You have to copy his patterns to confuse him.`;
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        document.getElementById("game-one-hub-area").style.backgroundColor = "red";
-                        break;
-                    case 7:
-                        gameHubTextArea.innerText = `Challenge 2 is the penguin's maths game held in his ice domain. If you can prove you're good enough at quick maths, he'll give you his letter.`;
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        document.getElementById("game-two-hub-area").style.backgroundColor = "blue";
-                        break;
-                    case 8:
-                        gameHubTextArea.innerText = `If you can avoid the attacks being thrown at you in challenge 3, you'll get the rock golem's letter.`;
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        document.getElementById("game-three-hub-area").style.backgroundColor = "yellow";
-                        break;
-                    case 9:
-                        gameHubTextArea.innerText = `That's the end of my info du- I mean explanation. 
+                hubAreaButton.innerText = "Next";
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                npcSpeakerName.classList.remove("hidden");
+                break;
+            case 2:
+                gameHubTextArea.innerText = `...you're a lot shorter than I thought you would be.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                npcSpeakerName.innerText = "Eric";
+                document.getElementById("game-hub-area-text").innerText = "The Grasslands"
+                break;
+            case 3:
+                gameHubTextArea.innerText = `Anyway, the prince has been locked away by 4 awful monsters.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 4:
+                gameHubTextArea.innerText = `You have to complete the challenges these monsters have set to save him.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 5:
+                gameHubTextArea.innerText = `You can complete the first 3 challenges in any order, and each one grants a letter. Once you get all 3 letters, you can unlock the door to the fourth and final challenge.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 6:
+                gameHubTextArea.innerText = `Challenge 1 is in the minotaur's lava domain. You have to copy his patterns to confuse him.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                document.getElementById("game-one-hub-area").style.backgroundColor = "red";
+                break;
+            case 7:
+                gameHubTextArea.innerText = `Challenge 2 is the penguin's maths game held in his ice domain. If you can prove you're good enough at quick maths, he'll give you his letter.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                document.getElementById("game-two-hub-area").style.backgroundColor = "blue";
+                break;
+            case 8:
+                gameHubTextArea.innerText = `If you can avoid the attacks being thrown at you in challenge 3, you'll get the rock golem's letter.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                document.getElementById("game-three-hub-area").style.backgroundColor = "yellow";
+                break;
+            case 9:
+                gameHubTextArea.innerText = `That's the end of my info du- I mean explanation. 
                         Please hurry. I'm terrified of what's happening to our dear prince!`;
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        break;
-                    case 10:
-                        gameHubTextArea.innerText = `You've found your danger knight ${knightName}. Are you up for the challenge? 
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 10:
+                gameHubTextArea.innerText = `You've found your danger knight ${knightName}. Are you up for the challenge? 
                         (If you're not you can just exit the game)`;
-                        npcSpeakerName.classList.add("hidden");
-                        hubAreaButton.innerText = "Yes. I'm ready for the challenge";
-                        npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                        break;
-                    case 11:
-                        gameHubTextArea.innerText = `Excellent! When you're ready, Choose one of the 3 available options above for your first challenge`;
-                        hubAreaButton.style.display = "none";
-                        break;
-                }
-            }
+                npcSpeakerName.classList.add("hidden");
+                hubAreaButton.innerText = "Yes. I'm ready for the challenge";
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 11:
+                gameHubTextArea.innerText = `Excellent! When you're ready, Choose one of the 3 available options above for your first challenge`;
+                hubAreaButton.style.display = "none";
+                break;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+}
 
 
 
@@ -195,6 +184,55 @@ function speechUpdateGameHub() {
 /**
  * Challenge one game function
  */
+function setThenRunGameOne() {
+    let answer = [];
+    let counter = 0;
+    while (answer.length < 3) {
+        let randomNumber = Math.ceil(Math.random() * 12);
+        answer.push(randomNumber);
+    }
+    const gameOneLightBoxes = setInterval(function () {
+        console.log(answer);
+        counter++;
+        let answerArrayPosition = counter - 1;
+        let gameOneBoxNumber = answer[answerArrayPosition];
+        if (answerArrayPosition < 3) {
+            gameOneBoxLight(gameOneBoxNumber);
+        } else {
+            clearInterval(gameOneLightBoxes);
+        }
+    }, 500)
+}
+
+function gameOneBoxLight(boxToLight) {
+    let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
+    for (boxes of gameOneBox) {
+        if (parseInt(boxes.getAttribute("data-game-one-box-number")) === boxToLight) {
+            let gameOneBoxNumber = parseInt(boxes.getAttribute("data-game-one-box-number"));
+            console.log(boxes.getAttribute("data-game-one-box-number"));
+            boxes.classList.add("game-one-box-background");
+            setTimeout(function () {
+                console.log("working");
+                console.log(gameOneBoxNumber);
+                gameOneBox[gameOneBoxNumber - 1].classList.remove("game-one-box-background");
+            }, 300)
+        }
+    }
+}
+
+
+
+
+
+
+
+//checkGameOne()
+
+//gameOneSuccess()
+
+//gameOneFailure()
+
+
 
 
 

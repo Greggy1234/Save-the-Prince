@@ -32,6 +32,10 @@ body {
     display: none;
 }
 
+.flex {
+    display: flex;
+}
+
 .relative {
     position: relative;
 }
@@ -40,12 +44,22 @@ body {
     position: absolute;
 }
 
+.game-intro-card {
+    border:1px solid red;
+    padding:40px 80px;
+    display:inline-block;
+}
+
 .bottom-left-sprite {
     padding-left: 10px;
 }
 
 .bottom-right-sprite {
     padding-right: 20px;
+}
+
+.mb-1rem {
+    margin-bottom: 1rem;
 }
 
 /* Front page styles */
@@ -93,4 +107,52 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: end;
+}
+
+
+
+/* Game one styles */
+#game-one-all-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.game-one-indivdual-box-container {
+    width: 25%;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.game-one-indivdual-box {
+    border: 1px solid red;
+    width: 50px;
+    height: 50px;
+}
+
+#game-one-text-area-container {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0px;
+}
+
+#game-one-text-area-box {
+    border: 2px solid red;
+    width: 700px;
+    height: 15vh;
+}
+
+.game-one-monster-size {
+    width: 35px;
+}
+
+#game-one-area-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.game-one-box-background {
+    background-color:red;
 }

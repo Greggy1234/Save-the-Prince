@@ -37,13 +37,13 @@
                     to explore</button>
             </div>
             <div id="loading-area-hero-container" class="relative">
-                <img id="hero" src="assets/images/sprite-hero-still-right.png" alt="Hero Sprite"
+                <img id="hero-loading" src="assets/images/sprite-hero-still-right.png" alt="Hero Sprite"
                     class="aboslute hero-left-position-left hero-bottom-position-left hero-size">
             </div>
         </section>
 
         <!-- The main area of the game. This is where the player can choose the challenges (referenced as games in the code) -->
-        <section id="game-hub-area">
+        <section id="game-hub-area" class="hidden">
             <h2 id="game-hub-area-text">Unknown Area</h2>
             <div id="top-row-games">
                 <div id="game-one-hub-area" class="game-box">
@@ -69,7 +69,8 @@
             </div>
             <div id="game-hub-area-bottom">
                 <div style=" padding-left: 10px;" class="bottom-left-sprite">
-                    <img id="hero" src="assets/images/sprite-hero-still-right.png" alt="hero" class="hero-size">
+                    <img id="hero-hub-area" src="assets/images/sprite-hero-still-right.png" alt="Hero"
+                        class="hero-size">
                 </div>
                 <button id="hub-area-action-button">Talk to the screaming man</button>
                 <div class="bottom-right-sprite">
@@ -80,8 +81,68 @@
         </section>
 
         <!-- The first challange area of the game. This is the copy the pattern game -->
-        <section id="game-one-area" class="hidden">
-
+        <section id="game-one-area">
+            <h2 id="game-one-area-text">The Minotaur's Domain</h2>
+            <div class="hidden" id="game-one-game-intro-card-container">
+                <h3 class="game-intro-card hidden">CHALLENGE 1: COPY THE MINOTAUR</h3>
+            </div>
+            <div id="game-one-all-box-container">
+                <div id="game-one-all-boxes" data-game-one-level="1" data-game-one-level-score="0">
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="1"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="2"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="3"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="4"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="5"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="6"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="7"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="8"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="9"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="10"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="11"></div>
+                    </div>
+                    <div class="game-one-indivdual-box-container mb-1rem flex">
+                        <div class="game-one-indivdual-box" data-game-one-box-number="12"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="game-one-text-area-container">
+                <div id="game-one-text-area-box">
+                    <p id="minotaur-speaker-name" class="hidden">Screaming Man:</p>
+                    <p id="game-one-text-area">There is weird man who is screaming</p>
+                </div>
+            </div>
+            <div id="game-one-area-bottom">
+                <div class="bottom-left-sprite" onclick="setThenRunGameOne()">
+                    <img id="hero-game-one" src="assets/images/sprite-hero-still-right.png" alt="Hero"
+                        class="hero-size hero">
+                </div>
+                <button id="game-one-area-action-button">Talk to the screaming man</button>
+                <div class="bottom-right-sprite" onclick="gameOneBoxLight()">
+                    <img id="game-one-monster" src="assets/images/sprite-npc-1-still left.png" alt="Minotaur"
+                        class="game-one-monster-size" data-game-one-text-cycle="1" data-game-one-text-tree="A">
+                </div>
+            </div>
         </section>
 
         <!-- The second challange area of the game. This is the quick maths game -->

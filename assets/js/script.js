@@ -1,16 +1,17 @@
 // Global Variables
 // These are for the various functions to access them throughout the game. THey get referenced mainly to set speech cycles and 
 let knightName = "";
-let letter1 = "";
-let letter2 = "";
-let letter3 = "";
+let key1 = false;
+let key2 = false;
+let key3 = false;
+let gameOneAnswer = []
 
 // Button element event listeners
 // Once the DOM is loaded, all the buttons throughout the game will have an event listener and will be directed to the corresponding function
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        let changeSectionOptions = ["start-game-button", "to-hub-area-button"]
+        let changeSectionOptions = ["start-game-button", "to-hub-area-button", "to-game-one-area-button"]
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
@@ -18,6 +19,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 speechUpdateGameHub();
             } else if (button.getAttribute("id") === "game-one-start-game") {
                 setThenRunGameOne();
+            }
+        })
+    }
+    let gameOneBoxes = document.getElementsByClassName("game-one-indivdual-box");
+    for (boxes of gameOneBoxes) {
+        boxes.addEventListener("click", function (e) {
+            if (boxes.getAttribute("data-game-box-one-status") === "active") {
+                let gameOneBoxNumber = parseInt(e.target.getAttribute("data-game-one-box-number"));
+                checkAnswer(gameOneBoxNumber);
             }
         })
     }
@@ -187,21 +197,39 @@ function speechUpdateGameHub() {
 function setThenRunGameOne() {
     let answer = [];
     let counter = 0;
-    while (answer.length < 3) {
+    let boxArea = document.getElementById("game-one-all-boxes");
+    let lengthOfAnswer = "";
+    if (parseInt(boxArea.getAttribute("data-game-one-level")) === 1) {
+        lengthOfAnswer = 3;
+    } else if (parseInt(boxArea.getAttribute("data-game-one-level")) === 2) {
+        lengthOfAnswer = 5;
+    } else if (parseInt(boxArea.getAttribute("data-game-one-level")) === 3) {
+        lengthOfAnswer = 7;
+    } else {
+        alert("NO LEVEL DETECTED");
+        throw "Something has gone wrong"
+    }
+    while (answer.length < lengthOfAnswer) {
         let randomNumber = Math.ceil(Math.random() * 12);
         answer.push(randomNumber);
     }
     const gameOneLightBoxes = setInterval(function () {
-        console.log(answer);
-        counter++;
-        let answerArrayPosition = counter - 1;
-        let gameOneBoxNumber = answer[answerArrayPosition];
-        if (answerArrayPosition < 3) {
+        let gameOneBoxNumber = answer[counter];
+        if (counter < lengthOfAnswer) {
             gameOneBoxLight(gameOneBoxNumber);
+            counter++;
         } else {
             clearInterval(gameOneLightBoxes);
+            document.getElementById("game-one-text-area").innerText = "Now you copy the pattern";
+            let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
+    for (boxes of gameOneBox) {
+        boxes.setAttribute("data-game-box-one-status", "active");
+    }
         }
-    }, 500)
+    }, 500);
+    console.log(answer);
+    gameOneAnswer = answer;
+    console.log(gameOneAnswer);
 }
 
 function gameOneBoxLight(boxToLight) {
@@ -212,14 +240,29 @@ function gameOneBoxLight(boxToLight) {
             console.log(boxes.getAttribute("data-game-one-box-number"));
             boxes.classList.add("game-one-box-background");
             setTimeout(function () {
-                console.log("working");
-                console.log(gameOneBoxNumber);
                 gameOneBox[gameOneBoxNumber - 1].classList.remove("game-one-box-background");
             }, 300)
         }
     }
 }
 
+function checkAnswer(playerAnswer) {
+    let realAnswer = gameOneAnswer;
+    let realAnswerLength = realAnswer.length;
+    console.log(realAnswer);
+    console.log(realAnswerLength);
+    console.log(playerAnswer);
+    let checkNumber = parseInt(document.getElementById("game-one-all-boxes").getAttribute("data-game-one-check"));
+    if (playerAnswer === gameOneAnswer[checkNumber]) {
+        document.getElementById("game-one-all-boxes").setAttribute("data-game-one-check", checkNumber + 1);
+    } else {
+        alert("WRONG. TRY AGAIN");
+        document.getElementById("game-one-all-boxes").setAttribute("data-game-one-check", "0");
+    }
+    if (realAnswerLength - 1 === checkNumber) {
+        alert("CORRECT");
+    }
+}
 
 
 

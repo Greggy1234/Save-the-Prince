@@ -32,6 +32,10 @@ body {
     display: none;
 }
 
+.visible-hidden {
+    visibility: hidden;
+}
+
 .flex {
     display: flex;
 }
@@ -144,7 +148,7 @@ body {
 }
 
 .game-one-monster-size {
-    width: 35px;
+    width: 50px;
 }
 
 #game-one-area-bottom {

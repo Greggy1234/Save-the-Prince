@@ -301,12 +301,12 @@ function speechUpdateGameOne() {
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 gameOneTextArea.innerText = `As I die here from you beating me in a copy game, I curse you and your entire family forever.`
                 break;
-                case 4:
+            case 4:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 gameOneTextArea.innerText = `The minotaur falls to the ground covered in blood (somehow) and you get the key from challenge 1!`
                 gameOneSpeakerName.classList.add("hidden");
                 break;
-                case 5:
+            case 5:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 gameOneTextArea.innerText = `There's nothing else to do here apart form looking at the dead minotaur.`
                 break;
@@ -371,7 +371,7 @@ function gameOneBoxLight(boxToLight) {
             boxes.classList.add("game-one-box-background");
             setTimeout(function () {
                 gameOneBox[gameOneBoxNumber - 1].classList.remove("game-one-box-background");
-            }, 300 - ((parseInt(boxArea.getAttribute("data-game-one-level")) - 1) * 50))
+            }, 300 - ((parseInt(boxArea.getAttribute("data-game-one-level")) - 1) * 50));
         }
     }
 }
@@ -394,6 +394,7 @@ function gameOneCheckAnswer(playerAnswer) {
         if (realAnswerLength - 1 === checkNumber) {
             boxArea.setAttribute("data-game-one-check", "0");
             boxArea.setAttribute("data-game-one-level-score", parseInt(boxArea.getAttribute("data-game-one-level-score")) + 1);
+            gameOneMonsterHurtAnimation();
             let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
             for (boxes of gameOneBox) {
                 boxes.setAttribute("data-game-box-one-status", "inactive");
@@ -431,6 +432,21 @@ function gameOneCheckAnswer(playerAnswer) {
         gameOneTextArea.innerText = "WONRG! YOU IDIOT! TRY AGAIN!"
         boxArea.setAttribute("data-game-one-check", "0");
     }
+}
+
+/**
+ * This is the animation which indicates the minotaur has been hurt
+ */
+function gameOneMonsterHurtAnimation() {
+    let flash = 0;
+    let gameOneEnemy = document.getElementById("game-one-monster");
+    let gameOneMonsterHurtFlash = setInterval(function () {
+        gameOneEnemy.classList.toggle("visible-hidden");
+        flash++;
+        if (flash === 6) {
+            clearInterval(gameOneMonsterHurtFlash);
+        }
+    }, 100)
 }
 
 /**

@@ -11,13 +11,15 @@ let gameOneAnswer = []
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        let changeSectionOptions = ["start-game-button", "to-hub-area-button", "to-game-one-area-button"]
+        let changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button"]
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
             } else if (button.getAttribute("id") === "hub-area-action-button") {
                 speechUpdateGameHub();
-            } else if (button.getAttribute("id") === "game-one-start-game") {
+            } else if (button.getAttribute("id") === "game-one-area-action-button") {
+                speechUpdateGameOne();
+            } else if (button.getAttribute("id") === "game-one-start-button") {
                 setThenRunGameOne();
             }
         })
@@ -39,15 +41,21 @@ document.addEventListener("DOMContentLoaded", function () {
  * This is the first thing a player does. They input their name, and it gets stored to the global variable knightName
  */
 function changeSection(e) {
-    console.log(e);
     let currentLink = e.getAttribute("data-current-page-id");
     let nextLink = e.getAttribute("data-next-page-id");
     console.log(currentLink);
     console.log(nextLink);
     document.getElementById(nextLink).classList.remove("hidden");
     document.getElementById(currentLink).classList.add("hidden");
-    if (nextLink === "loading-area") {
-        loadingScreen(currentLink);
+    let buttonID = e.getAttribute("id");
+    let toLoadingScreenButtons = ["start-full-game-button", "to-game-one-area-button"]
+    if (buttonID === "start-full-game-button") {
+        loadingScreen(buttonID);
+    } else if (buttonID === "to-game-one-area-button") {
+        document.getElementById("loading-screen-button").setAttribute("data-next-page-id", "game-one-area");
+        document.getElementById("loading-screen-button").innerText = "Click to face the minotaur in his domain!";
+        document.getElementById("loading-text").innerHTML = "ON THE WAY TO CHALLENGE 1<br>...";
+        loadingScreen(buttonID);
     }
 }
 
@@ -55,7 +63,7 @@ function changeSection(e) {
  * The loading screen function
  * This is reused every time a player moves from one area to the next
  */
-function loadingScreen(loadingTextChange) {
+function loadingScreen(buttonID) {
     const hero = document.getElementById("hero-loading");
     let heroWidth = parseInt(document.getElementById("hero-loading").offsetWidth);
     let width = parseInt(document.getElementById("loading-area").offsetWidth);
@@ -64,12 +72,8 @@ function loadingScreen(loadingTextChange) {
     hero.classList.add("hero-left-position-left");
     hero.style.bottom = 10 + "px";
     document.getElementById("loading-link").classList.add("hidden");
+    console.log(buttonID);
     const heading = document.getElementById("loading-text");
-    if (loadingTextChange = "front-page") {
-        heading.innerHTML = "SEARCHING FOR DANGER<br>...";
-    } else {
-        heading.innerHTML = "LOADING<br>...";
-    }
     const loadingAnimation = setInterval(function () {
         position++;
         hero.style.left = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
@@ -105,7 +109,7 @@ document.getElementById("knight-name-container").addEventListener("submit", func
     }
     console.log(knightName);
     document.getElementById("knight-name-container").innerHTML = `<p>Knight ${knightName} is ready for action!<br>Click below to start being a hero</p>`;
-    document.getElementById("start-game-button").classList.remove("hidden");
+    document.getElementById("start-full-game-button").classList.remove("hidden");
 })
 
 // Game hub area code
@@ -162,18 +166,23 @@ function speechUpdateGameHub() {
                 document.getElementById("game-three-hub-area").style.backgroundColor = "yellow";
                 break;
             case 9:
+                gameHubTextArea.innerText = `I'll explain what lies in challenge 4 when you get all the keys!`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                document.getElementById("game-four-hub-area").style.backgroundColor = "grey";
+                break;
+            case 10:
                 gameHubTextArea.innerText = `That's the end of my info du- I mean explanation. 
                         Please hurry. I'm terrified of what's happening to our dear prince!`;
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
-            case 10:
+            case 11:
                 gameHubTextArea.innerText = `You've found your danger knight ${knightName}. Are you up for the challenge? 
                         (If you're not you can just exit the game)`;
                 npcSpeakerName.classList.add("hidden");
                 hubAreaButton.innerText = "Yes. I'm ready for the challenge";
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
-            case 11:
+            case 12:
                 gameHubTextArea.innerText = `Excellent! When you're ready, Choose one of the 3 available options above for your first challenge`;
                 hubAreaButton.style.display = "none";
                 break;
@@ -181,30 +190,85 @@ function speechUpdateGameHub() {
     }
 }
 
-
-
 // Challenge one area code
 /**
  * The text area function specifically for challenge one
  * This will carry out all combinations of the text area copy in the correct order and based on the corect text tree. The number within the text cycle custom attribute will also change various elements visually
  */
-
-
+function speechUpdateGameOne() {
+    const gameOneSpeakerName = document.getElementById("game-one-speaker-name");
+    const gameOneTextArea = document.getElementById("game-one-text-area");
+    const gameOneAreaButton = document.getElementById("game-one-area-action-button");
+    const gameOneMonster = document.getElementById("game-one-monster");
+    if (gameOneMonster.getAttribute("data-game-one-text-tree") === "A") {
+        switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
+            case 1:
+                gameOneTextArea.innerText = `Welcome to my domain knight ${knightName}!`
+                gameOneAreaButton.innerText = "Next";
+                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
+                gameOneSpeakerName.classList.remove("hidden");
+                break;
+            case 2:
+                gameOneTextArea.innerText = `I've been expecting you.`
+                gameOneAreaButton.innerText = "Next";
+                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
+                break;
+            case 3:
+                gameOneTextArea.innerText = `To get my key, you'll need to copy my pattern on the lava below.`
+                gameOneAreaButton.innerText = "Next";
+                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
+                break;
+            case 4:
+                gameOneTextArea.innerText = `If you can get 10 patterns right, you'll defeat me.`
+                gameOneAreaButton.innerText = "Next";
+                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
+                break;
+            case 5:
+                gameOneTextArea.innerText = `But don't think it will be easy!`
+                gameOneAreaButton.innerText = "Next";
+                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
+                break;
+            case 6:
+                gameOneTextArea.innerText = `This will test your memory like its never been tested before. I'm not just going to hand over the key!`
+                gameOneAreaButton.innerText = "Next";
+                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
+                break;
+            case 7:
+                gameOneTextArea.innerText = `Tell me when you're ready, and we shall begin.`
+                gameOneAreaButton.innerText = "Next";
+                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
+                break;
+            case 8:
+                gameOneTextArea.innerText = `Challenge rules: The minotaur will light a pattern on the lava tiles below. When the pattern has been shown, you will have to click the correct tiles. For each correct sequence, you will receive a point. Get to 10 points to get the key.`
+                gameOneAreaButton.classList.add("hidden");
+                gameOneSpeakerName.classList.add("hidden");
+                document.getElementById("game-one-start-button").classList.remove("hidden");
+                break;
+        }
+    }
+}
 
 /**
  * Challenge one game function
  */
 function setThenRunGameOne() {
+    document.getElementById("game-one-start-button").classList.add("hidden");
     let answer = [];
     let counter = 0;
     let boxArea = document.getElementById("game-one-all-boxes");
     let lengthOfAnswer = "";
+    let gameOnePoints = parseInt(boxArea.getAttribute("data-game-one-level-score"));
+    if (gameOnePoints === 3) {
+        parseInt(boxArea.setAttribute("data-game-one-level", "2"));
+    } else if (gameOnePoints === 5) {
+        parseInt(boxArea.setAttribute("data-game-one-level", "3"))
+    }
     if (parseInt(boxArea.getAttribute("data-game-one-level")) === 1) {
         lengthOfAnswer = 3;
     } else if (parseInt(boxArea.getAttribute("data-game-one-level")) === 2) {
-        lengthOfAnswer = 5;
+        lengthOfAnswer = 4;
     } else if (parseInt(boxArea.getAttribute("data-game-one-level")) === 3) {
-        lengthOfAnswer = 7;
+        lengthOfAnswer = 5;
     } else {
         alert("NO LEVEL DETECTED");
         throw "Something has gone wrong"
@@ -222,9 +286,9 @@ function setThenRunGameOne() {
             clearInterval(gameOneLightBoxes);
             document.getElementById("game-one-text-area").innerText = "Now you copy the pattern";
             let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
-    for (boxes of gameOneBox) {
-        boxes.setAttribute("data-game-box-one-status", "active");
-    }
+            for (boxes of gameOneBox) {
+                boxes.setAttribute("data-game-box-one-status", "active");
+            }
         }
     }, 500);
     console.log(answer);
@@ -253,14 +317,26 @@ function checkAnswer(playerAnswer) {
     console.log(realAnswerLength);
     console.log(playerAnswer);
     let checkNumber = parseInt(document.getElementById("game-one-all-boxes").getAttribute("data-game-one-check"));
+    let gameOnePointsArea = document.getElementById("game-one-all-boxes");
+    if (gameOnePointsArea.getAttribute("data-game-one-level-score") === 10) {
+        alert("WELL DONE, YOU BEAT THE MINOTAUR")
+    }
     if (playerAnswer === gameOneAnswer[checkNumber]) {
         document.getElementById("game-one-all-boxes").setAttribute("data-game-one-check", checkNumber + 1);
+        if (realAnswerLength - 1 === checkNumber) {
+            document.getElementById("game-one-text-area").innerText = "CORRECT! Well Done"
+            document.getElementById("game-one-all-boxes").setAttribute("data-game-one-check", "0");
+            gameOnePointsArea.setAttribute("data-game-one-level-score", parseInt(gameOnePointsArea.getAttribute("data-game-one-level-score")) + 1);
+            document.getElementById("game-one-start-button").classList.remove("hidden");
+            document.getElementById("game-one-start-button").innerText = "Next Stage";
+            let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
+            for (boxes of gameOneBox) {
+                boxes.setAttribute("data-game-box-one-status", "inactive");
+            }
+        }
     } else {
-        alert("WRONG. TRY AGAIN");
+        document.getElementById("game-one-text-area").innerText = "WONRG! YOU IDIOT! TRY AGAIN!"
         document.getElementById("game-one-all-boxes").setAttribute("data-game-one-check", "0");
-    }
-    if (realAnswerLength - 1 === checkNumber) {
-        alert("CORRECT");
     }
 }
 

@@ -11,7 +11,7 @@ let gameOneAnswer = []
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        let changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button"]
+        let changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button"]
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function changeSection(e) {
     let currentLink = e.getAttribute("data-current-page-id");
     let nextLink = e.getAttribute("data-next-page-id");
+    const heading = document.getElementById("loading-text");
+    const loadingScreenButton = document.getElementById("loading-screen-button");
     console.log(currentLink);
     console.log(nextLink);
     document.getElementById(nextLink).classList.remove("hidden");
@@ -52,9 +54,14 @@ function changeSection(e) {
     if (buttonID === "start-full-game-button") {
         loadingScreen(buttonID);
     } else if (buttonID === "to-game-one-area-button") {
-        document.getElementById("loading-screen-button").setAttribute("data-next-page-id", "game-one-area");
-        document.getElementById("loading-screen-button").innerText = "Click to face the minotaur in his domain!";
-        document.getElementById("loading-text").innerHTML = "ON THE WAY TO CHALLENGE 1<br>...";
+        loadingScreenButton.setAttribute("data-next-page-id", "game-one-area");
+        loadingScreenButton.innerText = "Click to face the minotaur in his domain!";
+        heading.innerHTML = "ON THE WAY TO CHALLENGE 1<br>...";
+        loadingScreen(buttonID);
+    } else if (buttonID === "game-one-to-hub-area-button") {
+        loadingScreenButton.setAttribute("data-next-page-id", "game-hub-area");
+        loadingScreenButton.innerText = "Go back to The Grasslands";
+        heading.innerHTML = "Back to The Grasslands<br>...";
         loadingScreen(buttonID);
     }
 }
@@ -69,9 +76,10 @@ function loadingScreen(buttonID) {
     let width = parseInt(document.getElementById("loading-area").offsetWidth);
     let position = 0;
     let maxPosition = 20;
+    const loadingLink = document.getElementById("loading-link");
     hero.classList.add("hero-left-position-left");
     hero.style.bottom = 10 + "px";
-    document.getElementById("loading-link").classList.add("hidden");
+    loadingLink.classList.add("hidden");
     console.log(buttonID);
     const heading = document.getElementById("loading-text");
     const loadingAnimation = setInterval(function () {
@@ -88,7 +96,7 @@ function loadingScreen(buttonID) {
             hero.style.right = 3 + "px";
             hero.style.left = "";
             hero.classList.remove("hero-left-position-left");
-            document.getElementById("loading-link").classList.remove("hidden");
+            loadingLink.classList.remove("hidden");
             hero.style.bottom = parseInt(hero.style.bottom) + 18.4 + "px";
         }
     }, 250)
@@ -127,7 +135,7 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 gameHubTextArea.innerText = `Oh thank god you showed up knight ${knightName}!                        
-                        My name's Eric, and this is the Grasslands. Something awful has happened`;
+                        My name's Eric, and this is The Grasslands. Something awful has happened`;
                 hubAreaButton.innerText = "Next";
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 npcSpeakerName.classList.remove("hidden");
@@ -201,6 +209,7 @@ function speechUpdateGameOne() {
     const gameOneAreaButton = document.getElementById("game-one-area-action-button");
     const gameOneStartButton = document.getElementById("game-one-start-button");
     const gameOneMonster = document.getElementById("game-one-monster");
+    const gameOneToHubAreaButton = document.getElementById("game-one-to-hub-area-button");
     if (gameOneMonster.getAttribute("data-game-one-text-tree") === "A") {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
@@ -291,24 +300,56 @@ function speechUpdateGameOne() {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
-                gameOneTextArea.innerText = `I can't believe you defeated me!`
+                gameOneTextArea.innerText = `I can't believe you defeated me!`;
                 break;
             case 2:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
-                gameOneTextArea.innerText = `You don't deserve this key, you scrawny, disgusting knight.`
+                gameOneTextArea.innerText = `You don't deserve this key, you scrawny, disgusting knight.`;
                 break;
             case 3:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
-                gameOneTextArea.innerText = `As I die here from you beating me in a copy game, I curse you and your entire family forever.`
+                gameOneTextArea.innerText = `As I die here from you beating me in a copy game, I curse you and your entire family forever.`;
                 break;
             case 4:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
-                gameOneTextArea.innerText = `The minotaur falls to the ground covered in blood (somehow) and you get the key from challenge 1!`
+                gameOneTextArea.innerText = `The minotaur falls to the ground covered in blood (somehow) and you get the key from challenge 1!`;
                 gameOneSpeakerName.classList.add("hidden");
+                gameOneAreaButton.classList.add("hidden");
+                let deathPose = 1;
+                let gameOneDeathAnimaton = setInterval(function () {
+                    switch (deathPose) {
+                        case 1:
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-2.png";
+                            deathPose++;
+                            break;
+                        case 2:
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-3.png";
+                            deathPose++;
+                            break;
+                        case 3:
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-4.png";
+                            deathPose++;
+                            break;
+                        case 4:
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-5.png";
+                            deathPose++;
+                            break;
+                        case 5:
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-6.png";
+                            deathPose++;
+                            break;
+                    }
+                    if (deathPose === 6) {
+                        clearInterval(gameOneDeathAnimaton);
+                        gameOneAreaButton.classList.remove("hidden");
+                    }
+                }, 1000);
                 break;
             case 5:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
-                gameOneTextArea.innerText = `There's nothing else to do here apart form looking at the dead minotaur.`
+                gameOneTextArea.innerText = `There's nothing else to do here apart form looking at the dead minotaur.`;
+                gameOneAreaButton.classList.add("hidden");
+                gameOneToHubAreaButton.classList.remove("hidden")
                 break;
         }
     }
@@ -382,7 +423,7 @@ function gameOneBoxLight(boxToLight) {
 function gameOneCheckAnswer(playerAnswer) {
     let realAnswer = gameOneAnswer;
     let realAnswerLength = realAnswer.length;
-    let boxArea = document.getElementById("game-one-all-boxes");
+    const boxArea = document.getElementById("game-one-all-boxes");
     let checkNumber = parseInt(boxArea.getAttribute("data-game-one-check"));
     const gameOneAreaButton = document.getElementById("game-one-area-action-button");
     const gameOneStartButton = document.getElementById("game-one-start-button");
@@ -402,25 +443,28 @@ function gameOneCheckAnswer(playerAnswer) {
             if (parseInt(boxArea.getAttribute("data-game-one-level-score")) === 3) {
                 gameOneTextArea.innerText = "Ahhh! I've underestimated you!";
                 gameOneMonster.setAttribute("data-game-one-text-tree", "B");
+                gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
+                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-2.png"
                 boxArea.setAttribute("data-game-one-level", "2");
                 gameOneSpeakerName.classList.remove("hidden");
-                gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
                 gameOneAreaButton.classList.remove("hidden");
                 gameOneAreaButton.innerText = "Next"
             } else if (parseInt(boxArea.getAttribute("data-game-one-level-score")) === 6) {
                 gameOneTextArea.innerText = "OK OK. You're slightly better than I thought you would be";
                 gameOneMonster.setAttribute("data-game-one-text-tree", "C");
+                gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
+                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-3.png"
                 boxArea.setAttribute("data-game-one-level", "3");
                 gameOneSpeakerName.classList.remove("hidden");
-                gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
                 gameOneAreaButton.classList.remove("hidden");
                 gameOneAreaButton.innerText = "Next"
             } else if (parseInt(boxArea.getAttribute("data-game-one-level-score")) === 10) {
-                alert("WELL DONE, YOU BEAT THE MINOTAUR");
                 gameOneTextArea.innerText = "Nooooooooooooooooo";
                 gameOneSpeakerName.classList.remove("hidden");
                 gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
                 gameOneMonster.setAttribute("data-game-one-text-tree", "D");
+                gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-1.png";
+                gameOneAreaButton.classList.remove("hidden");
                 key1 = true;
             } else {
                 gameOneTextArea.innerText = "CORRECT! Well Done"

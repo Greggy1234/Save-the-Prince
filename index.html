@@ -15,7 +15,7 @@
             <h1>Save the Prince logo here</h1>
         </header>
         <!-- Front page of the game when someone loads up the game. Players can enter their names for their knight -->
-        <section id="front-page">
+        <section id="front-page" class="hidden">
             <h2>Front page of game </h2>
             <form id="knight-name-container">
                 <label for="knight-name">What is your knight's name? </label>
@@ -82,7 +82,7 @@
         </section>
 
         <!-- The first challange area of the game. This is the copy the pattern game -->
-        <section id="game-one-area" class="hidden">
+        <section id="game-one-area" >
             <h2 id="game-one-area-text">The Minotaur's Domain</h2>
             <div class="hidden" id="game-one-game-intro-card-container">
                 <h3 class="game-intro-card hidden">CHALLENGE 1: COPY THE MINOTAUR</h3>
@@ -153,6 +153,7 @@
                 </div>
                 <button id="game-one-area-action-button">Speak to the minotaur</button>
                 <button id="game-one-start-button" class="hidden">Start the challenge!</button>
+                <button id="game-one-to-hub-area-button" class="hidden">Return to The Grasslands</button>
                 <div class="bottom-right-sprite">
                     <img id="game-one-monster" src="assets/images/sprite-npc-1-still left.png" alt="Minotaur"
                         class="game-one-monster-size" data-game-one-text-cycle="1" data-game-one-text-tree="A">

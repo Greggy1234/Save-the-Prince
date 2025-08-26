@@ -15,12 +15,14 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
-            } else if (button.getAttribute("id") === "hub-area-action-button") {
+            } else if (button.id === "hub-area-action-button") {
                 speechUpdateGameHub();
-            } else if (button.getAttribute("id") === "game-one-area-action-button") {
+            } else if (button.id === "game-one-area-action-button") {
                 speechUpdateGameOne();
-            } else if (button.getAttribute("id") === "game-one-start-button") {
+            } else if (button.id === "game-one-start-button") {
                 setThenRunGameOne();
+            } else if (button.id === "game-one-repeat-pattern") {
+                gameOneRepeatPattern();
             }
         })
     }
@@ -209,7 +211,9 @@ function speechUpdateGameOne() {
     const gameOneAreaButton = document.getElementById("game-one-area-action-button");
     const gameOneStartButton = document.getElementById("game-one-start-button");
     const gameOneMonster = document.getElementById("game-one-monster");
+    const gameOneIntroCard = document.getElementById("game-one-game-intro-card-container");
     const gameOneToHubAreaButton = document.getElementById("game-one-to-hub-area-button");
+    const gameOneBoxesContainer = document.getElementById("game-one-all-box-container");
     if (gameOneMonster.getAttribute("data-game-one-text-tree") === "A") {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
@@ -230,6 +234,8 @@ function speechUpdateGameOne() {
                 break;
             case 4:
                 gameOneTextArea.innerText = `If you can get 10 patterns right, you'll defeat me.`
+                gameOneIntroCard.classList.add("hidden");
+                gameOneBoxesContainer.classList.remove("hidden");
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
@@ -379,7 +385,6 @@ function setThenRunGameOne() {
     while (answer.length < lengthOfAnswer) {
         let randomNumber = Math.ceil(Math.random() * 12);
         answer.push(randomNumber);
-
     }
     const gameOneLightBoxes = setInterval(function () {
         let gameOneBoxNumber = answer[counter];
@@ -430,6 +435,7 @@ function gameOneCheckAnswer(playerAnswer) {
     const gameOneSpeakerName = document.getElementById("game-one-speaker-name");
     const gameOneMonster = document.getElementById("game-one-monster");
     const gameOneTextArea = document.getElementById("game-one-text-area");
+    const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
     if (playerAnswer === gameOneAnswer[checkNumber]) {
         boxArea.setAttribute("data-game-one-check", checkNumber + 1);
         if (realAnswerLength - 1 === checkNumber) {
@@ -475,6 +481,7 @@ function gameOneCheckAnswer(playerAnswer) {
     } else {
         gameOneTextArea.innerText = "WONRG! YOU IDIOT! TRY AGAIN!"
         boxArea.setAttribute("data-game-one-check", "0");
+        gameOneReplayPatternButton.classList.remove("hidden");
     }
 }
 
@@ -508,6 +515,37 @@ function gameOnePlayerBoxLight(PlayerBoxChosen) {
             }, 100)
         }
     }
+}
+
+/**
+ * This repeats the pattern if the player wants the pattern to be repeated
+ */
+function gameOneRepeatPattern() {
+    const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
+    gameOneReplayPatternButton.classList.add("hidden");
+    let boxArea = document.getElementById("game-one-all-boxes");
+    let counter = 0;
+    let answer = gameOneAnswer;
+    let lengthOfAnswer = answer.length;
+    let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
+    for (boxes of gameOneBox) {
+        boxes.setAttribute("data-game-box-one-status", "inactive");
+    }
+    const gameOneLightBoxes = setInterval(function () {
+        let gameOneBoxNumber = answer[counter];
+        if (counter < lengthOfAnswer) {
+            gameOneBoxLight(gameOneBoxNumber);
+            counter++;
+        } else {
+            clearInterval(gameOneLightBoxes);
+            document.getElementById("game-one-text-area").innerText = "Now you copy the pattern";
+            let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
+            for (boxes of gameOneBox) {
+                boxes.setAttribute("data-game-box-one-status", "active");
+            }
+        }
+    }, 500 - ((parseInt(boxArea.getAttribute("data-game-one-level")) - 1) * 100));
+
 }
 
 //gameOneSuccess()

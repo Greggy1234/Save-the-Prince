@@ -20,7 +20,11 @@ body {
     left: 2px;
 }
 
-.hero-bottom-position-left {
+.hero-right-position-right {
+    right: 2px;
+}
+
+.hero-bottom-position {
     bottom: 10px;
 }
 

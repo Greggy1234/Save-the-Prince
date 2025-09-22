@@ -1,17 +1,18 @@
 // Global Variables
 // These are for the various functions to access them throughout the game. They get referenced by multiple functions throughout. 
-let knightName = "";
-let key1 = false;
-let key2 = false;
-let key3 = false;
-let gameOneAnswer = []
+const globalVars = {
+    knightName: "",
+    key1: false,
+    key2: false,
+    gameOneAnswer: [],
+};
 
 // Button element event listeners
 // Once the DOM is loaded, all the buttons throughout the game will have an event listener and will be directed to the corresponding function
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        let changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button"]
+        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button","game-one-to-hub-area-button"];
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Global JavaScript code. The following apply throughout the whole game and are used for multiple sections
 /**
  * The changing section function
- * This is the first thing a player does. They input their name, and it gets stored to the global variable knightName
+ * This is used to change the div to the correct one so the player can progress through the game
  */
 function changeSection(e) {
     let currentLink = e.getAttribute("data-current-page-id");
@@ -60,17 +61,14 @@ function changeSection(e) {
         loadingScreenButton.innerText = "Click to face the minotaur in his domain!";
         heading.innerHTML = "ON THE WAY TO CHALLENGE 1<br>...";
         loadingScreen(buttonID);
-    } else if (buttonID === "game-one-to-hub-area-button") {
-        loadingScreenButton.setAttribute("data-next-page-id", "game-hub-area");
-        loadingScreenButton.innerText = "Go back to The Grasslands";
-        heading.innerHTML = "Back to The Grasslands<br>...";
-        loadingScreen(buttonID);
+    } else if (buttonID === "game-one-to-hub-area-button" || buttonID === "game-two-to-hub-area-button" ) {
+        loadingScreenRight(buttonID);
     }
 }
 
 /**
- * The loading screen function
- * This is reused every time a player moves from one area to the next
+ * The loading screen function from left to right
+ * This is reused every time a player moves from one area to the next excluding returning from a game area
  */
 function loadingScreen(buttonID) {
     const hero = document.getElementById("hero-loading");
@@ -79,11 +77,11 @@ function loadingScreen(buttonID) {
     let position = 0;
     let maxPosition = 20;
     const loadingLink = document.getElementById("loading-link");
-    hero.classList.add("hero-left-position-left");
-    hero.style.bottom = 10 + "px";
+    hero.style.bottom = "10 + px";
     loadingLink.classList.add("hidden");
-    console.log(buttonID);
     const heading = document.getElementById("loading-text");
+    console.log(buttonID);
+    hero.classList.add("hero-left-position-left");
     const loadingAnimation = setInterval(function () {
         position++;
         hero.style.left = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
@@ -104,6 +102,42 @@ function loadingScreen(buttonID) {
     }, 250)
 }
 
+/**
+ * The loading screen function from right to left
+ * This is reused every time a player moves from one of the game areas to the hub area
+ */
+function loadingScreenRight(buttonID) {
+    const hero = document.getElementById("hero-loading-right");
+    let heroWidth = parseInt(document.getElementById("hero-loading-right").offsetWidth);
+    let width = parseInt(document.getElementById("loading-area").offsetWidth);
+    let position = 0;
+    let maxPosition = 20;
+    const loadingLink = document.getElementById("loading-link-right");
+    hero.style.bottom = "10 + px";
+    loadingLink.classList.add("hidden");
+    const heading = document.getElementById("loading-text-right");
+    console.log(buttonID);
+    hero.classList.add("hero-right-position-right");
+    const loadingAnimation = setInterval(function () {
+        position++;
+        hero.style.left = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
+        if (position % 2 === 0) {
+            hero.setAttribute("src", "assets/images/sprite-hero-still-left.png");
+        } else if (position % 2 === 1) {
+            hero.setAttribute("src", "assets/images/sprite-hero-walk-left.png");
+            heading.innerText = heading.innerText + ".";
+        }
+        if (position === maxPosition) {
+            clearInterval(loadingAnimation);
+            hero.style.left = 3 + "px";
+            hero.style.right = "";
+            hero.classList.remove("hero-left-position-right");
+            loadingLink.classList.remove("hidden");
+            hero.style.bottom = parseInt(hero.style.bottom) + 18.4 + "px";
+        }
+    }, 250)
+}
+
 
 // Front page code
 /**
@@ -112,13 +146,13 @@ function loadingScreen(buttonID) {
  */
 document.getElementById("knight-name-container").addEventListener("submit", function (e) {
     e.preventDefault();
-    knightName = document.getElementById("knight-name").value;
-    if (knightName === "") {
+    globalVars.knightName = document.getElementById("knight-name").value;
+    if (globalVars.knightName === "") {
         alert("You must give your knight a name so the masses can recognise you across the land (and so we know what to put on your gravestone)");
         return;
     }
-    console.log(knightName);
-    document.getElementById("knight-name-container").innerHTML = `<p>Knight ${knightName} is ready for action!<br>Click below to start being a hero</p>`;
+    console.log(globalVars.knightName);
+    document.getElementById("knight-name-container").innerHTML = `<p>Knight ${globalVars.knightName} is ready for action!<br>Click below to start being a hero</p>`;
     document.getElementById("start-full-game-button").classList.remove("hidden");
 })
 
@@ -136,7 +170,7 @@ function speechUpdateGameHub() {
     if (npc.getAttribute("data-npc-text-tree") === "A") {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
-                gameHubTextArea.innerText = `Oh thank god you showed up knight ${knightName}!                        
+                gameHubTextArea.innerText = `Oh thank god you showed up knight ${globalVars.knightName}!                        
                         My name's Eric, and this is The Grasslands. Something awful has happened`;
                 hubAreaButton.innerText = "Next";
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
@@ -186,7 +220,7 @@ function speechUpdateGameHub() {
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
             case 11:
-                gameHubTextArea.innerText = `You've found your danger knight ${knightName}. Are you up for the challenge? 
+                gameHubTextArea.innerText = `You've found your danger knight ${globalVars.knightName}. Are you up for the challenge? 
                         (If you're not you can just exit the game)`;
                 npcSpeakerName.classList.add("hidden");
                 hubAreaButton.innerText = "Yes. I'm ready for the challenge";
@@ -217,7 +251,7 @@ function speechUpdateGameOne() {
     if (gameOneMonster.getAttribute("data-game-one-text-tree") === "A") {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
-                gameOneTextArea.innerText = `Welcome to my domain knight ${knightName}!`
+                gameOneTextArea.innerText = `Welcome to my domain knight ${globalVars.knightName}!`
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 gameOneSpeakerName.classList.remove("hidden");
@@ -353,7 +387,7 @@ function speechUpdateGameOne() {
                 break;
             case 5:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
-                gameOneTextArea.innerText = `There's nothing else to do here apart form looking at the dead minotaur.`;
+                gameOneTextArea.innerText = `There's nothing else to do here apart from looking at the dead minotaur.`;
                 gameOneAreaButton.classList.add("hidden");
                 gameOneToHubAreaButton.classList.remove("hidden")
                 break;
@@ -399,9 +433,9 @@ function setThenRunGameOne() {
                 boxes.setAttribute("data-game-box-one-status", "active");
             }
         }
-    }, 500 - ((parseInt(boxArea.getAttribute("data-game-one-level")) - 1) * 100));
-    gameOneAnswer = answer;
-    console.log(gameOneAnswer);
+    }, 500 - ((parseInt(boxArea.getAttribute("data-game-one-level")) - 1) * 75));
+    globalVars.gameOneAnswer = answer;
+    console.log(globalVars.gameOneAnswer);
 }
 
 /**
@@ -417,7 +451,7 @@ function gameOneBoxLight(boxToLight) {
             boxes.classList.add("game-one-box-background");
             setTimeout(function () {
                 gameOneBox[gameOneBoxNumber - 1].classList.remove("game-one-box-background");
-            }, 300 - ((parseInt(boxArea.getAttribute("data-game-one-level")) - 1) * 50));
+            }, 300 - ((parseInt(boxArea.getAttribute("data-game-one-level")) - 1) * 25));
         }
     }
 }
@@ -426,7 +460,7 @@ function gameOneBoxLight(boxToLight) {
  * This checks the blocks that the player clicks to match it with the correct answer and sets the next levels of the game
  */
 function gameOneCheckAnswer(playerAnswer) {
-    let realAnswer = gameOneAnswer;
+    let realAnswer = globalVars.gameOneAnswer;
     let realAnswerLength = realAnswer.length;
     const boxArea = document.getElementById("game-one-all-boxes");
     let checkNumber = parseInt(boxArea.getAttribute("data-game-one-check"));
@@ -436,7 +470,7 @@ function gameOneCheckAnswer(playerAnswer) {
     const gameOneMonster = document.getElementById("game-one-monster");
     const gameOneTextArea = document.getElementById("game-one-text-area");
     const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
-    if (playerAnswer === gameOneAnswer[checkNumber]) {
+    if (playerAnswer === globalVars.gameOneAnswer[checkNumber]) {
         boxArea.setAttribute("data-game-one-check", checkNumber + 1);
         if (realAnswerLength - 1 === checkNumber) {
             boxArea.setAttribute("data-game-one-check", "0");
@@ -471,7 +505,7 @@ function gameOneCheckAnswer(playerAnswer) {
                 gameOneMonster.setAttribute("data-game-one-text-tree", "D");
                 gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-1.png";
                 gameOneAreaButton.classList.remove("hidden");
-                key1 = true;
+                globalVars.key1 = true;
             } else {
                 gameOneTextArea.innerText = "CORRECT! Well Done"
                 gameOneStartButton.classList.remove("hidden");
@@ -479,7 +513,7 @@ function gameOneCheckAnswer(playerAnswer) {
             }
         }
     } else {
-        gameOneTextArea.innerText = "WONRG! YOU IDIOT! TRY AGAIN!"
+        gameOneTextArea.innerText = "WRONG! YOU IDIOT! TRY AGAIN!";
         boxArea.setAttribute("data-game-one-check", "0");
         gameOneReplayPatternButton.classList.remove("hidden");
     }
@@ -525,7 +559,7 @@ function gameOneRepeatPattern() {
     gameOneReplayPatternButton.classList.add("hidden");
     let boxArea = document.getElementById("game-one-all-boxes");
     let counter = 0;
-    let answer = gameOneAnswer;
+    let answer = globalVars.gameOneAnswer;
     let lengthOfAnswer = answer.length;
     let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
     for (boxes of gameOneBox) {
@@ -548,22 +582,6 @@ function gameOneRepeatPattern() {
 
 }
 
-//gameOneSuccess()
-
-//gameOneFailure()
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -583,82 +601,6 @@ function gameOneRepeatPattern() {
 /**
  * Challenge two game function
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Challenge three area code
-/**
- * The text area function specifically for challenge three
- * This will carry out all combinations of the text area copy in the correct order and based on the corect text tree. The number within the text cycle custom attribute will also change various elements visually
- */
-
-
-
-/**
- * Challenge three game function
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Challenge four area code
-/**
- * The text area function specifically for challenge four
- * This will carry out all combinations of the text area copy in the correct order and based on the corect text tree. The number within the text cycle custom attribute will also change various elements visually
- */
-
-
-
-/**
- * Challenge four game function
- */
-
-
-
-
 
 
 

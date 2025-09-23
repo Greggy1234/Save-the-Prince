@@ -12,7 +12,7 @@ const globalVars = {
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button","game-one-to-hub-area-button"];
+        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button","game-one-to-hub-area-button", "to-game-two-area-button"];
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
@@ -60,6 +60,11 @@ function changeSection(e) {
         loadingScreenButton.setAttribute("data-next-page-id", "game-one-area");
         loadingScreenButton.innerText = "Click to face the minotaur in his domain!";
         heading.innerHTML = "ON THE WAY TO CHALLENGE 1<br>...";
+        loadingScreen(buttonID);
+    } else if (buttonID === "to-game-two-area-button") {
+        loadingScreenButton.setAttribute("data-next-page-id", "game-two-area");
+        loadingScreenButton.innerText = "Click to face the evil jester in his castle!";
+        heading.innerHTML = "ON THE WAY TO CHALLENGE 2<br>...";
         loadingScreen(buttonID);
     } else if (buttonID === "game-one-to-hub-area-button" || buttonID === "game-two-to-hub-area-button" ) {
         loadingScreenRight(buttonID);
@@ -109,7 +114,7 @@ function loadingScreen(buttonID) {
 function loadingScreenRight(buttonID) {
     const hero = document.getElementById("hero-loading-right");
     let heroWidth = parseInt(document.getElementById("hero-loading-right").offsetWidth);
-    let width = parseInt(document.getElementById("loading-area").offsetWidth);
+    let width = parseInt(document.getElementById("loading-area-right").offsetWidth);
     let position = 0;
     let maxPosition = 20;
     const loadingLink = document.getElementById("loading-link-right");
@@ -120,7 +125,7 @@ function loadingScreenRight(buttonID) {
     hero.classList.add("hero-right-position-right");
     const loadingAnimation = setInterval(function () {
         position++;
-        hero.style.left = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
+        hero.style.right = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
         if (position % 2 === 0) {
             hero.setAttribute("src", "assets/images/sprite-hero-still-left.png");
         } else if (position % 2 === 1) {

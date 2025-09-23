@@ -53,9 +53,9 @@ body {
 }
 
 .game-intro-card {
-    border:1px solid red;
-    padding:40px 80px;
-    display:inline-block;
+    border: 1px solid red;
+    padding: 40px 80px;
+    display: inline-block;
 }
 
 .bottom-left-sprite {
@@ -77,15 +77,15 @@ body {
 
 
 /* Loading screen styles */
-#loading-area-hero-container {
+#loading-area-hero-container,
+#loading-area-right-hero-container {
     height: 35vh;
 }
 
 
 
 /* Hub area styles */
-#top-row-games,
-#bottom-row-games {
+#games-container {
     display: flex;
     justify-content: space-around;
 }
@@ -127,7 +127,7 @@ body {
 }
 
 .game-one-indivdual-box-container {
-    width: 25%;
+    width: 33.33333%;
     flex-shrink: 0;
     flex-wrap: wrap;
     justify-content: center;
@@ -162,5 +162,51 @@ body {
 }
 
 .game-one-box-background {
-    background-color:red;
+    background-color: red;
+}
+
+/* Game two styles */
+#game-two-all-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.game-two-indivdual-box-container {
+    width: 33.33333%;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.game-tw0-indivdual-box {
+    border: 1px solid red;
+    width: 100px;
+    height: 50px;
+}
+
+#game-two-text-area-container {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0px;
+}
+
+#game-two-text-area-box {
+    border: 2px solid red;
+    width: 700px;
+    height: 15vh;
+}
+
+.game-two-monster-size {
+    width: 50px;
+}
+
+#game-two-area-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.game-two-box-background {
+    background-color: blue;
 }

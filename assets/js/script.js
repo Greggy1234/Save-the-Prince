@@ -5,6 +5,8 @@ const globalVars = {
     key1: false,
     key2: false,
     gameOneAnswer: [],
+    gameTwoSetAnswers: [],
+    gameTwoRandom: false,
 };
 
 // Button element event listeners
@@ -27,7 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (button.id === "game-two-area-action-button") {
                 speechUpdateGameTwo();
             } else if (button.id === "game-two-start-button") {
-                GameTwoSetRandomTextOptions();
+                if (globalVars.gameTwoRandom === false) {
+                    GameTwoSetRandomTextOptions();
+                } else {
+                    gameTwoDisplayWords(globalVars.gameTwoSetAnswers);
+                }
             }
         })
     }
@@ -661,45 +667,86 @@ function speechUpdateGameTwo() {
 /**
  * This creates the random order which the sets of connections will appear for each level ensuring that there is some randomness for replayability value
  */
-
 function GameTwoSetRandomTextOptions() {
     const gameTwoLevelOneOptions = [["SCROLL", "SWIPE", "TAP"], ["RANK", "RATE", "SCORE"], ["DOOR", "GATE", "HATCH"], ["DENT", "DING", "SCRATCH"], ["COMPLETE", "DONE", "OVER"], ["DAWN", "GENESIS", "START"], ["METAL", "POP", "CLASSICAL"], ["CHARM", "RIVET", "THRILL"], ["COACH", "DIRECT", "GUIDE"]];
     const gameTwoLevelTwoOptions = [["BILLY", "JACK", "RAM"], ["PLAYWRIGHT", "SWORD", "WRAP"], ["RESORT", "STRAW", "SUPPER"], ["AID", "LADY", "NATIONS"], ["GEODUCK", "SEAHORSE", "WOMBAT"], ["DRY", "GIN", "SHAKEN"], ["FLOSS", "MOONWALK", "ROBOT"], ["EUPHORIA", "SUCCESSION", "WESTWORLD"], ["CHARM", "FRIENDSHIP", "TENNIS"]];
     const gameTwoLevelThreeOptions = [["ORGANISM", "SOLAR PANEL", "SPREADSHEET"], ["BOWLING PINS", "COMMANDMENTS", "DECADE"], ["ABUT", "GROAN", "VOILA"], ["BET", "LAMB", "THE"], ["LORDING", "MISSING", "SIRING"], ["HEAL", "SOUL", "TOW"], ["CHINSTRAP", "EMPEROR", "KING"], ["HELL", "ILL", "SHELL"], ["CHORUS", "HERO", "HUBRIS"]];
-    /**
-     * This the Fisher Yates method for randomly shuffling an array. This code was taken from https://www.w3schools.com/js/js_array_sort.asp  
-     */
-    function randomArray(a, b, c) {
-        for (let i = a.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            let k = a[i];
-            a[i] = a[j];
-            a[j] = k;
+    let gameTwoLevelOneRoundOne = [];
+    let gameTwoLevelOneRoundTwo = [];
+    let gameTwoLevelOneRoundThree = [];
+    let gameTwoLevelTwoRoundOne = [];
+    let gameTwoLevelTwoRoundTwo = [];
+    let gameTwoLevelTwoRoundThree = [];
+    let gameTwoLevelThreeRoundOne = [];
+    let gameTwoLevelThreeRoundTwo = [];
+    let gameTwoLevelThreeRoundThree = [];
+    let gameTwoLevelOneSetOrder = fisherYatesMethod(gameTwoLevelOneOptions);
+    let gameTwoLevelTwoSetOrder = fisherYatesMethod(gameTwoLevelTwoOptions);
+    let gameTwoLevelThreeSetOrder = fisherYatesMethod(gameTwoLevelThreeOptions);
+    for (j = 0; j < 3; j++) {
+        for (i = 0; i < 3; i++) {
+            gameTwoLevelOneRoundOne.push(gameTwoLevelOneSetOrder[i][j]);
+            gameTwoLevelTwoRoundOne.push(gameTwoLevelTwoSetOrder[i][j]);
+            gameTwoLevelThreeRoundOne.push(gameTwoLevelThreeSetOrder[i][j]);
         }
-        let gameTwoLevelOneSetOrder = a;
-        for (let i = b.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            let k = a[i];
-            a[i] = a[j];
-            a[j] = k;
+        for (i = 3; i < 6; i++) {
+            gameTwoLevelOneRoundTwo.push(gameTwoLevelOneSetOrder[i][j]);
+            gameTwoLevelTwoRoundTwo.push(gameTwoLevelTwoSetOrder[i][j]);
+            gameTwoLevelThreeRoundTwo.push(gameTwoLevelThreeSetOrder[i][j]);
         }
-        let gameTwoLevelTwoSetOrder = b;
-        for (let i = c.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            let k = a[i];
-            a[i] = a[j];
-            a[j] = k;
+        for (i = 6; i < 9; i++) {
+            gameTwoLevelOneRoundThree.push(gameTwoLevelOneSetOrder[i][j]);
+            gameTwoLevelTwoRoundThree.push(gameTwoLevelTwoSetOrder[i][j]);
+            gameTwoLevelThreeRoundThree.push(gameTwoLevelThreeSetOrder[i][j]);
         }
-        let gameTwoLevelThreeSetOrder = c;
-        console.log(gameTwoLevelOneSetOrder);
-        console.log(gameTwoLevelTwoSetOrder);
-        console.log(gameTwoLevelThreeSetOrder);
     }
-    randomArray(gameTwoLevelOneOptions, gameTwoLevelTwoOptions, gameTwoLevelThreeOptions);
+    gameTwoLevelOneRoundOne = fisherYatesMethod(gameTwoLevelOneRoundOne);
+    gameTwoLevelOneRoundTwo = fisherYatesMethod(gameTwoLevelOneRoundTwo);
+    gameTwoLevelOneRoundThree = fisherYatesMethod(gameTwoLevelOneRoundThree);
+    gameTwoLevelTwoRoundOne = fisherYatesMethod(gameTwoLevelTwoRoundOne);
+    gameTwoLevelTwoRoundTwo = fisherYatesMethod(gameTwoLevelTwoRoundTwo);
+    gameTwoLevelTwoRoundThree = fisherYatesMethod(gameTwoLevelTwoRoundThree);
+    gameTwoLevelThreeRoundOne = fisherYatesMethod(gameTwoLevelThreeRoundOne);
+    gameTwoLevelThreeRoundTwo = fisherYatesMethod(gameTwoLevelThreeRoundTwo);
+    gameTwoLevelThreeRoundThree = fisherYatesMethod(gameTwoLevelThreeRoundThree);
+    globalVars.gameTwoSetAnswers = [gameTwoLevelOneRoundOne, gameTwoLevelOneRoundTwo, gameTwoLevelOneRoundThree, gameTwoLevelTwoRoundOne, gameTwoLevelTwoRoundTwo, gameTwoLevelTwoRoundThree, gameTwoLevelThreeRoundOne, gameTwoLevelThreeRoundTwo, gameTwoLevelThreeRoundThree];
+    console.log(globalVars.gameTwoSetAnswers);
+    globalVars.gameTwoRandom = true;
+    gameTwoDisplayWords(globalVars.gameTwoSetAnswers)
 }
 
+/**
+* This the Fisher Yates method for randomly shuffling an array. This code was taken from https://www.w3schools.com/js/js_array_sort.asp  
+*/
+function fisherYatesMethod(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let k = a[i];
+        a[i] = a[j];
+        a[j] = k;
+    }
+    return a;
+}
 
-
+function gameTwoDisplayWords(allSetAnswers) {
+    const gameTwoIndividualBoxes = document.getElementsByClassName("game-two-indivdual-box");
+    const gameTwoTextArea = document.getElementById("game-two-text-area");
+    const allGameTwoBoxes = document.getElementById("game-two-all-boxes")
+    gameTwoTextArea.innerText = "Find the connections";
+    for (let box of gameTwoIndividualBoxes) {
+        let gameTwoBoxNumber = parseInt(box.getAttribute("data-game-two-box-number"));
+        let arrayPosition = 0;
+        let round = parseInt(allGameTwoBoxes.getAttribute("data-game-two-level-score"));
+        for (let i = arrayPosition; i < 9; i++) {
+            if (gameTwoBoxNumber === i + 1) {
+                setTimeout(function () {
+                    box.innerHTML = `<p>${allSetAnswers[round][i]}<p>`;
+                }, i * 100);
+            }
+        }
+        box.setAttribute("data-game-box-two-status", "active");
+    }
+}
 
 
 

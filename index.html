@@ -56,7 +56,7 @@
         </section>
 
         <!-- The main area of the game. This is where the player can choose the challenges (referenced as games in the code) -->
-        <section id="game-hub-area">
+        <section id="game-hub-area" class="hidden">
             <h2 id="game-hub-area-text">Unknown Area</h2>
             <div id="games-container">
                 <div id="game-one-hub-area" class="game-box">
@@ -89,9 +89,9 @@
 
         <!-- The first challange area of the game. This is the copy the pattern game -->
         <section id="game-one-area" class="hidden">
-            <h2 id="game-one-area-text">The Minotaur's Domain</h2>
+            <h2 id="game-one-area-text">The Minotaur's Volcano</h2>
             <div id="game-one-game-intro-card-container">
-                <h3 class="game-intro-card hidden">CHALLENGE 1: COPY THE MINOTAUR</h3>
+                <h3 class="game-intro-card">CHALLENGE 1: COPY THE MINOTAUR</h3>
             </div>
             <div id="game-one-all-box-container" class="hidden">
                 <div id="game-one-all-boxes" data-game-one-level="1" data-game-one-level-score="0"
@@ -149,7 +149,7 @@
                 <button id="game-one-start-button" class="hidden">Start the challenge!</button>
                 <button id="game-one-repeat-pattern" class="hidden">Replay the pattern</button>
                 <button id="game-one-to-hub-area-button" data-current-page-id="game-one-area"
-                        data-next-page-id="loading-area-right" class="hidden">Return to The Grasslands</button>
+                    data-next-page-id="loading-area-right" class="hidden">Return to The Grasslands</button>
                 <div class="bottom-right-sprite">
                     <img id="game-one-monster" src="assets/images/sprite-game-one-enemy-pose-1.png" alt="Minotaur"
                         class="game-one-monster-size" data-game-one-text-cycle="1" data-game-one-text-tree="A">
@@ -157,11 +157,11 @@
             </div>
         </section>
 
-        <!-- The second challange area of the game. This is the connections game -->
-        <section id="game-two-area" class="hidden">
-             <h2 id="game-two-area-text">The Minotaur's Domain</h2>
+        <!-- The second challenge area of the game. This is the connections game -->
+        <section id="game-two-area">
+            <h2 id="game-two-area-text">The Evil Necromancer's Castle</h2>
             <div id="game-two-game-intro-card-container">
-                <h3 class="game-intro-card hidden">CHALLENGE 2: FIND THE CONNECTION</h3>
+                <h3 class="game-intro-card">CHALLENGE 2: FIND THE CONNECTION</h3>
             </div>
             <div id="game-two-all-box-container" class="hidden">
                 <div id="game-two-all-boxes" data-game-two-level="1" data-game-two-level-score="0"
@@ -206,8 +206,9 @@
             </div>
             <div id="game-two-text-area-container">
                 <div id="game-two-text-area-box">
-                    <p id="game-two-speaker-name" class="hidden">Evil Jester:</p>
-                    <p id="game-two-text-area">You see a weird-looking, very ugly man with questionable fashion snese in front of you.</p>
+                    <p id="game-two-speaker-name" class="hidden">Evil Necromancer:</p>
+                    <p id="game-two-text-area">You see a weird-looking, very ugly skeleton necromancer with questionable
+                        fashion snese in front of you.</p>
                 </div>
             </div>
             <div id="game-two-area-bottom">
@@ -215,14 +216,14 @@
                     <img id="hero-game-two" src="assets/images/sprite-hero-still-right.png" alt="Hero"
                         class="hero-size hero">
                 </div>
-                <button id="game-two-area-action-button">Speak to the weird, ugly man</button>
+                <button id="game-two-area-action-button">Speak to the weird, ugly skeleton necromancer</button>
                 <button id="game-two-start-button" class="hidden">Start the challenge!</button>
-                <button id="game-two-repeat-pattern" class="hidden">Replay the pattern</button>
                 <button id="game-two-to-hub-area-button" data-current-page-id="game-two-area"
-                        data-next-page-id="loading-area-right" class="hidden">Return to The Grasslands</button>
+                    data-next-page-id="loading-area-right" class="hidden">Return to The Grasslands</button>
                 <div class="bottom-right-sprite">
-                    <img id="game-two-monster" src="assets/images/sprite-game-one-enemy-pose-1.png" alt="Evil Jester"
-                        class="game-two-monster-size" data-game-two-text-cycle="1" data-game-two-text-tree="A">
+                    <img id="game-two-monster" src="assets/images/sprite-game-one-enemy-pose-1.png"
+                        alt="Evil Necromancer" class="game-two-monster-size" data-game-two-text-cycle="1"
+                        data-game-two-text-tree="A">
                 </div>
             </div>
 

@@ -12,7 +12,7 @@ const globalVars = {
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button","game-one-to-hub-area-button", "to-game-two-area-button"];
+        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button"];
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
@@ -24,6 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 setThenRunGameOne();
             } else if (button.id === "game-one-repeat-pattern") {
                 gameOneRepeatPattern();
+            } else if (button.id === "game-two-area-action-button") {
+                speechUpdateGameTwo();
+            } else if (button.id === "game-two-start-button") {
+                GameTwoSetRandomTextOptions();
             }
         })
     }
@@ -63,10 +67,10 @@ function changeSection(e) {
         loadingScreen(buttonID);
     } else if (buttonID === "to-game-two-area-button") {
         loadingScreenButton.setAttribute("data-next-page-id", "game-two-area");
-        loadingScreenButton.innerText = "Click to face the evil jester in his castle!";
+        loadingScreenButton.innerText = "Click to face the evil necromancer in his castle!";
         heading.innerHTML = "ON THE WAY TO CHALLENGE 2<br>...";
         loadingScreen(buttonID);
-    } else if (buttonID === "game-one-to-hub-area-button" || buttonID === "game-two-to-hub-area-button" ) {
+    } else if (buttonID === "game-one-to-hub-area-button" || buttonID === "game-two-to-hub-area-button") {
         loadingScreenRight(buttonID);
     }
 }
@@ -388,7 +392,7 @@ function speechUpdateGameOne() {
                         clearInterval(gameOneDeathAnimaton);
                         gameOneAreaButton.classList.remove("hidden");
                     }
-                }, 1000);
+                }, 750);
                 break;
             case 5:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
@@ -422,7 +426,7 @@ function setThenRunGameOne() {
         throw "Something has gone wrong"
     }
     while (answer.length < lengthOfAnswer) {
-        let randomNumber = Math.ceil(Math.random() * 12);
+        let randomNumber = Math.ceil(Math.random() * 9);
         answer.push(randomNumber);
     }
     const gameOneLightBoxes = setInterval(function () {
@@ -601,13 +605,98 @@ function gameOneRepeatPattern() {
  * This will carry out all combinations of the text area copy in the correct order and based on the corect text tree. The number within the text cycle custom attribute will also change various elements visually
  */
 
-
+function speechUpdateGameTwo() {
+    const gameTwoSpeakerName = document.getElementById("game-two-speaker-name");
+    const gameTwoTextArea = document.getElementById("game-two-text-area");
+    const gameTwoAreaButton = document.getElementById("game-two-area-action-button");
+    const gameTwoStartButton = document.getElementById("game-two-start-button");
+    const gameTwoMonster = document.getElementById("game-two-monster");
+    const gameTwoIntroCard = document.getElementById("game-two-game-intro-card-container");
+    const gameTwoToHubAreaButton = document.getElementById("game-two-to-hub-area-button");
+    const gameTwoBoxesContainer = document.getElementById("game-two-all-box-container");
+    if (gameTwoMonster.getAttribute("data-game-two-text-tree") === "A") {
+        switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
+            case 1:
+                gameTwoTextArea.innerText = `Greetings ${globalVars.knightName}! Please, make yourself welcome in my humble abode`
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                gameTwoSpeakerName.classList.remove("hidden");
+                break;
+            case 2:
+                gameTwoTextArea.innerText = `I know you're here for my key, and I don't like that at all.`
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 3:
+                gameTwoTextArea.innerText = `BUT, if you can show you've got brains, I will give it over willingly.`
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 4:
+                gameTwoTextArea.innerText = `All you have to do is find the connections between the words in the hall below.`
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoIntroCard.classList.add("hidden");
+                gameTwoBoxesContainer.classList.remove("hidden");
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 5:
+                gameTwoTextArea.innerText = `Do you think you beat my game of wits?`
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 6:
+                gameTwoTextArea.innerText = `Challenge rules: The necromancer will present 9 words in the boxes. You will have to find 3 groups of 3 words, with each group of words having a connection between them.`
+                gameTwoAreaButton.classList.add("hidden");
+                gameTwoSpeakerName.classList.add("hidden");
+                gameTwoStartButton.classList.remove("hidden");
+                break;
+        }
+    }
+}
 
 /**
  * Challenge two game function
  */
 
+/**
+ * This creates the random order which the sets of connections will appear for each level ensuring that there is some randomness for replayability value
+ */
 
+function GameTwoSetRandomTextOptions() {
+    const gameTwoLevelOneOptions = [["SCROLL", "SWIPE", "TAP"], ["RANK", "RATE", "SCORE"], ["DOOR", "GATE", "HATCH"], ["DENT", "DING", "SCRATCH"], ["COMPLETE", "DONE", "OVER"], ["DAWN", "GENESIS", "START"], ["METAL", "POP", "CLASSICAL"], ["CHARM", "RIVET", "THRILL"], ["COACH", "DIRECT", "GUIDE"]];
+    const gameTwoLevelTwoOptions = [["BILLY", "JACK", "RAM"], ["PLAYWRIGHT", "SWORD", "WRAP"], ["RESORT", "STRAW", "SUPPER"], ["AID", "LADY", "NATIONS"], ["GEODUCK", "SEAHORSE", "WOMBAT"], ["DRY", "GIN", "SHAKEN"], ["FLOSS", "MOONWALK", "ROBOT"], ["EUPHORIA", "SUCCESSION", "WESTWORLD"], ["CHARM", "FRIENDSHIP", "TENNIS"]];
+    const gameTwoLevelThreeOptions = [["ORGANISM", "SOLAR PANEL", "SPREADSHEET"], ["BOWLING PINS", "COMMANDMENTS", "DECADE"], ["ABUT", "GROAN", "VOILA"], ["BET", "LAMB", "THE"], ["LORDING", "MISSING", "SIRING"], ["HEAL", "SOUL", "TOW"], ["CHINSTRAP", "EMPEROR", "KING"], ["HELL", "ILL", "SHELL"], ["CHORUS", "HERO", "HUBRIS"]];
+    /**
+     * This the Fisher Yates method for randomly shuffling an array. This code was taken from https://www.w3schools.com/js/js_array_sort.asp  
+     */
+    function randomArray(a, b, c) {
+        for (let i = a.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            let k = a[i];
+            a[i] = a[j];
+            a[j] = k;
+        }
+        let gameTwoLevelOneSetOrder = a;
+        for (let i = b.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            let k = a[i];
+            a[i] = a[j];
+            a[j] = k;
+        }
+        let gameTwoLevelTwoSetOrder = b;
+        for (let i = c.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            let k = a[i];
+            a[i] = a[j];
+            a[j] = k;
+        }
+        let gameTwoLevelThreeSetOrder = c;
+        console.log(gameTwoLevelOneSetOrder);
+        console.log(gameTwoLevelTwoSetOrder);
+        console.log(gameTwoLevelThreeSetOrder);
+    }
+    randomArray(gameTwoLevelOneOptions, gameTwoLevelTwoOptions, gameTwoLevelThreeOptions);
+}
 
 
 

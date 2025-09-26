@@ -6,7 +6,7 @@ const globalVars = {
     key2: false,
     gameOneAnswer: [],
     gameTwoSetAnswers: [],
-    gameTwoRandom: false,
+    gameTwoPlayerAnswer: [],
 };
 
 // Button element event listeners
@@ -29,11 +29,13 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (button.id === "game-two-area-action-button") {
                 speechUpdateGameTwo();
             } else if (button.id === "game-two-start-button") {
-                if (globalVars.gameTwoRandom === false) {
+                if (globalVars.gameTwoSetAnswers.length < 1) {
                     GameTwoSetRandomTextOptions();
                 } else {
                     gameTwoDisplayWords(globalVars.gameTwoSetAnswers);
                 }
+            } else if (button.id === "game-two-check-answers-button") {
+                gameTwoCheckAnswer();
             }
         })
     }
@@ -44,6 +46,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 let gameOneBoxNumber = parseInt(e.target.getAttribute("data-game-one-box-number"));
                 gameOneCheckAnswer(gameOneBoxNumber);
                 gameOnePlayerBoxLight(gameOneBoxNumber);
+            }
+        })
+    }
+    let gameTwoBoxes = document.getElementsByClassName("game-two-indivdual-box");
+    for (boxes of gameTwoBoxes) {
+        boxes.addEventListener("click", function (e) {
+            if (boxes.getAttribute("data-game-box-two-status") === "active") {
+                let gameTwoBoxNumber = parseInt(e.target.getAttribute("data-game-two-box-number"));
+                gameTwoPlayerBoxLightToggle(gameTwoBoxNumber);
             }
         })
     }
@@ -711,7 +722,6 @@ function GameTwoSetRandomTextOptions() {
     gameTwoLevelThreeRoundThree = fisherYatesMethod(gameTwoLevelThreeRoundThree);
     globalVars.gameTwoSetAnswers = [gameTwoLevelOneRoundOne, gameTwoLevelOneRoundTwo, gameTwoLevelOneRoundThree, gameTwoLevelTwoRoundOne, gameTwoLevelTwoRoundTwo, gameTwoLevelTwoRoundThree, gameTwoLevelThreeRoundOne, gameTwoLevelThreeRoundTwo, gameTwoLevelThreeRoundThree];
     console.log(globalVars.gameTwoSetAnswers);
-    globalVars.gameTwoRandom = true;
     gameTwoDisplayWords(globalVars.gameTwoSetAnswers)
 }
 
@@ -728,10 +738,15 @@ function fisherYatesMethod(a) {
     return a;
 }
 
+/**
+* This function shows the words to the player for them to choose the connections
+*/
 function gameTwoDisplayWords(allSetAnswers) {
     const gameTwoIndividualBoxes = document.getElementsByClassName("game-two-indivdual-box");
     const gameTwoTextArea = document.getElementById("game-two-text-area");
-    const allGameTwoBoxes = document.getElementById("game-two-all-boxes")
+    const allGameTwoBoxes = document.getElementById("game-two-all-boxes");
+    const gameTwoStartButton = document.getElementById("game-two-start-button");
+    const gameTwoCheckAnswersButton = document.getElementById("game-two-check-answers-button");
     gameTwoTextArea.innerText = "Find the connections";
     for (let box of gameTwoIndividualBoxes) {
         let gameTwoBoxNumber = parseInt(box.getAttribute("data-game-two-box-number"));
@@ -740,20 +755,43 @@ function gameTwoDisplayWords(allSetAnswers) {
         for (let i = arrayPosition; i < 9; i++) {
             if (gameTwoBoxNumber === i + 1) {
                 setTimeout(function () {
-                    box.innerHTML = `<p>${allSetAnswers[round][i]}<p>`;
+                    box.innerHTML = `<p class="prevent-select">${allSetAnswers[round][i]}<p>`;
                 }, i * 100);
             }
         }
         box.setAttribute("data-game-box-two-status", "active");
     }
+    gameTwoStartButton.classList.add("hidden");
+    gameTwoCheckAnswersButton.classList.remove("hidden");
+}
+
+/**
+* This function lights up a box when a player clicks on it and adds/removes the text of the box clicked to the player answer
+*/
+function gameTwoPlayerBoxLightToggle(PlayerBoxChosen) {
+    let gameTwoBox = document.getElementsByClassName("game-two-indivdual-box");
+    console.log(gameTwoBox);
+    let gameTwoPlayerAnswer = globalVars.gameTwoPlayerAnswer;
+    for (boxes of gameTwoBox) {
+        if (parseInt(boxes.getAttribute("data-game-two-box-number")) === PlayerBoxChosen) {
+            boxes.classList.toggle("game-two-box-background");
+            const gameBoxTwoInnerText = boxes.innerText;
+            let elementIndex = gameTwoPlayerAnswer.indexOf(gameBoxTwoInnerText)
+            if (gameTwoPlayerAnswer.includes(gameBoxTwoInnerText)) {
+                gameTwoPlayerAnswer.splice(elementIndex, 1);
+            } else {
+                gameTwoPlayerAnswer.push(gameBoxTwoInnerText)
+            }
+            console.log(gameTwoPlayerAnswer);
+        }
+    }
 }
 
 
 
-
-
-
-
+function gameTwoCheckAnswer() {
+    
+}
 
 
 

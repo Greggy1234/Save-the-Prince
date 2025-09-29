@@ -801,9 +801,10 @@ function gameTwoCheckAnswer() {
     const gameTwoStartButton = document.getElementById("game-two-start-button");
     const gameTwoCheckAnswersButton = document.getElementById("game-two-check-answers-button");
     const gameTwoLevelIndex = parseInt(boxArea.getAttribute("data-game-two-level")) - 1;
+    const gameTwoBox = document.getElementsByClassName("game-two-indivdual-box");
     console.log(gameTwoLevelIndex);
     console.log(globalVars.gameTwoOptions[gameTwoLevelIndex]);
-    console.log(globalVars.gameTwoPlayerAnswer);    
+    console.log(globalVars.gameTwoPlayerAnswer);
     gameTwoSpeakerName.classList.remove("hidden");
     if (gameTwoPlayerAnswerLength === 0) {
         gameTwoTextArea.innerText = `Idiot! You have to actually pick a word.`;
@@ -818,8 +819,13 @@ function gameTwoCheckAnswer() {
         console.log(gameTwoCorrectAnswer);
         if (gameTwoCorrectAnswer) {
             boxArea.setAttribute("data-game-two-check", parseInt(boxArea.getAttribute("data-game-two-check")) + 1);
+            for (boxes of gameTwoBox) {
+                if (boxes.classList.contains("game-two-box-background")) {
+                    boxes.setAttribute("data-game-box-two-status", "inactive");
+                }
+            }
             if (parseInt(boxArea.getAttribute("data-game-two-check")) < 3) {
-                gameTwoTextArea.innerText = `Correct! That is a connection where they are all "INSERT VARIABLE HERE"`
+                gameTwoTextArea.innerText = `Correct! That is a connection where they are all "INSERT VARIABLE HERE"`;
             } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 3)) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
                 gameTwoStartButton.classList.remove("hidden");

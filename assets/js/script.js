@@ -5,6 +5,7 @@ const globalVars = {
     key1: false,
     key2: false,
     gameOneAnswer: [],
+    gameTwoOptions: [],
     gameTwoSetAnswers: [],
     gameTwoPlayerAnswer: [],
 };
@@ -54,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
         boxes.addEventListener("click", function (e) {
             if (boxes.getAttribute("data-game-box-two-status") === "active") {
                 let gameTwoBoxNumber = parseInt(e.target.getAttribute("data-game-two-box-number"));
+                console.log(e.target);
+                console.log(gameTwoBoxNumber)
                 gameTwoPlayerBoxLightToggle(gameTwoBoxNumber);
             }
         })
@@ -682,6 +685,7 @@ function GameTwoSetRandomTextOptions() {
     const gameTwoLevelOneOptions = [["SCROLL", "SWIPE", "TAP"], ["RANK", "RATE", "SCORE"], ["DOOR", "GATE", "HATCH"], ["DENT", "DING", "SCRATCH"], ["COMPLETE", "DONE", "OVER"], ["DAWN", "GENESIS", "START"], ["METAL", "POP", "CLASSICAL"], ["CHARM", "RIVET", "THRILL"], ["COACH", "DIRECT", "GUIDE"]];
     const gameTwoLevelTwoOptions = [["BILLY", "JACK", "RAM"], ["PLAYWRIGHT", "SWORD", "WRAP"], ["RESORT", "STRAW", "SUPPER"], ["AID", "LADY", "NATIONS"], ["GEODUCK", "SEAHORSE", "WOMBAT"], ["DRY", "GIN", "SHAKEN"], ["FLOSS", "MOONWALK", "ROBOT"], ["EUPHORIA", "SUCCESSION", "WESTWORLD"], ["CHARM", "FRIENDSHIP", "TENNIS"]];
     const gameTwoLevelThreeOptions = [["ORGANISM", "SOLAR PANEL", "SPREADSHEET"], ["BOWLING PINS", "COMMANDMENTS", "DECADE"], ["ABUT", "GROAN", "VOILA"], ["BET", "LAMB", "THE"], ["LORDING", "MISSING", "SIRING"], ["HEAL", "SOUL", "TOW"], ["CHINSTRAP", "EMPEROR", "KING"], ["HELL", "ILL", "SHELL"], ["CHORUS", "HERO", "HUBRIS"]];
+    globalVars.gameTwoOptions = [gameTwoLevelOneOptions, gameTwoLevelTwoOptions, gameTwoLevelThreeOptions];
     let gameTwoLevelOneRoundOne = [];
     let gameTwoLevelOneRoundTwo = [];
     let gameTwoLevelOneRoundThree = [];
@@ -755,7 +759,7 @@ function gameTwoDisplayWords(allSetAnswers) {
         for (let i = arrayPosition; i < 9; i++) {
             if (gameTwoBoxNumber === i + 1) {
                 setTimeout(function () {
-                    box.innerHTML = `<p class="prevent-select">${allSetAnswers[round][i]}<p>`;
+                    box.innerHTML = `<p class="prevent-select" data-game-two-box-number=${gameTwoBoxNumber}>${allSetAnswers[round][i]}<p>`;
                 }, i * 100);
             }
         }
@@ -770,7 +774,6 @@ function gameTwoDisplayWords(allSetAnswers) {
 */
 function gameTwoPlayerBoxLightToggle(PlayerBoxChosen) {
     let gameTwoBox = document.getElementsByClassName("game-two-indivdual-box");
-    console.log(gameTwoBox);
     let gameTwoPlayerAnswer = globalVars.gameTwoPlayerAnswer;
     for (boxes of gameTwoBox) {
         if (parseInt(boxes.getAttribute("data-game-two-box-number")) === PlayerBoxChosen) {
@@ -787,14 +790,78 @@ function gameTwoPlayerBoxLightToggle(PlayerBoxChosen) {
     }
 }
 
-
-
+/**
+*This checks the answer from the player giving feedback if it's wrong and continuing on if it's right
+*/
 function gameTwoCheckAnswer() {
-    
+    const gameTwoPlayerAnswerLength = globalVars.gameTwoPlayerAnswer.length;
+    const gameTwoSpeakerName = document.getElementById("game-two-speaker-name");
+    const gameTwoTextArea = document.getElementById("game-two-text-area");
+    const boxArea = document.getElementById("game-two-all-boxes");
+    const gameTwoStartButton = document.getElementById("game-two-start-button");
+    const gameTwoCheckAnswersButton = document.getElementById("game-two-check-answers-button");
+    const gameTwoLevelIndex = parseInt(boxArea.getAttribute("data-game-two-level")) - 1;
+    console.log(gameTwoLevelIndex);
+    console.log(globalVars.gameTwoOptions[gameTwoLevelIndex]);
+    console.log(globalVars.gameTwoPlayerAnswer);    
+    gameTwoSpeakerName.classList.remove("hidden");
+    if (gameTwoPlayerAnswerLength === 0) {
+        gameTwoTextArea.innerText = `Idiot! You have to actually pick a word.`;
+    } else if (gameTwoPlayerAnswerLength < 3) {
+        gameTwoTextArea.innerText = `You fool, you've not picked enough words! All connections have 3 words associated with them. Not ${gameTwoPlayerAnswerLength}`;
+    } else if (gameTwoPlayerAnswerLength > 3) {
+        gameTwoTextArea.innerText = `You've picked ${gameTwoPlayerAnswerLength} words. That is clearly more than 3. Please, sort your brain out and pick 3 words`;
+    } else if (gameTwoPlayerAnswerLength === 3) {
+        let gameTwoCorrectAnswer = globalVars.gameTwoOptions[gameTwoLevelIndex].some(function (value) {
+            return arrayCheck(value, globalVars.gameTwoPlayerAnswer);
+        });
+        console.log(gameTwoCorrectAnswer);
+        if (gameTwoCorrectAnswer) {
+            boxArea.setAttribute("data-game-two-check", parseInt(boxArea.getAttribute("data-game-two-check")) + 1);
+            if (parseInt(boxArea.getAttribute("data-game-two-check")) < 3) {
+                gameTwoTextArea.innerText = `Correct! That is a connection where they are all "INSERT VARIABLE HERE"`
+            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 3)) {
+                boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+                gameTwoStartButton.classList.remove("hidden");
+                gameTwoStartButton.innerText = "Next round"
+                gameTwoCheckAnswersButton.classList.add("hidden");
+            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 6)) {
+                boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+                gameTwoStartButton.classList.remove("hidden");
+                gameTwoStartButton.innerText = "Next round"
+                gameTwoCheckAnswersButton.classList.add("hidden");
+            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 9)) {
+                boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+                gameTwoStartButton.classList.remove("hidden");
+                gameTwoStartButton.innerText = "Next round"
+                gameTwoCheckAnswersButton.classList.add("hidden");
+            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3) {
+                boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+                gameTwoStartButton.classList.remove("hidden");
+                gameTwoStartButton.innerText = "Next round"
+                gameTwoCheckAnswersButton.classList.add("hidden");
+                gameTwoTextArea.innerText = `Correct! That is a connection where they are all "INSERT VARIABLE HERE". And you've managed complete this round. I'm slightly more impressed than before`
+            }
+        } else {
+            gameTwoTextArea.innerText = `INCORRECT. Have another try!`;
+        }
+    }
 }
 
-
-
+/**
+*This compares the elements of arrays, for use in the gameTwoCheckAnswer function
+*/
+function arrayCheck(option, answer) {
+    let optionSort = option.sort();
+    let answerSort = answer.sort();
+    let checkedArray = optionSort.every(function (value, index) {
+        return value === answerSort[index];
+    })
+    console.log(optionSort);
+    console.log(answerSort);
+    console.log(checkedArray);
+    return checkedArray;
+}
 
 
 

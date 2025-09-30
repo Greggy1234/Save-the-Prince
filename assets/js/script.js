@@ -663,12 +663,23 @@ function speechUpdateGameTwo() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 6:
+                gameTwoTextArea.innerText = `There will be three levels with three rounds in each. I would wish you luck, but I don't care enough about you.`
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 7:
                 gameTwoTextArea.innerText = `Challenge rules: The necromancer will present 9 words in the boxes. You will have to find 3 groups of 3 words, with each group of words having a connection between them.`
                 gameTwoAreaButton.classList.add("hidden");
                 gameTwoSpeakerName.classList.add("hidden");
                 gameTwoStartButton.classList.remove("hidden");
                 break;
         }
+    } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "B")) {
+
+    } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "C")) {
+
+    } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "D")) {
+
     }
 }
 
@@ -803,6 +814,8 @@ function gameTwoCheckAnswer() {
     const gameTwoCheckAnswersButton = document.getElementById("game-two-check-answers-button");
     const gameTwoLevelIndex = parseInt(boxArea.getAttribute("data-game-two-level")) - 1;
     const gameTwoBox = document.getElementsByClassName("game-two-indivdual-box");
+    const gameTwoMonster = document.getElementById("game-two-monster");
+    const gameTwoAreaButton = document.getElementById("game-two-area-action-button");
     console.log(gameTwoLevelIndex);
     console.log(globalVars.gameTwoOptions[gameTwoLevelIndex]);
     console.log(globalVars.gameTwoPlayerAnswer);
@@ -832,24 +845,33 @@ function gameTwoCheckAnswer() {
                 gameTwoTextArea.innerText = `Correct! That is a connection where they are all "INSERT VARIABLE HERE"`;
             } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 2)) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
-                gameTwoStartButton.classList.remove("hidden");
-                gameTwoStartButton.innerText = "Next round"
+                gameTwoMonster.setAttribute("data-game-two-text-tree", "B");
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
+                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE"`;
+                gameTwoAreaButton.classList.remove("hidden");
+                gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
             } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 5)) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
-                gameTwoStartButton.classList.remove("hidden");
-                gameTwoStartButton.innerText = "Next round"
+                gameTwoMonster.setAttribute("data-game-two-text-tree", "C");
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
+                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE"`;
+                gameTwoAreaButton.classList.remove("hidden");
+                gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
             } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 8)) {
-                gameTwoStartButton.classList.remove("hidden");
-                gameTwoStartButton.innerText = "Next round"
+                gameTwoMonster.setAttribute("data-game-two-text-tree", "D");
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
+                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE"`;
+                gameTwoAreaButton.classList.remove("hidden");
+                gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
             } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
                 gameTwoStartButton.classList.remove("hidden");
                 gameTwoStartButton.innerText = "Next round"
                 gameTwoCheckAnswersButton.classList.add("hidden");
-                gameTwoTextArea.innerText = `Correct! That is a connection where they are all "INSERT VARIABLE HERE". And you've managed complete this round. I'm slightly more impressed than before`
+                gameTwoTextArea.innerText = `Correct! That is a connection where all the wods are "INSERT VARIABLE HERE". And you've managed complete this round. I'm slightly more impressed than before`;
             }
         } else {
             gameTwoTextArea.innerText = `INCORRECT. Have another try!`;

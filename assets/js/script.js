@@ -635,36 +635,31 @@ function speechUpdateGameTwo() {
     if (gameTwoMonster.getAttribute("data-game-two-text-tree") === "A") {
         switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
             case 1:
-                gameTwoTextArea.innerText = `Greetings ${globalVars.knightName}! Please, make yourself welcome in my humble abode`
+                gameTwoTextArea.innerText = `Greetings ${globalVars.knightName}! Please, make yourself welcome in my humble abode.`
                 gameTwoAreaButton.innerText = "Next";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 gameTwoSpeakerName.classList.remove("hidden");
                 break;
             case 2:
                 gameTwoTextArea.innerText = `I know you're here for my key, and I don't like that at all.`
-                gameTwoAreaButton.innerText = "Next";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 3:
                 gameTwoTextArea.innerText = `BUT, if you can show you've got brains, I will give it over willingly.`
-                gameTwoAreaButton.innerText = "Next";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 4:
                 gameTwoTextArea.innerText = `All you have to do is find the connections between the words in the hall below.`
-                gameTwoAreaButton.innerText = "Next";
                 gameTwoIntroCard.classList.add("hidden");
                 gameTwoBoxesContainer.classList.remove("hidden");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 5:
                 gameTwoTextArea.innerText = `Do you think you beat my game of wits?`
-                gameTwoAreaButton.innerText = "Next";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 6:
                 gameTwoTextArea.innerText = `There will be three levels with three rounds in each. I would wish you luck, but I don't care enough about you.`
-                gameTwoAreaButton.innerText = "Next";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 7:
@@ -675,9 +670,45 @@ function speechUpdateGameTwo() {
                 break;
         }
     } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "B")) {
-
+        switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
+            case 1:
+                gameTwoTextArea.innerText = `Ok, you got through the first round, but those connections were easy.`
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 2:
+                gameTwoTextArea.innerText = `Round 2 is going to be so much harder.`
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 3:
+                gameTwoTextArea.innerText = `When you're ready, we shall begin round 2!`;
+                gameTwoAreaButton.classList.add("hidden");
+                gameTwoStartButton.innerText = "Begin round 2"
+                gameTwoStartButton.classList.remove("hidden");
+                break;
+        }
     } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "C")) {
-
+        switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
+            case 1:
+                gameTwoTextArea.innerText = `...I'm very impressed actually.`
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 2:
+                gameTwoTextArea.innerText = `You've beaten 2 rounds!`
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+                case 3:
+                gameTwoTextArea.innerText = `Round 3 will beat you though. I know you;re not clever enough to guess these connections.`
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 4:
+                gameTwoTextArea.innerText = `Let me know when you'ree ready to begin round 3.`;
+                gameTwoAreaButton.classList.add("hidden");
+                gameTwoStartButton.innerText = "Begin round 3"
+                gameTwoStartButton.classList.remove("hidden");
+                break;
+        }
     } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "D")) {
 
     }
@@ -760,6 +791,8 @@ function gameTwoDisplayWords(allSetAnswers) {
     const allGameTwoBoxes = document.getElementById("game-two-all-boxes");
     const gameTwoStartButton = document.getElementById("game-two-start-button");
     const gameTwoCheckAnswersButton = document.getElementById("game-two-check-answers-button");
+    const gameTwoSpeakerName = document.getElementById("game-two-speaker-name");
+    gameTwoSpeakerName.classList.add("hidden");
     gameTwoTextArea.innerText = "Find the connections";
     for (let boxes of gameTwoIndividualBoxes) {
         let gameTwoBoxNumber = parseInt(boxes.getAttribute("data-game-two-box-number"));
@@ -843,31 +876,38 @@ function gameTwoCheckAnswer() {
             globalVars.gameTwoPlayerAnswer = [];
             if (parseInt(boxArea.getAttribute("data-game-two-check")) < 3) {
                 gameTwoTextArea.innerText = `Correct! That is a connection where they are all "INSERT VARIABLE HERE"`;
-            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 2)) {
+            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) > 3) {
+                alert("SOMETHING HAS GONE WRONG. PLEASE RELOAD THE PAGE");
+                throw "Something has gone wrong"
+            } else if (parseInt(boxArea.getAttribute("data-game-two-level-score")) === 2) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+                boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoMonster.setAttribute("data-game-two-text-tree", "B");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
                 gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE"`;
                 gameTwoAreaButton.classList.remove("hidden");
                 gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
-            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 5)) {
+            } else if (parseInt(boxArea.getAttribute("data-game-two-level-score")) === 5) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+                boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoMonster.setAttribute("data-game-two-text-tree", "C");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
                 gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE"`;
                 gameTwoAreaButton.classList.remove("hidden");
                 gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
-            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 8)) {
+            } else if (parseInt(boxArea.getAttribute("data-game-two-level-score")) === 8) {
+                boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoMonster.setAttribute("data-game-two-text-tree", "D");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
                 gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE"`;
                 gameTwoAreaButton.classList.remove("hidden");
                 gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
-            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3) {
+            } else {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+                boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoStartButton.classList.remove("hidden");
                 gameTwoStartButton.innerText = "Next round"
                 gameTwoCheckAnswersButton.classList.add("hidden");

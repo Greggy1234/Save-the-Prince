@@ -181,7 +181,7 @@ body {
 
 .game-two-indivdual-box {
     border: 1px solid red;
-    width: 100px;
+    width: 130px;
     height: 50px;
 }
 
@@ -217,7 +217,5 @@ body {
 
 /*This prevents text selection for game 2*/
 .prevent-select {
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  user-select: none; 
 }

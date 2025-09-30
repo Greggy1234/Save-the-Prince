@@ -53,12 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let gameTwoBoxes = document.getElementsByClassName("game-two-indivdual-box");
     for (boxes of gameTwoBoxes) {
         boxes.addEventListener("click", function (e) {
-            if (boxes.getAttribute("data-game-box-two-status") === "active") {
-                let gameTwoBoxNumber = parseInt(e.target.getAttribute("data-game-two-box-number"));
-                console.log(e.target);
-                console.log(gameTwoBoxNumber)
-                gameTwoPlayerBoxLightToggle(gameTwoBoxNumber);
-            }
+            let gameTwoBoxNumber = parseInt(e.target.getAttribute("data-game-two-box-number"));
+            console.log(e.target);
+            console.log(gameTwoBoxNumber)
+            gameTwoPlayerBoxLightToggle(gameTwoBoxNumber);
         })
     }
 })
@@ -752,18 +750,21 @@ function gameTwoDisplayWords(allSetAnswers) {
     const gameTwoStartButton = document.getElementById("game-two-start-button");
     const gameTwoCheckAnswersButton = document.getElementById("game-two-check-answers-button");
     gameTwoTextArea.innerText = "Find the connections";
-    for (let box of gameTwoIndividualBoxes) {
-        let gameTwoBoxNumber = parseInt(box.getAttribute("data-game-two-box-number"));
+    for (let boxes of gameTwoIndividualBoxes) {
+        let gameTwoBoxNumber = parseInt(boxes.getAttribute("data-game-two-box-number"));
         let arrayPosition = 0;
         let round = parseInt(allGameTwoBoxes.getAttribute("data-game-two-level-score"));
+        boxes.classList.remove("game-two-box-background-correct");
+        boxes.setAttribute("data-game-box-two-status", "active");
+        boxes.innerHTML = `<p></p>`
         for (let i = arrayPosition; i < 9; i++) {
             if (gameTwoBoxNumber === i + 1) {
                 setTimeout(function () {
-                    box.innerHTML = `<p class="prevent-select" data-game-two-box-number=${gameTwoBoxNumber}>${allSetAnswers[round][i]}<p>`;
+                    boxes.innerHTML = `<p class="prevent-select" data-game-two-box-number=${gameTwoBoxNumber}>${allSetAnswers[round][i]}<p>`;
                 }, i * 100);
             }
         }
-        box.setAttribute("data-game-box-two-status", "active");
+        boxes.setAttribute("data-game-box-two-status", "active");
     }
     gameTwoStartButton.classList.add("hidden");
     gameTwoCheckAnswersButton.classList.remove("hidden");
@@ -776,7 +777,7 @@ function gameTwoPlayerBoxLightToggle(PlayerBoxChosen) {
     let gameTwoBox = document.getElementsByClassName("game-two-indivdual-box");
     let gameTwoPlayerAnswer = globalVars.gameTwoPlayerAnswer;
     for (boxes of gameTwoBox) {
-        if (parseInt(boxes.getAttribute("data-game-two-box-number")) === PlayerBoxChosen) {
+        if (parseInt(boxes.getAttribute("data-game-two-box-number")) === PlayerBoxChosen && boxes.getAttribute("data-game-box-two-status") === "active") {
             boxes.classList.toggle("game-two-box-background");
             const gameBoxTwoInnerText = boxes.innerText;
             let elementIndex = gameTwoPlayerAnswer.indexOf(gameBoxTwoInnerText)
@@ -822,22 +823,24 @@ function gameTwoCheckAnswer() {
             for (boxes of gameTwoBox) {
                 if (boxes.classList.contains("game-two-box-background")) {
                     boxes.setAttribute("data-game-box-two-status", "inactive");
+                    boxes.classList.remove("game-two-box-background");
+                    boxes.classList.add("game-two-box-background-correct");
                 }
             }
+            globalVars.gameTwoPlayerAnswer = [];
             if (parseInt(boxArea.getAttribute("data-game-two-check")) < 3) {
                 gameTwoTextArea.innerText = `Correct! That is a connection where they are all "INSERT VARIABLE HERE"`;
-            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 3)) {
+            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 2)) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
                 gameTwoStartButton.classList.remove("hidden");
                 gameTwoStartButton.innerText = "Next round"
                 gameTwoCheckAnswersButton.classList.add("hidden");
-            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 6)) {
+            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 5)) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
                 gameTwoStartButton.classList.remove("hidden");
                 gameTwoStartButton.innerText = "Next round"
                 gameTwoCheckAnswersButton.classList.add("hidden");
-            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 9)) {
-                boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+            } else if (parseInt(boxArea.getAttribute("data-game-two-check")) === 3 && parseInt(boxArea.getAttribute("data-game-two-level-score") === 8)) {
                 gameTwoStartButton.classList.remove("hidden");
                 gameTwoStartButton.innerText = "Next round"
                 gameTwoCheckAnswersButton.classList.add("hidden");
@@ -863,9 +866,6 @@ function arrayCheck(option, answer) {
     let checkedArray = optionSort.every(function (value, index) {
         return value === answerSort[index];
     })
-    console.log(optionSort);
-    console.log(answerSort);
-    console.log(checkedArray);
     return checkedArray;
 }
 

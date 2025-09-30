@@ -211,6 +211,10 @@ body {
     background-color: blue;
 }
 
+.game-two-box-background-correct {
+    background-color: green;
+}
+
 /*This prevents text selection for game 2*/
 .prevent-select {
   -webkit-user-select: none; /* Safari */

@@ -15,7 +15,7 @@ const globalVars = {
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button"];
+        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button","loading-screen-button-right"];
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (button.id === "game-two-check-answers-button") {
                 gameTwoCheckAnswer();
             }
-        })
+        });
     }
     let gameOneBoxes = document.getElementsByClassName("game-one-indivdual-box");
     for (boxes of gameOneBoxes) {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 gameOneCheckAnswer(gameOneBoxNumber);
                 gameOnePlayerBoxLight(gameOneBoxNumber);
             }
-        })
+        });
     }
     let gameTwoBoxes = document.getElementsByClassName("game-two-indivdual-box");
     for (boxes of gameTwoBoxes) {
@@ -57,9 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(e.target);
             console.log(gameTwoBoxNumber)
             gameTwoPlayerBoxLightToggle(gameTwoBoxNumber);
-        })
+        });
     }
-})
+});
 
 // Global JavaScript code. The following apply throughout the whole game and are used for multiple sections
 /**
@@ -315,7 +315,6 @@ function speechUpdateGameOne() {
     const gameOneIntroCard = document.getElementById("game-one-game-intro-card-container");
     const gameOneToHubAreaButton = document.getElementById("game-one-to-hub-area-button");
     const gameOneBoxesContainer = document.getElementById("game-one-all-box-container");
-    const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
     if (gameOneMonster.getAttribute("data-game-one-text-tree") === "A") {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
@@ -666,14 +665,6 @@ function gameOneRepeatPattern() {
 
 }
 
-
-
-
-
-
-
-
-
 // Challenge two area code
 /**
  * The text area function specifically for challenge two
@@ -937,6 +928,7 @@ function gameTwoCheckAnswer() {
                 throw "Something has gone wrong"
             } else if (parseInt(boxArea.getAttribute("data-game-two-level-score")) === 2) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+                boxArea.setAttribute("data-game-two-level", parseInt(boxArea.getAttribute("data-game-two-level")) + 1);
                 boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoMonster.setAttribute("data-game-two-text-tree", "B");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
@@ -946,6 +938,7 @@ function gameTwoCheckAnswer() {
                 gameTwoCheckAnswersButton.classList.add("hidden");
             } else if (parseInt(boxArea.getAttribute("data-game-two-level-score")) === 5) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
+                boxArea.setAttribute("data-game-two-level", parseInt(boxArea.getAttribute("data-game-two-level")) + 1);
                 boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoMonster.setAttribute("data-game-two-text-tree", "C");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");

@@ -94,13 +94,49 @@ body {
 
 /*Background images*/
 .grasslands-image {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-grasslands.jpg);
+    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/test-grasslands.jpg);
     background-position: center;
     background-size: cover;
 }
 
 .volcano-image {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-volcano.jpg);
+    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/test-volcano.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.loading-image-1 {
+background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l1.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.loading-image-2 {
+background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l2.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.loading-image-3 {
+background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l3.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.loading-image-4 {
+background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l4.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.loading-image-5 {
+background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l5.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.start-image {
+background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-start.png);
     background-position: center;
     background-size: cover;
 }

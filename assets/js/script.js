@@ -15,7 +15,7 @@ const globalVars = {
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button","loading-screen-button-right"];
+        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right"];
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
@@ -912,6 +912,7 @@ function gameTwoCheckAnswer() {
         });
         console.log(gameTwoCorrectAnswer);
         if (gameTwoCorrectAnswer) {
+            let connectionType = gameTwoConnection(globalVars.gameTwoPlayerAnswer);
             boxArea.setAttribute("data-game-two-check", parseInt(boxArea.getAttribute("data-game-two-check")) + 1);
             for (boxes of gameTwoBox) {
                 if (boxes.classList.contains("game-two-box-background")) {
@@ -922,7 +923,7 @@ function gameTwoCheckAnswer() {
             }
             globalVars.gameTwoPlayerAnswer = [];
             if (parseInt(boxArea.getAttribute("data-game-two-check")) < 3) {
-                gameTwoTextArea.innerText = `Correct! That is a connection where they are all "INSERT VARIABLE HERE"`;
+                gameTwoTextArea.innerText = `Correct! That is a connection where they are all ${connectionType}`;
             } else if (parseInt(boxArea.getAttribute("data-game-two-check")) > 3) {
                 alert("SOMETHING HAS GONE WRONG. PLEASE RELOAD THE PAGE");
                 throw "Something has gone wrong"
@@ -932,7 +933,7 @@ function gameTwoCheckAnswer() {
                 boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoMonster.setAttribute("data-game-two-text-tree", "B");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
-                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE"`;
+                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are ${connectionType}`;
                 gameTwoAreaButton.classList.remove("hidden");
                 gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
@@ -942,7 +943,7 @@ function gameTwoCheckAnswer() {
                 boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoMonster.setAttribute("data-game-two-text-tree", "C");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
-                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE"`;
+                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are ${connectionType}`;
                 gameTwoAreaButton.classList.remove("hidden");
                 gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
@@ -950,7 +951,7 @@ function gameTwoCheckAnswer() {
                 boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoMonster.setAttribute("data-game-two-text-tree", "D");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
-                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE"`;
+                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are ${connectionType}`;
                 gameTwoAreaButton.classList.remove("hidden");
                 gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
@@ -960,7 +961,7 @@ function gameTwoCheckAnswer() {
                 gameTwoStartButton.classList.remove("hidden");
                 gameTwoStartButton.innerText = "Next round"
                 gameTwoCheckAnswersButton.classList.add("hidden");
-                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE". And you've managed complete this round. I'm slightly more impressed than before`;
+                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are ${connectionType}. And you've managed complete this round. I'm slightly more impressed than before`;
             }
         } else {
             gameTwoTextArea.innerText = `INCORRECT. Have another try!`;
@@ -980,8 +981,45 @@ function arrayCheck(option, answer) {
     return checkedArray;
 }
 
-
-
+/**
+ * This matches the correct answer with the description of the what the connection is
+ */
+function gameTwoConnection(correctAnswer) {
+    correctAnswer.sort();
+    console.log(correctAnswer[0]);
+    const connectionMeaning = {
+        "SCROLL": "touchscreen gestures",
+        "RANK": "evaluating words",
+        "DOOR": "entryways",
+        "DENT": "blemishes",
+        "COMPLETE": "words about finishing",
+        "DAWN": "words describing beginnings",
+        "CLASSICAL": "musical genres",
+        "CHARM": "captivating words",
+        "COACH": "instructing words",
+        "BILLY": "male animals",
+        "PLAYWRIGHT": "Words with a silent 'W'",
+        "RESORT": "words that can be preceeded by 'Last'",
+        "AID": "words that can be preceeded by 'First'",
+        "GEODUCK": "animals ending with animals",
+        "DRY": "types of martini",
+        "FLOSS": "dance moves",
+        "EUPHORIA": "HBO shows (whatever that means)",
+        "CHARM": "types of bracelets",
+        "ORGANISM": "things with cells",
+        "BOWLING PINS": "groups of ten items",
+        "ABUT": "anagrams of musical instruments",
+        "BET": "starts of greek letters",
+        "LORDING": "words starting with official titles",
+        "HEAL": "homophones for parts of the foot",
+        "CHINSTRAP": "types of penguins",
+        "HELL": "contractions of 'HE WILL', SHE WILL' and 'I WILL' without the apostraphe",
+        "CHORUS": "elements of a Greek tragedy",
+    }
+    let firstTerm = correctAnswer[0];
+    console.log(connectionMeaning[firstTerm]);
+    return connectionMeaning[firstTerm];
+}
 
 
 

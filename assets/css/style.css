@@ -70,6 +70,37 @@ body {
     margin-bottom: 1rem;
 }
 
+.mb-no {
+    margin-bottom:0px;
+}
+
+.mt-no {
+    margin-top:0px;
+}
+
+
+/*Background images*/
+.grasslands-image {
+     background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-grasslands.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.volcano-image {
+     background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-volcano.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+/*Header styles*/
+#header {
+    background-color: black;
+}
+
+h1 {
+    color:white;
+}
+
 /* Front page styles */
 #start-game-button {
     margin: auto;
@@ -85,6 +116,8 @@ body {
 
 
 /* Hub area styles */
+
+
 #games-container {
     display: flex;
     justify-content: space-around;
@@ -99,6 +132,7 @@ body {
     justify-content: center;
     padding: 25px 0px;
 }
+
 
 
 #game-hub-text-area-box {

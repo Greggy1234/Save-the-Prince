@@ -90,6 +90,50 @@ function changeSection(e) {
         loadingScreen(buttonID);
     } else if (buttonID === "game-one-to-hub-area-button" || buttonID === "game-two-to-hub-area-button") {
         loadingScreenRight(buttonID);
+    } else if (buttonID == "leave-game-one-header-button") {
+        if (globalVars.key1 === false) {
+            const gameOneSpeakerName = document.getElementById("game-one-speaker-name");
+            const gameOneTextArea = document.getElementById("game-one-text-area");
+            const gameOneAreaButton = document.getElementById("game-one-area-action-button");
+            const gameOneStartButton = document.getElementById("game-one-start-button");
+            const gameOneMonster = document.getElementById("game-one-monster");
+            const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
+            const boxArea = document.getElementById("game-one-all-boxes");
+            gameOneAreaButton.classList.remove("hidden");
+            gameOneSpeakerName.classList.remove("hidden");
+            gameOneReplayPatternButton.classList.add("hidden");
+            gameOneStartButton.classList.add("hidden");
+            gameOneMonster.setAttribute("data-game-one-text-tree", "E");
+            gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
+            gameOneTextArea.innerText = "Welcome back! You leaving was just delaying your demise.";
+            gameOneAreaButton.innerText = "Next";
+            boxArea.setAttribute("data-game-one-check", "0");
+            boxArea.setAttribute("data-game-one-level-score", "0");
+            boxArea.setAttribute("data-game-one-level", "1");
+        }
+        loadingScreenRight(buttonID);
+    } else if (buttonID === "leave-game-two-header-button") {
+        if (globalVars.key2 === false) {
+            const gameTwoSpeakerName = document.getElementById("game-two-speaker-name");
+            const gameTwoTextArea = document.getElementById("game-two-text-area");
+            const gameTwoAreaButton = document.getElementById("game-two-area-action-button");
+            const gameTwoStartButton = document.getElementById("game-two-start-button");
+            const gameTwoMonster = document.getElementById("game-two-monster");
+            const gameTwoToHubAreaButton = document.getElementById("game-two-to-hub-area-button");
+            const boxArea = document.getElementById("game-two-all-boxes");
+            gameTwoAreaButton.classList.remove("hidden");
+            gameTwoSpeakerName.classList.remove("hidden");
+            gameTwoTextArea.innerText = "You've come back! Good.";
+            gameTwoStartButton.classList.add("hidden");
+            gameTwoToHubAreaButton.classList.add("hidden");
+            gameTwoMonster.setAttribute("data-game-two-text-tree", "E");
+            gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
+            boxArea.setAttribute("data-game-two-level", "1");
+            boxArea.setAttribute("data-game-two-level-score", "0");
+            boxArea.setAttribute("data-game-two-check", "0");
+            globalVars.gameTwoSetAnswers = [];
+        }
+        loadingScreenRight(buttonID);
     }
 }
 
@@ -210,7 +254,7 @@ function speechUpdateGameHub() {
                 document.getElementById("game-hub-area-text").innerText = "The Grasslands"
                 break;
             case 3:
-                gameHubTextArea.innerText = `Anyway, the prince has been locked away by 4 awful monsters.`;
+                gameHubTextArea.innerText = `Anyway, the prince has been locked away by 2 awful monsters.`;
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
             case 4:
@@ -218,46 +262,42 @@ function speechUpdateGameHub() {
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
             case 5:
-                gameHubTextArea.innerText = `You can complete the first 3 challenges in any order, and each one grants a key. Once you get all 3 keys, you can unlock the door to the fourth and final challenge.`;
+                gameHubTextArea.innerText = `You can complete these challenges in any order, and both grant a key. Once you have both keys, you can unlock the door to save the prince.`;
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
             case 6:
-                gameHubTextArea.innerText = `Challenge 1 is in the minotaur's lava domain. You have to copy his patterns to defeat him.`;
-                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                document.getElementById("game-one-hub-area").style.backgroundColor = "red";
-                break;
-            case 7:
-                gameHubTextArea.innerText = `Challenge 2 is the penguin's maths game held in his ice domain. If you can prove you're good enough at quick maths, he'll give you his key.`;
-                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                document.getElementById("game-two-hub-area").style.backgroundColor = "blue";
-                break;
-            case 8:
-                gameHubTextArea.innerText = `If you can avoid the attacks being thrown at you in challenge 3, you'll get the rock golem's key.`;
-                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                document.getElementById("game-three-hub-area").style.backgroundColor = "yellow";
-                break;
-            case 9:
-                gameHubTextArea.innerText = `I'll explain what lies in challenge 4 when you get all the keys!`;
-                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                document.getElementById("game-four-hub-area").style.backgroundColor = "grey";
-                break;
-            case 10:
                 gameHubTextArea.innerText = `That's the end of my info du- I mean explanation. 
                         Please hurry. I'm terrified of what's happening to our dear prince!`;
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
-            case 11:
+            case 7:
                 gameHubTextArea.innerText = `You've found your danger knight ${globalVars.knightName}. Are you up for the challenge? 
                         (If you're not you can just exit the game)`;
                 npcSpeakerName.classList.add("hidden");
                 hubAreaButton.innerText = "Yes. I'm ready for the challenge";
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
-            case 12:
-                gameHubTextArea.innerText = `Excellent! When you're ready, Choose one of the 3 available options above for your first challenge`;
+            case 8:
+                gameHubTextArea.innerText = `Excellent! When you're ready, choose one of the challenges to start, or click below to find out more about the challenges`;
                 hubAreaButton.style.display = "none";
                 break;
         }
+    } else if (npc.getAttribute("data-npc-text-tree") === "B") {
+
+    } else if (npc.getAttribute("data-npc-text-tree") === "C") {
+
+    } else if (npc.getAttribute("data-npc-text-tree") === "D") {
+
+    } else if (npc.getAttribute("data-npc-text-tree") === "E") {
+
+    } else if (npc.getAttribute("data-npc-text-tree") === "F") {
+
+    } else if (npc.getAttribute("data-npc-text-tree") === "G") {
+
+    } else if (npc.getAttribute("data-npc-text-tree") === "H") {
+
+    } else if (npc.getAttribute("data-npc-text-tree") === "I") {
+
     }
 }
 
@@ -275,6 +315,7 @@ function speechUpdateGameOne() {
     const gameOneIntroCard = document.getElementById("game-one-game-intro-card-container");
     const gameOneToHubAreaButton = document.getElementById("game-one-to-hub-area-button");
     const gameOneBoxesContainer = document.getElementById("game-one-all-box-container");
+    const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
     if (gameOneMonster.getAttribute("data-game-one-text-tree") === "A") {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
@@ -419,6 +460,21 @@ function speechUpdateGameOne() {
                 gameOneToHubAreaButton.classList.remove("hidden")
                 break;
         }
+    } else if (gameOneMonster.getAttribute("data-game-one-text-tree") === "E") {
+        switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
+            case 1:
+                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
+                gameOneTextArea.innerText = `Let's go from the top now. My confidence has never been higher!`;
+                break;
+            case 2:
+                gameOneTextArea.innerText = `As you left mid-game, the game completely restarts on level 1 round 1`;
+                gameOneAreaButton.classList.add("hidden");
+                gameOneSpeakerName.classList.add("hidden");
+                gameOneStartButton.classList.remove("hidden");
+                gameOneStartButton.innerText = "Restart Game"
+                break;
+
+        }
     }
 }
 
@@ -469,8 +525,8 @@ function setThenRunGameOne() {
  * This is the animation which lights ups the correct blocks
  */
 function gameOneBoxLight(boxToLight) {
-    let boxArea = document.getElementById("game-one-all-boxes");
-    let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
+    const boxArea = document.getElementById("game-one-all-boxes");
+    const gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
     for (boxes of gameOneBox) {
         if (parseInt(boxes.getAttribute("data-game-one-box-number")) === boxToLight) {
             let gameOneBoxNumber = parseInt(boxes.getAttribute("data-game-one-box-number"));
@@ -698,7 +754,7 @@ function speechUpdateGameTwo() {
                 gameTwoTextArea.innerText = `You've beaten 2 rounds!`
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
-                case 3:
+            case 3:
                 gameTwoTextArea.innerText = `Round 3 will beat you though. I know you;re not clever enough to guess these connections.`
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
@@ -796,12 +852,11 @@ function gameTwoDisplayWords(allSetAnswers) {
     gameTwoTextArea.innerText = "Find the connections";
     for (let boxes of gameTwoIndividualBoxes) {
         let gameTwoBoxNumber = parseInt(boxes.getAttribute("data-game-two-box-number"));
-        let arrayPosition = 0;
         let round = parseInt(allGameTwoBoxes.getAttribute("data-game-two-level-score"));
         boxes.classList.remove("game-two-box-background-correct");
         boxes.setAttribute("data-game-box-two-status", "active");
-        boxes.innerHTML = `<p></p>`
-        for (let i = arrayPosition; i < 9; i++) {
+        boxes.innerHTML = `<p></p>`;
+        for (let i = 0; i < 9; i++) {
             if (gameTwoBoxNumber === i + 1) {
                 setTimeout(function () {
                     boxes.innerHTML = `<p class="prevent-select" data-game-two-box-number=${gameTwoBoxNumber}>${allSetAnswers[round][i]}<p>`;
@@ -911,7 +966,7 @@ function gameTwoCheckAnswer() {
                 gameTwoStartButton.classList.remove("hidden");
                 gameTwoStartButton.innerText = "Next round"
                 gameTwoCheckAnswersButton.classList.add("hidden");
-                gameTwoTextArea.innerText = `Correct! That is a connection where all the wods are "INSERT VARIABLE HERE". And you've managed complete this round. I'm slightly more impressed than before`;
+                gameTwoTextArea.innerText = `Correct! That is a connection where all the words are "INSERT VARIABLE HERE". And you've managed complete this round. I'm slightly more impressed than before`;
             }
         } else {
             gameTwoTextArea.innerText = `INCORRECT. Have another try!`;

@@ -556,6 +556,7 @@ function gameOneCheckAnswer(playerAnswer) {
     if (playerAnswer === globalVars.gameOneAnswer[checkNumber]) {
         boxArea.setAttribute("data-game-one-check", checkNumber + 1);
         if (realAnswerLength - 1 === checkNumber) {
+            gameOneReplayPatternButton.classList.add("hidden");
             boxArea.setAttribute("data-game-one-check", "0");
             boxArea.setAttribute("data-game-one-level-score", parseInt(boxArea.getAttribute("data-game-one-level-score")) + 1);
             gameOneMonsterHurtAnimation();

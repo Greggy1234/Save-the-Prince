@@ -10,10 +10,19 @@ body {
 
 #main-viewing-area {
     width: 730px;
-    height: 90vh;
+    max-height: 90vh;
+    min-height:90vh;
     margin: auto;
     background-color: white;
     text-align: center;
+    display:flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+}
+
+.section-layout {    
+    width:100%;
+    flex-grow: 1;
 }
 
 .hero-left-position-left {
@@ -48,7 +57,7 @@ body {
     position: relative;
 }
 
-.aboslute {
+.absolute {
     position: absolute;
 }
 
@@ -71,23 +80,27 @@ body {
 }
 
 .mb-no {
-    margin-bottom:0px;
+    margin-bottom: 0px;
 }
 
 .mt-no {
-    margin-top:0px;
+    margin-top: 0px;
+}
+
+.mt-auto {
+    margin-top: auto;
 }
 
 
 /*Background images*/
 .grasslands-image {
-     background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-grasslands.jpg);
+    background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-grasslands.jpg);
     background-position: center;
     background-size: cover;
 }
 
 .volcano-image {
-     background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-volcano.jpg);
+    background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-volcano.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -95,10 +108,12 @@ body {
 /*Header styles*/
 #header {
     background-color: black;
+    width:100%;
+    height:40px;
 }
 
 h1 {
-    color:white;
+    color: white;
 }
 
 /* Front page styles */
@@ -113,11 +128,7 @@ h1 {
     height: 35vh;
 }
 
-
-
 /* Hub area styles */
-
-
 #games-container {
     display: flex;
     justify-content: space-around;
@@ -132,8 +143,6 @@ h1 {
     justify-content: center;
     padding: 25px 0px;
 }
-
-
 
 #game-hub-text-area-box {
     border: 2px solid red;
@@ -150,8 +159,6 @@ h1 {
     justify-content: space-between;
     align-items: end;
 }
-
-
 
 /* Game one styles */
 #game-one-all-boxes {
@@ -222,7 +229,7 @@ h1 {
 #game-two-text-area-container {
     display: flex;
     justify-content: center;
-    padding: 25px 0px;
+    padding: 10px 0px;
 }
 
 #game-two-text-area-box {
@@ -251,5 +258,13 @@ h1 {
 
 /*This prevents text selection for game 2*/
 .prevent-select {
-  user-select: none; 
+    user-select: none;
+}
+
+/*Footer styles*/
+#footer {
+    background-color:black;
+    color:white;
+    width:100%;
+    height: 25px;
 }

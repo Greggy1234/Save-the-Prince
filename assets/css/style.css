@@ -1,7 +1,14 @@
 /* Fonts */
+@font-face {
+    font-family: headerFooterFont;
+    src: url(../fonts/MegamaxJonathanToo-YqOq2.ttf);
+}
+
 
 /* CSS variables */
-
+:root {
+    --header-footer-font: "headerFooterFont", Serif;
+}
 
 /* Global styles */
 body {
@@ -166,6 +173,9 @@ body {
 
 h1 {
     color: white;
+    font-family: var(--header-footer-font);
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
 }
 
 /* Front page styles */
@@ -354,6 +364,11 @@ width: 35px;
     color: white;
     width: 100%;
     height: 25px;
+    font-family: var(--header-footer-font);
+}
+
+#footer p {
+    padding-top:0.2rem;
 }
 
 

@@ -19,8 +19,16 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
-            } else if (button.id === "hub-area-action-button") {
-                speechUpdateGameHub();
+            } else if (button.id === "hub-area-action-button" || button.id === "hub-area-option-one-button" || button.id === "hub-area-option two-button") {
+                if (button.id === "hub-area-option-one-button") {
+                    document.getElementById("npc").setAttribute("data-npc-text-tree", "B");
+                    speechUpdateGameHub();
+                } else if (button.id === "hub-area-option two-button") {
+                    document.getElementById("npc").setAttribute("data-npc-text-tree", "C");
+                    speechUpdateGameHub();
+                } else {
+                    speechUpdateGameHub();
+                }
             } else if (button.id === "game-one-area-action-button") {
                 speechUpdateGameOne();
             } else if (button.id === "game-one-start-button") {
@@ -71,6 +79,7 @@ function changeSection(e) {
     let nextLink = e.getAttribute("data-next-page-id");
     const heading = document.getElementById("loading-text");
     const loadingScreenButton = document.getElementById("loading-screen-button");
+    const npc = document.getElementById("npc");
     console.log(currentLink);
     console.log(nextLink);
     document.getElementById(nextLink).classList.remove("hidden");
@@ -110,6 +119,7 @@ function changeSection(e) {
             boxArea.setAttribute("data-game-one-check", "0");
             boxArea.setAttribute("data-game-one-level-score", "0");
             boxArea.setAttribute("data-game-one-level", "1");
+            npc.setAttribute("data-npc-text-tree", "H");
         }
         loadingScreenRight(buttonID);
     } else if (buttonID === "leave-game-two-header-button") {
@@ -132,6 +142,7 @@ function changeSection(e) {
             boxArea.setAttribute("data-game-two-level-score", "0");
             boxArea.setAttribute("data-game-two-check", "0");
             globalVars.gameTwoSetAnswers = [];
+            npc.setAttribute("data-npc-text-tree", "I");
         }
         loadingScreenRight(buttonID);
     }
@@ -232,12 +243,14 @@ document.getElementById("knight-name-container").addEventListener("submit", func
  * The text area function specifically for the game hub area
  * This will carry out all combinations of the text area copy in the correct order and based on the corect text tree. The number within the text cycle custom attribute will also change various elements visually
  */
-
 function speechUpdateGameHub() {
     const npcSpeakerName = document.getElementById("npc-speaker-name");
     const gameHubTextArea = document.getElementById("game-hub-text-area");
     const hubAreaButton = document.getElementById("hub-area-action-button");
+    const hubAreaButtonOptionOne = document.getElementById("hub-area-option-one-button");
+    const hubAreaButtonOptionTwo = document.getElementById("hub-area-option-two-button");
     const npc = document.getElementById("npc");
+    const hubAreaFinalAreaButton = document.getElementById("hub-area-save-the-prince-button");
     if (npc.getAttribute("data-npc-text-tree") === "A") {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
@@ -279,25 +292,214 @@ function speechUpdateGameHub() {
                 break;
             case 8:
                 gameHubTextArea.innerText = `Excellent! When you're ready, choose one of the challenges to start, or click below to find out more about the challenges`;
-                hubAreaButton.style.display = "none";
+                hubAreaButton.classList.add("hidden");
+                hubAreaButtonOptionOne.classList.remove("hidden");
+                hubAreaButtonOptionTwo.classList.remove("hidden");
+                npc.setAttribute("data-npc-text-cycle", "1");
                 break;
         }
     } else if (npc.getAttribute("data-npc-text-tree") === "B") {
-
+        switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
+            case 1:
+                hubAreaButtonOptionTwo.classList.add("hidden");
+                hubAreaButtonOptionOne.innerText = "Next"
+                gameHubTextArea.innerText = `Challenge 1 involves you picking the correct boxes that flash on your screen`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 2:
+                gameHubTextArea.innerText = `It's a memory where a sequence of boxes will flash and you have to correctly replay the sequency back`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 3:
+                gameHubTextArea.innerText = `There are three levels. Level one involves three box sequences, level 2 has four box squence, and round 3 has five box sequences.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 4:
+                gameHubTextArea.innerText = `There are multiple rounds in each level, and the speed at which the boxes light up get quicker each level.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 5:
+                gameHubTextArea.innerText = `You can return from the challenge at any time, but the monster's will reset the game so you will have to start from the beginning.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 6:
+                gameHubTextArea.innerText = `If you want to repeat this information, or learn about challenge 2, click below. Otherwise, pick a challenge above.`;
+                hubAreaButtonOptionTwo.classList.remove("hidden");
+                hubAreaButtonOptionOne.innerText = "Challenge 1 info";
+                npc.setAttribute("data-npc-text-cycle", "1");
+                break;
+        }
     } else if (npc.getAttribute("data-npc-text-tree") === "C") {
-
+        switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
+            case 1:
+                hubAreaButtonOptionOne.classList.add("hidden");
+                hubAreaButtonOptionTwo.innerText = "Next"
+                gameHubTextArea.innerText = `Challenge 1 involves you picking the correct boxes that flash on your screen.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 2:
+                gameHubTextArea.innerText = `In each round, there will be a set of nine words and you have to pick three groups of three, with every group having a connection.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 3:
+                gameHubTextArea.innerText = `There are three levels with three rounds in them each.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 4:
+                gameHubTextArea.innerText = `You can return from the challenge at any time, but the monster's will reset the game so you will have to start from the beginning.`;
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                break;
+            case 5:
+                gameHubTextArea.innerText = `If you want to repeat this information, or learn about challenge 1, click below. Otherwise, pick a challenge above.`;
+                npc.setAttribute("data-npc-text-cycle", "1");
+                hubAreaButtonOptionOne.classList.remove("hidden");
+                hubAreaButtonOptionTwo.innerText = "Challenge 2 info";
+                break;
+        }
     } else if (npc.getAttribute("data-npc-text-tree") === "D") {
-
+        switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
+            case 1:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                hubAreaButtonOptionOne.classList.add("hidden");
+                hubAreaButtonOptionTwo.classList.add("hidden");
+                npcSpeakerName.classList.remove("hidden");
+                hubAreaButton.classList.remove("hidden");
+                hubAreaButton.innerText = "Next";
+                gameHubTextArea.innerText = `Well done on beating the minotaur!`;
+                break;
+            case 2:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                gameHubTextArea.innerText = `That's the first key received, only one more to go.`;
+                break;
+            case 3:
+                npcSpeakerName.classList.add("hidden");
+                hubAreaButton.classList.add("hidden");
+                gameHubTextArea.innerText = `When you're ready, choose challenge 2 to get the second key, or click below to find out more about challenge 2.`;
+                hubAreaButtonOptionTwo.classList.remove("hidden");
+                npc.setAttribute("data-npc-text-cycle", "1");
+                break;
+        }
     } else if (npc.getAttribute("data-npc-text-tree") === "E") {
-
+        switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
+            case 1:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                hubAreaButtonOptionOne.classList.add("hidden");
+                hubAreaButtonOptionTwo.classList.add("hidden");
+                npcSpeakerName.classList.remove("hidden");
+                hubAreaButton.classList.remove("hidden");
+                hubAreaButton.innerText = "Next";
+                gameHubTextArea.innerText = `You beat the the evil necromance at his own game. Well done!`;
+                break;
+            case 2:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                gameHubTextArea.innerText = `That's the first key received, only one more to go.`;
+                break;
+            case 3:
+                npcSpeakerName.classList.add("hidden");
+                hubAreaButton.classList.add("hidden");
+                gameHubTextArea.innerText = `When you're ready, choose challenge 1 to get the second key, or click below to find out more about challenge 1.`;
+                hubAreaButtonOptionTwo.classList.remove("hidden");
+                npc.setAttribute("data-npc-text-cycle", "1");
+                break;
+        }
     } else if (npc.getAttribute("data-npc-text-tree") === "F") {
-
+        switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
+            case 1:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                hubAreaButtonOptionOne.classList.add("hidden");
+                hubAreaButtonOptionTwo.classList.add("hidden");
+                npcSpeakerName.classList.remove("hidden");
+                hubAreaButton.classList.remove("hidden");
+                hubAreaButton.innerText = "Next";
+                gameHubTextArea.innerText = `With the minotaur beat, that's the second key!`;
+                break;
+            case 2:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                gameHubTextArea.innerText = `You can free the prince now.`;
+                break;
+            case 3:
+                hubAreaButton.classList.add("hidden");
+                gameHubTextArea.innerText = `Go to the prison and let him out of his cage!`;
+                hubAreaFinalAreaButton.classList.remove("hidden");
+                break;
+        }
     } else if (npc.getAttribute("data-npc-text-tree") === "G") {
-
+        switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
+            case 1:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                hubAreaButtonOptionOne.classList.add("hidden");
+                hubAreaButtonOptionTwo.classList.add("hidden");
+                npcSpeakerName.classList.remove("hidden");
+                hubAreaButton.classList.remove("hidden");
+                hubAreaButton.innerText = "Next";
+                gameHubTextArea.innerText = `With the evil necromance beat, that's the second key!`;
+                break;
+            case 2:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                gameHubTextArea.innerText = `You can free the prince now.`;
+                break;
+            case 3:
+                hubAreaButton.classList.add("hidden");
+                gameHubTextArea.innerText = `Go to the prison and let him out of his cage!`;
+                hubAreaFinalAreaButton.classList.remove("hidden");
+                break;
+        }
     } else if (npc.getAttribute("data-npc-text-tree") === "H") {
-
+        switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
+            case 1:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                hubAreaButtonOptionOne.classList.add("hidden");
+                hubAreaButtonOptionTwo.classList.add("hidden");
+                npcSpeakerName.classList.remove("hidden");
+                hubAreaButton.classList.remove("hidden");
+                hubAreaButton.innerText = "Next";
+                gameHubTextArea.innerText = `Oh no, I see no key! Is the minotaur still alive?`;
+                break;
+            case 2:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                gameHubTextArea.innerText = `At least you got out safe!`;
+                break;
+            case 3:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                gameHubTextArea.innerText = `I'm sure you'll get him next time!`;
+                break;
+            case 4:
+                npcSpeakerName.classList.add("hidden");
+                hubAreaButton.classList.add("hidden");
+                gameHubTextArea.innerText = `When you're ready, choose one of the challenges to start, or click below to find out more about the challenges.`;
+                hubAreaButtonOptionOne.classList.remove("hidden");
+                hubAreaButtonOptionTwo.classList.remove("hidden");
+                npc.setAttribute("data-npc-text-cycle", "1");
+                break;
+        }
     } else if (npc.getAttribute("data-npc-text-tree") === "I") {
-
+        switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
+            case 1:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                hubAreaButtonOptionOne.classList.add("hidden");
+                hubAreaButtonOptionTwo.classList.add("hidden");
+                npcSpeakerName.classList.remove("hidden");
+                hubAreaButton.classList.remove("hidden");
+                hubAreaButton.innerText = "Next";
+                gameHubTextArea.innerText = `I see the wits of the evil necromancer were too much for you.`;
+                break;
+            case 2:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                gameHubTextArea.innerText = `I'm sure you'll beat his mind-bending puzzles next time!`;
+                break;
+            case 3:
+                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                gameHubTextArea.innerText = `The main thing is you're still alive`;
+                break;
+            case 4:
+                npcSpeakerName.classList.add("hidden");
+                hubAreaButton.classList.add("hidden");
+                gameHubTextArea.innerText = `When you're ready, choose one of the challenges to start, or click below to find out more about the challenges.`;
+                hubAreaButtonOptionOne.classList.remove("hidden");
+                hubAreaButtonOptionTwo.classList.remove("hidden");
+                npc.setAttribute("data-npc-text-cycle", "1");
+                break;
+        }
     }
 }
 
@@ -986,7 +1188,6 @@ function arrayCheck(option, answer) {
  */
 function gameTwoConnection(correctAnswer) {
     correctAnswer.sort();
-    console.log(correctAnswer[0]);
     const connectionMeaning = {
         "SCROLL": "touchscreen gestures",
         "RANK": "evaluating words",
@@ -998,7 +1199,7 @@ function gameTwoConnection(correctAnswer) {
         "CHARM": "captivating words",
         "COACH": "instructing words",
         "BILLY": "male animals",
-        "PLAYWRIGHT": "Words with a silent 'W'",
+        "PLAYWRIGHT": "words with a silent 'W'",
         "RESORT": "words that can be preceeded by 'Last'",
         "AID": "words that can be preceeded by 'First'",
         "GEODUCK": "animals ending with animals",

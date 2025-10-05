@@ -960,7 +960,19 @@ function speechUpdateGameTwo() {
                 break;
         }
     } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "D")) {
-
+        switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
+            case 1:
+                gameTwoTextArea.innerText = `I want to see you fail.`
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 2:
+                gameTwoTextArea.innerText = `When you're ready, we will begin from the beginning! All the options have been randomised so you can't rely on your preious knowledge`;
+                gameTwoAreaButton.classList.add("hidden");
+                gameTwoStartButton.innerText = "Begin challenge 2"
+                gameTwoStartButton.classList.remove("hidden");
+                break;
+        }
     }
 }
 
@@ -1218,10 +1230,91 @@ function gameTwoConnection(correctAnswer) {
         "CHORUS": "elements of a Greek tragedy",
     }
     let firstTerm = correctAnswer[0];
-    console.log(connectionMeaning[firstTerm]);
     return connectionMeaning[firstTerm];
 }
 
 
 
 // Final area code
+
+/**
+*This will run the final speech section of the game between the player and the prince 
+*/
+function speechUpdateFinalArea() {
+    const princeSpeakerName = document.getElementById("prince-speaker-name");
+    const finalAreaTextArea = document.getElementById("final-area-text-area");
+    const finalAreaButton = document.getElementById("final-area-action-button");
+    const prince = document.getElementById("prince");
+    const resetGameButton = document.getElementById("reset-button");
+    switch (parseInt(prince.getAttribute("data-game-two-text-cycle"))) {
+        case 1:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            princeSpeakerName.classList.remove("hidden");
+            finalAreaTextArea.innerText = "You did it! You saved me from those savages. I can't thank you enough.";
+            finalAreaButton.innerText = "Next";
+            break;
+        case 2:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = "Ah how I've missed the sun on my face and the air through my hair.";
+            finalAreaButton.innerText = "Next";
+            break;
+        case 3:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = "You've been the best hero these lands have ever seen.";
+            break;
+        case 4:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = "For now, it's time to celebrate";
+            princeSpeakerName.classList.add("hidden");
+            finalAreaButton.classList.add("hidden");
+            finalAreaCelebration();
+            break;
+        case 5:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = `OK, celebration over. Thank you again knight ${globalVars.knightName}`;
+            princeSpeakerName.classList.remove("hidden");
+            finalAreaButton.classList.remove("hidden");
+            break;
+        case 6:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = `You have my eternal gratitude`;
+            break;
+        case 7:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = `Well done knight ${globalVars.knightName}`;
+            princeSpeakerName.classList.add("hidden");
+            break;
+        case 8:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = `You managed to vanquish the danger and in turn save the day.`;
+            break;
+        case 9:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = `You managed to vanquish the danger and in turn save the day.`;
+            break;
+        case 10:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = `You can retire now and leave the life of a knight (exit the game) or you can retry this adventure again.`;
+            finalAreaButton.innerHTML = `Let me replay the adventure`;
+            break;
+        case 11:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = `...wait. No. PLease don;t make me go back into the prison!`;
+            princeSpeakerName.classList.remove("hidden");
+            finalAreaButton.innerHTML = `I don't care.`;
+            break;
+        case 12:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = `NO NO NO NO NO. I beg you. My complexion is too fair to survive more time in prison!`;
+            finalAreaButton.classList.add("hidden");
+            resetGameButton.classList.remove("hidden");
+            break;
+    }
+}
+
+/**
+*This will run the celebration function
+*/
+function finalAreaCelebration() {
+
+}

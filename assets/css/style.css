@@ -151,6 +151,12 @@ body {
     background-size: cover;
 }
 
+.prison-image {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/prison-test.png);
+    background-position: center;
+    background-size: cover;
+}
+
 /*Header styles*/
 #header {
     background-color: black;
@@ -306,8 +312,6 @@ h1 {
     flex-direction: column;
 }
 
-
-
 .game-two-box-background {
     background-color: blue;
 }
@@ -319,6 +323,29 @@ h1 {
 /*This prevents text selection for game 2*/
 .prevent-select {
     user-select: none;
+}
+
+/*Final area styles*/
+.prince-size {
+width: 35px;
+}
+
+#final-area-text-area-container {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0px;
+}
+
+#final-area-text-area-box {
+    border: 2px solid red;
+    width: 700px;
+    height: 15vh;
+}
+
+#final-area-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
 }
 
 /*Footer styles*/

@@ -13,6 +13,7 @@ const globalVars = {
 // Button element event listeners
 // Once the DOM is loaded, all the buttons throughout the game will have an event listener and will be directed to the corresponding function
 document.addEventListener("DOMContentLoaded", function () {
+    flashingLogo();
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
         const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right"];
@@ -224,6 +225,37 @@ function loadingScreenRight(buttonID) {
     }, 250)
 }
 
+//Intro page code
+/**
+ * This is used to create the flashing logo at the beginning of the game
+ */
+function flashingLogo() {
+    let position = 1;
+    const introLogo = document.getElementById("into-page-logo");
+    const introPageSection = document.getElementById("intro-page");
+    const logoFlash = setInterval(function () {
+        if (introPageSection.classList.contains("hidden")) {
+            clearInterval(logoFlash);
+        }
+        if (position === 1) {
+            introLogo.classList.remove("red");
+            introLogo.classList.add("blue");
+            position++;
+        } else if (position === 2) {
+            introLogo.classList.add("yellow");
+            introLogo.classList.remove("blue");
+            position++;
+        } else if (position === 3) {
+            introLogo.classList.add("black");
+            introLogo.classList.remove("yellow");
+            position++;
+        }else if (position === 4) {
+            introLogo.classList.remove("black");
+            introLogo.classList.add("red");
+            position = 1;
+        }
+    }, 750)
+}
 
 // Front page code
 /**

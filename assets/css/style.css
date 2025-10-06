@@ -1,13 +1,19 @@
 /* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 @font-face {
-    font-family: headerFooterFont;
+    font-family: specialFont;
     src: url(../fonts/MegamaxJonathanToo-YqOq2.ttf);
 }
 
-
 /* CSS variables */
 :root {
-    --header-footer-font: "headerFooterFont", Serif;
+    /*To be used only for the logo, and text in the black bars above and below the main viewing area*/
+    --title-font: "specialFont", Serif;
+    --highlight-font: "Press Start 2P", Serif;
+    --primary-text-font: "VT323", monospace;
+    --red: #D0021B;
+    --blue: #4A90E2;
+    --yellow: #f5A623;
 }
 
 /*Button styles*/
@@ -16,6 +22,8 @@ button {
     border: 5px solid #F5A623;
     width: 150px;
     height: 50px;
+    font-family: var(--primary-text-font);
+    font-size: 1.3rem;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -23,6 +31,7 @@ button {
         background-color: rgba(208, 2, 27, 0.5);
     }
 }
+
 button:active {
     background-color: #4A90E2;
 }
@@ -30,14 +39,18 @@ button:active {
 /* Global styles */
 #main-viewing-area {
     width: 730px;
-    max-height: 90vh;
-    min-height: 90vh;
+    max-height: 95vh;
+    min-height: 95vh;
     margin: auto;
     background-color: white;
     text-align: center;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+}
+
+p {
+    font-family: var(--primary-text-font);
 }
 
 .section-layout {
@@ -115,11 +128,33 @@ button:active {
     margin-top: auto;
 }
 
+.red {
+    color:var(--red);
+}
+
+.blue {
+    color:var(--blue);
+}
+
+.yellow {
+    color:var(--yellow);
+}
+
+.black {
+    color:black;
+}
+
 
 /*Background images*/
 body {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.7), rgba(255, 248, 248, 0.7)), url(../images/background-behind-viewing-area.webp);
-    background-size:cover;
+    background-image: linear-gradient(rgba(255, 248, 248, 0.4), rgba(255, 248, 248, 0.4)), url(../images/background-behind-viewing-area.webp);
+    background-size: cover;
+}
+
+.map-image {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.7), rgba(255, 248, 248, 0.7)), url(../images/background-intro-screen.webp);
+    background-position: center;
+    background-size: cover;
 }
 
 .grasslands-image {
@@ -182,6 +217,27 @@ body {
     background-size: cover;
 }
 
+/*Intro page styles*/
+#intro-page {
+    align-content: center;
+}
+
+#into-page-elements-container {
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom:200px
+}
+
+#into-page-logo {
+    min-width:100%;
+    font-family: var(--highlight-font);
+    font-size: 3rem;
+}
+
+.lh-intro-logo {
+    line-height:4rem;
+}
+
 /*Header styles*/
 #header {
     background-color: black;
@@ -191,7 +247,7 @@ body {
 
 h1 {
     color: white;
-    font-family: var(--header-footer-font);
+    font-family: var(--title-font);
     font-size: 1.5rem;
     padding-top: 0.5rem;
 }
@@ -294,7 +350,7 @@ h1 {
 }
 
 #game-two-all-box-container {
-    padding-top: 35px;
+    padding-top: 25px;
 }
 
 .game-two-indivdual-box-container {
@@ -332,7 +388,7 @@ h1 {
     justify-content: space-between;
     align-items: end;
     margin-top: auto;
-    padding-bottom: 50px;
+    padding-bottom: 35px;
 }
 
 #game-two-area {
@@ -381,11 +437,11 @@ h1 {
     background-color: black;
     color: white;
     width: 100%;
-    height: 25px;
-    font-family: var(--header-footer-font);
+    height: 25px;    
 }
 
 #footer p {
+    font-family: var(--title-font);
     padding-top: 0.2rem;
 }
 

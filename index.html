@@ -18,6 +18,19 @@
         <header id="header" class="mb-no">
             <h1 class="mb-no mt-no">Save the Prince</h1>
         </header>
+        <section id="intro-page" class="section-layout map-image">
+            <div id="into-page-elements-container" class="flex"> 
+                <h2 id="into-page-logo" class="lh-intro-logo red">
+                    SAVE
+                    <br>
+                    THE
+                    <br>
+                    PRINCE
+                </h2>
+                <button id="intro-page-button" data-current-page-id="intro-page"
+                data-next-page-id="front-page">START THE GAME</button>
+            </div>
+        </section>
         <!-- Front page of the game when someone starts the game. Players can enter their names for their knight -->
         <section id="front-page" class="mt-no mb-no section-layout start-image hidden">
             <h2 class="mt-no">Front page of game </h2>
@@ -60,7 +73,7 @@
         </section>
 
         <!-- The main area of the game. This is where the player can choose the challenges (referenced as games in the code) -->
-        <section id="game-hub-area" class="grasslands-image section-layout">
+        <section id="game-hub-area" class="grasslands-image section-layout hidden">
             <h2 id="game-hub-area-text" class="mt-no ">Unknown Area</h2>
             <div id="games-container">
                 <div id="game-one-hub-area" class="game-box">

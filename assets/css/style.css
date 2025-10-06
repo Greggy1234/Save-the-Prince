@@ -10,6 +10,23 @@
     --header-footer-font: "headerFooterFont", Serif;
 }
 
+/*Button styles*/
+button {
+    background-color: #D0021B;
+    border: 5px solid #F5A623;
+    width: 150px;
+    height: 50px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    button:hover {
+        background-color: rgba(208, 2, 27, 0.5);
+    }
+}
+button:active {
+    background-color: #4A90E2;
+}
+
 /* Global styles */
 body {
     background-color: blue;
@@ -318,7 +335,7 @@ h1 {
 }
 
 #game-two-area {
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
@@ -337,7 +354,7 @@ h1 {
 
 /*Final area styles*/
 .prince-size {
-width: 35px;
+    width: 35px;
 }
 
 #final-area-text-area-container {
@@ -368,7 +385,7 @@ width: 35px;
 }
 
 #footer p {
-    padding-top:0.2rem;
+    padding-top: 0.2rem;
 }
 
 

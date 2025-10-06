@@ -45,6 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             } else if (button.id === "game-two-check-answers-button") {
                 gameTwoCheckAnswer();
+            } else if (button.id === "final-area-action-button") {
+                speechUpdateFinalArea();
+            } else if (button.id === "reset-button") {
+                resetGame();
             }
         });
     }

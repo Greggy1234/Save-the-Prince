@@ -28,10 +28,6 @@ button:active {
 }
 
 /* Global styles */
-body {
-    background-color: blue;
-}
-
 #main-viewing-area {
     width: 730px;
     max-height: 90vh;
@@ -50,7 +46,7 @@ body {
 }
 
 .gradient-background-text-box {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.7), rgba(255, 248, 248, 0.7))
+    background-image: linear-gradient(rgba(255, 248, 248, 0.7), rgba(255, 248, 248, 0.7));
 }
 
 .hero-left-position-left {
@@ -121,8 +117,13 @@ body {
 
 
 /*Background images*/
+body {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.7), rgba(255, 248, 248, 0.7)), url(../images/background-behind-viewing-area.webp);
+    background-size:cover;
+}
+
 .grasslands-image {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/test-grasslands.jpg);
+    background-image: linear-gradient(rgba(255, 248, 248, 0.3), rgba(255, 248, 248, 0.3)), url(../images/test-grasslands.jpg);
     background-position: center;
     background-size: cover;
 }

@@ -145,6 +145,10 @@ h2 {
     margin-top: auto;
 }
 
+.lh-h2 {
+    line-height: 2rem;
+}
+
 .red {
     color: var(--red);
 }
@@ -170,6 +174,12 @@ body {
 
 .map-image {
     background-image: linear-gradient(rgba(255, 248, 248, 0.7), rgba(255, 248, 248, 0.7)), url(../images/background-intro-screen.webp);
+    background-position: center;
+    background-size: cover;
+}
+
+.campsite-image {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/test-campsite.png);
     background-position: center;
     background-size: cover;
 }
@@ -272,9 +282,8 @@ h1 {
 
 /* Front page styles */
 #front-page {
-    flex-wrap: wrap;
     justify-content: center;
-    align-items:flex-start;
+    align-items: flex-start;
 }
 
 #start-game-button {
@@ -283,6 +292,7 @@ h1 {
 
 form {
     line-height: 1.7rem;
+    min-width: 100%
 }
 
 form>input {
@@ -298,12 +308,13 @@ form>label {
 
 #front-page-text {
     min-width: 100%;
-    max-height:50px;
+    max-height: 50px;
 }
 
 #front-page-elements-container {
     flex-wrap: wrap;
     justify-content: center;
+    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0));
 }
 
 .bold-text-start {
@@ -315,11 +326,31 @@ form>label {
     padding: 0px 65px;
 }
 
+input[type=text] {
+    border: 5px solid #F5A623;
+    text-align: center;
+}
+
 /* Loading screen styles */
+#loading-area,
+#loading-area-right {
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 #loading-area-hero-container,
 #loading-area-right-hero-container {
-    height: 35vh;
+    width: 730px;
+    height: 50px;
 }
+
+#loading-screen-button,
+#loading-screen-button-right {
+    margin-bottom: 5vh;
+}
+
+
 
 /* Hub area styles */
 #games-container {
@@ -512,7 +543,12 @@ form>label {
         min-height: 98vh;
     }
 
-
+    /* Loading screen styles */
+    #loading-area-hero-container,
+    #loading-area-right-hero-container {
+        width: 95vw;
+        height: 15vh;
+    }
 
     /* Game two styles */
     .game-two-indivdual-box {

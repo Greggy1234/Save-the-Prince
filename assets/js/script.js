@@ -3,7 +3,7 @@
 const globalVars = {
     knightName: "",
     key1: false,
-    key2: false,
+    key2: true,
     gameOneAnswer: [],
     gameTwoOptions: [],
     gameTwoSetAnswers: [],
@@ -16,17 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
     flashingLogo();
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right"];
+        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button"];
         button.addEventListener("click", function () {
             if (button.id === "intro-page-button") {
                 changeSection(this);
-            } else if(changeSectionOptions.includes(this.getAttribute("id"))) {
+            } else if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
-            } else if (button.id === "hub-area-action-button" || button.id === "hub-area-option-one-button" || button.id === "hub-area-option two-button") {
+            } else if (button.id === "hub-area-action-button" || button.id === "hub-area-option-one-button" || button.id === "hub-area-option-two-button") {
                 if (button.id === "hub-area-option-one-button") {
                     document.getElementById("npc").setAttribute("data-npc-text-tree", "B");
                     speechUpdateGameHub();
-                } else if (button.id === "hub-area-option two-button") {
+                } else if (button.id === "hub-area-option-two-button") {
                     document.getElementById("npc").setAttribute("data-npc-text-tree", "C");
                     speechUpdateGameHub();
                 } else {
@@ -87,6 +87,8 @@ function changeSection(e) {
     const heading = document.getElementById("loading-text");
     const loadingScreenButton = document.getElementById("loading-screen-button");
     const npc = document.getElementById("npc");
+    const gameHubTextArea = document.getElementById("game-hub-text-area");
+    const hubAreaButton = document.getElementById("hub-area-action-button");
     console.log(currentLink);
     console.log(nextLink);
     document.getElementById(nextLink).classList.remove("hidden");
@@ -96,17 +98,17 @@ function changeSection(e) {
         loadingScreen(buttonID);
     } else if (buttonID === "to-game-one-area-button") {
         loadingScreenButton.setAttribute("data-next-page-id", "game-one-area");
-        loadingScreenButton.innerText = "Click to face the minotaur in his domain!";
+        loadingScreenButton.innerText = "Click to face the minotaur!";
         heading.innerHTML = "ON THE WAY TO CHALLENGE 1<br>...";
         loadingScreen(buttonID);
     } else if (buttonID === "to-game-two-area-button") {
         loadingScreenButton.setAttribute("data-next-page-id", "game-two-area");
-        loadingScreenButton.innerText = "Click to face the evil necromancer in his castle!";
+        loadingScreenButton.innerText = "Click to face the evil necromancer!";
         heading.innerHTML = "ON THE WAY TO CHALLENGE 2<br>...";
         loadingScreen(buttonID);
     } else if (buttonID === "game-one-to-hub-area-button" || buttonID === "game-two-to-hub-area-button") {
         loadingScreenRight(buttonID);
-    } else if (buttonID == "leave-game-one-header-button") {
+    } else if (buttonID == "game-one-to-hub-area-no-key-button") {
         if (globalVars.key1 === false) {
             const gameOneSpeakerName = document.getElementById("game-one-speaker-name");
             const gameOneTextArea = document.getElementById("game-one-text-area");
@@ -129,7 +131,7 @@ function changeSection(e) {
             npc.setAttribute("data-npc-text-tree", "H");
         }
         loadingScreenRight(buttonID);
-    } else if (buttonID === "leave-game-two-header-button") {
+    } else if (buttonID === "game-two-to-hub-area-no-key-button") {
         if (globalVars.key2 === false) {
             const gameTwoSpeakerName = document.getElementById("game-two-speaker-name");
             const gameTwoTextArea = document.getElementById("game-two-text-area");
@@ -150,8 +152,16 @@ function changeSection(e) {
             boxArea.setAttribute("data-game-two-check", "0");
             globalVars.gameTwoSetAnswers = [];
             npc.setAttribute("data-npc-text-tree", "I");
+            gameHubTextArea.innerText = "I see the wits of the evil necromancer were too much for you.";
+            hubAreaButton.innerText = "Next";
+
         }
-        loadingScreenRight(buttonID);
+        else if (globalVars.key2 === true && globalVars.key1 === false) {
+            npc.setAttribute("data-npc-text-tree", "E");
+            gameHubTextArea.innerText = "You beat the the evil necromance at his own game. Well done!";
+            hubAreaButton.innerText = "Next";
+            loadingScreenRight(buttonID);
+        }
     }
 }
 
@@ -167,10 +177,11 @@ function loadingScreen(buttonID) {
     let maxPosition = 20;
     const loadingLink = document.getElementById("loading-link");
     hero.style.bottom = "10 + px";
-    loadingLink.classList.add("hidden");
+    loadingLink.classList.add("visible-hidden");
     const heading = document.getElementById("loading-text");
     console.log(buttonID);
     hero.classList.add("hero-left-position-left");
+    let flashPosition = 1;
     const loadingAnimation = setInterval(function () {
         position++;
         hero.style.left = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
@@ -179,14 +190,35 @@ function loadingScreen(buttonID) {
         } else if (position % 2 === 1) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-right.png");
             heading.innerText = heading.innerText + ".";
+            if (flashPosition === 1) {
+                heading.classList.remove("black");
+                heading.classList.add("blue");
+                flashPosition++;
+            } else if (flashPosition === 2) {
+                heading.classList.add("yellow");
+                heading.classList.remove("blue");
+                flashPosition++;
+            } else if (flashPosition === 3) {
+                heading.classList.add("red");
+                heading.classList.remove("yellow");
+                flashPosition++;
+            } else if (flashPosition === 4) {
+                heading.classList.remove("red");
+                heading.classList.add("black");
+                flashPosition = 1;
+            }
         }
         if (position === maxPosition) {
             clearInterval(loadingAnimation);
             hero.style.right = 3 + "px";
             hero.style.left = "";
             hero.classList.remove("hero-left-position-left");
-            loadingLink.classList.remove("hidden");
-            hero.style.bottom = parseInt(hero.style.bottom) + 18.4 + "px";
+            loadingLink.classList.remove("visible-hidden");
+            hero.style.bottom = parseInt(hero.style.bottom) + "px";
+            heading.classList.remove("red");
+            heading.classList.remove("yellow");
+            heading.classList.remove("blue");
+            heading.classList.add("black");
         }
     }, 250)
 }
@@ -203,10 +235,11 @@ function loadingScreenRight(buttonID) {
     let maxPosition = 20;
     const loadingLink = document.getElementById("loading-link-right");
     hero.style.bottom = "10 + px";
-    loadingLink.classList.add("hidden");
+    loadingLink.classList.add("visible-hidden");
     const heading = document.getElementById("loading-text-right");
     console.log(buttonID);
     hero.classList.add("hero-right-position-right");
+    let flashPosition = 1;
     const loadingAnimation = setInterval(function () {
         position++;
         hero.style.right = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
@@ -215,14 +248,19 @@ function loadingScreenRight(buttonID) {
         } else if (position % 2 === 1) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-left.png");
             heading.innerText = heading.innerText + ".";
+
         }
         if (position === maxPosition) {
             clearInterval(loadingAnimation);
             hero.style.left = 3 + "px";
             hero.style.right = "";
             hero.classList.remove("hero-left-position-right");
-            loadingLink.classList.remove("hidden");
-            hero.style.bottom = parseInt(hero.style.bottom) + 18.4 + "px";
+            loadingLink.classList.remove("visible-hidden");
+            hero.style.bottom = parseInt(hero.style.bottom) + "px";
+            heading.classList.remove("red");
+            heading.classList.remove("yellow");
+            heading.classList.remove("blue");
+            heading.classList.add("black");
         }
     }, 250)
 }
@@ -251,7 +289,7 @@ function flashingLogo() {
             introLogo.classList.add("black");
             introLogo.classList.remove("yellow");
             position++;
-        }else if (position === 4) {
+        } else if (position === 4) {
             introLogo.classList.remove("black");
             introLogo.classList.add("red");
             position = 1;
@@ -272,7 +310,7 @@ document.getElementById("knight-name-container").addEventListener("submit", func
         return;
     }
     console.log(globalVars.knightName);
-    document.getElementById("knight-name-container").innerHTML = `<p>Knight ${globalVars.knightName} is ready for action!<br>Click below to start being a hero</p>`;
+    document.getElementById("knight-name-container").innerHTML = `<p class="mt-no">Knight ${globalVars.knightName} is ready for action!<br>Click below to start being a hero.</p>`;
     document.getElementById("start-full-game-button").classList.remove("hidden");
 })
 
@@ -372,7 +410,7 @@ function speechUpdateGameHub() {
             case 1:
                 hubAreaButtonOptionOne.classList.add("hidden");
                 hubAreaButtonOptionTwo.innerText = "Next"
-                gameHubTextArea.innerText = `Challenge 1 involves you picking the correct boxes that flash on your screen.`;
+                gameHubTextArea.innerText = `Challenge 2 involves you picking the correct boxes that flash on your screen.`;
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
             case 2:
@@ -459,6 +497,7 @@ function speechUpdateGameHub() {
                 hubAreaButton.classList.add("hidden");
                 gameHubTextArea.innerText = `Go to the prison and let him out of his cage!`;
                 hubAreaFinalAreaButton.classList.remove("hidden");
+                npc.setAttribute("data-npc-text-cycle", "1");
                 break;
         }
     } else if (npc.getAttribute("data-npc-text-tree") === "G") {
@@ -480,6 +519,7 @@ function speechUpdateGameHub() {
                 hubAreaButton.classList.add("hidden");
                 gameHubTextArea.innerText = `Go to the prison and let him out of his cage!`;
                 hubAreaFinalAreaButton.classList.remove("hidden");
+                npc.setAttribute("data-npc-text-cycle", "1");
                 break;
         }
     } else if (npc.getAttribute("data-npc-text-tree") === "H") {

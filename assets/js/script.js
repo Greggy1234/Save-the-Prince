@@ -18,7 +18,9 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let button of buttons) {
         const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right"];
         button.addEventListener("click", function () {
-            if (changeSectionOptions.includes(this.getAttribute("id"))) {
+            if (button.id === "intro-page-button") {
+                changeSection(this);
+            } else if(changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
             } else if (button.id === "hub-area-action-button" || button.id === "hub-area-option-one-button" || button.id === "hub-area-option two-button") {
                 if (button.id === "hub-area-option-one-button") {

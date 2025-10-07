@@ -18,8 +18,8 @@
         <header id="header" class="mb-no">
             <h1 class="mb-no mt-no">Save the Prince</h1>
         </header>
-        <section id="intro-page" class="section-layout map-image">
-            <div id="into-page-elements-container" class="flex"> 
+        <section id="intro-page" class="section-layout map-image hidden">
+            <div id="into-page-elements-container" class="flex">
                 <h2 id="into-page-logo" class="lh-intro-logo red">
                     SAVE
                     <br>
@@ -27,22 +27,36 @@
                     <br>
                     PRINCE
                 </h2>
-                <button id="intro-page-button" data-current-page-id="intro-page"
-                data-next-page-id="front-page">START THE GAME</button>
+                <button id="intro-page-button" data-current-page-id="intro-page" data-next-page-id="front-page">START
+                    THE GAME</button>
             </div>
         </section>
         <!-- Front page of the game when someone starts the game. Players can enter their names for their knight -->
-        <section id="front-page" class="mt-no mb-no section-layout start-image hidden">
-            <h2 class="mt-no">Front page of game </h2>
-            <form id="knight-name-container">
-                <label for="knight-name">What is your knight's name? </label>
-                <br>
-                <input type="text" id="knight-name" name="knight-name">
-                <br>
-                <button type="submit" id="knight-name-submit-button" value="Submit">Submit!</button>
-            </form>
-            <button id="start-full-game-button" class="hidden" data-current-page-id="front-page"
-                data-next-page-id="loading-area">Start searching for danger</button>
+        <section id="front-page" class="mt-no mb-no section-layout map-image flex">
+            <div id="front-page-elements-container" class="flex">
+                <h2 id="front-page-text">HERE'S THE STORY</h2>
+                <p id="front-page-text-para">You are a legendary knight, but you are bored.
+                    <br>
+                    It's time for you to find some danger so you can feel excitement again.
+                    <br>
+                    Enter your name below and see if you can find any.
+                    <br>
+                    Maybe you'll find a <span class="bold-text-start">prince locked away</span>, and some challenges
+                    where you have to <span class="bold-text-start">copy a pattern</span> or <span
+                        class="bold-text-start">find some connections</span>.
+                    <br>
+                    But I couldn't possibly say...
+                </p>
+                <form id="knight-name-container">
+                    <label for="knight-name">What is your knight's name? </label>
+                    <br>
+                    <input type="text" id="knight-name" name="knight-name">
+                    <br>
+                    <button type="submit" id="knight-name-submit-button" value="Submit">Submit!</button>
+                </form>
+                <button id="start-full-game-button" class="hidden" data-current-page-id="front-page"
+                    data-next-page-id="loading-area">Start searching for danger</button>
+            </div>
         </section>
 
         <!-- The loading screen animation screen from left to right. This gets used as a way to link areas within the game -->

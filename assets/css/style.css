@@ -1,5 +1,6 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
 @font-face {
     font-family: specialFont;
     src: url(../fonts/MegamaxJonathanToo-YqOq2.ttf);
@@ -20,10 +21,12 @@
 button {
     background-color: #D0021B;
     border: 5px solid #F5A623;
-    width: 150px;
-    height: 50px;
+    width: 175px;
+    height: 60px;
     font-family: var(--primary-text-font);
     font-size: 1.3rem;
+    color: white;
+    padding-top: 0px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -37,6 +40,14 @@ button:active {
 }
 
 /* Global styles */
+/*This prevents text selection*/
+h1,
+h2,
+h3,
+p {
+    user-select: none;
+}
+
 #main-viewing-area {
     width: 730px;
     max-height: 95vh;
@@ -51,6 +62,12 @@ button:active {
 
 p {
     font-family: var(--primary-text-font);
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-family: var(--highlight-font);
+    text-transform: uppercase;
 }
 
 .section-layout {
@@ -129,19 +146,19 @@ p {
 }
 
 .red {
-    color:var(--red);
+    color: var(--red);
 }
 
 .blue {
-    color:var(--blue);
+    color: var(--blue);
 }
 
 .yellow {
-    color:var(--yellow);
+    color: var(--yellow);
 }
 
 .black {
-    color:black;
+    color: black;
 }
 
 
@@ -217,27 +234,6 @@ body {
     background-size: cover;
 }
 
-/*Intro page styles*/
-#intro-page {
-    align-content: center;
-}
-
-#into-page-elements-container {
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-bottom:200px
-}
-
-#into-page-logo {
-    min-width:100%;
-    font-family: var(--highlight-font);
-    font-size: 3rem;
-}
-
-.lh-intro-logo {
-    line-height:4rem;
-}
-
 /*Header styles*/
 #header {
     background-color: black;
@@ -252,11 +248,72 @@ h1 {
     padding-top: 0.5rem;
 }
 
+/*Intro page styles*/
+#intro-page {
+    align-content: center;
+}
+
+#into-page-elements-container {
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 200px
+}
+
+#into-page-logo {
+    min-width: 100%;
+    font-family: var(--highlight-font);
+    font-size: 3rem;
+}
+
+.lh-intro-logo {
+    line-height: 4rem;
+}
+
+
 /* Front page styles */
+#front-page {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:flex-start;
+}
+
 #start-game-button {
     margin: auto;
 }
 
+form {
+    line-height: 1.7rem;
+}
+
+form>input {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-family: var(--primary-text-font);
+}
+
+form>label {
+    font-family: var(--primary-text-font);
+    font-size: 1.5rem;
+}
+
+#front-page-text {
+    min-width: 100%;
+    max-height:50px;
+}
+
+#front-page-elements-container {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bold-text-start {
+    font-weight: bold;
+    font-size: 1.7rem;
+}
+
+#front-page-text-para {
+    padding: 0px 65px;
+}
 
 /* Loading screen styles */
 #loading-area-hero-container,
@@ -404,10 +461,7 @@ h1 {
     background-color: green;
 }
 
-/*This prevents text selection for game 2*/
-.prevent-select {
-    user-select: none;
-}
+
 
 /*Final area styles*/
 .prince-size {
@@ -437,12 +491,13 @@ h1 {
     background-color: black;
     color: white;
     width: 100%;
-    height: 25px;    
+    height: 25px;
 }
 
 #footer p {
     font-family: var(--title-font);
     padding-top: 0.2rem;
+    font-size: 1rem;
 }
 
 
@@ -470,6 +525,9 @@ h1 {
         padding-bottom: 25px;
     }
 
-
+    /* Front page styles */
+    #front-page-text-para {
+        padding: 0px 10px;
+    }
 
 }

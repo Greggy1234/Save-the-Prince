@@ -92,7 +92,7 @@ function changeSection(e) {
     const gameHubTextArea = document.getElementById("game-hub-text-area");
     const hubAreaButton = document.getElementById("hub-area-action-button");
     const npcSpeakerName = document.getElementById("npc-speaker-name");
-    const heroRight = document.getElementById("hero-loading-right");    
+    const heroRight = document.getElementById("hero-loading-right");
     const hubAreaButtonOptionOne = document.getElementById("hub-area-option-one-button");
     const hubAreaButtonOptionTwo = document.getElementById("hub-area-option-two-button");
     console.log(currentLink);
@@ -174,7 +174,7 @@ function changeSection(e) {
             npc.setAttribute("data-npc-text-tree", "E");
             gameHubTextArea.innerText = "You beat the the evil necromance at his own game. Well done!";
             hubAreaButton.innerText = "Next";
-            
+
         }
         loadingScreenRight(buttonID);
     }
@@ -202,9 +202,9 @@ function loadingScreen(buttonID) {
         position++;
         hero.style.left = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
         if (position % 2 === 0) {
-            hero.setAttribute("src", "assets/images/sprite-hero-still-right.png");
+            hero.setAttribute("src", "assets/images/sprite-hero-still-right.webp");
         } else if (position % 2 === 1) {
-            hero.setAttribute("src", "assets/images/sprite-hero-walk-right.png");
+            hero.setAttribute("src", "assets/images/sprite-hero-walk-right.webp");
             heading.innerText = heading.innerText + ".";
             if (flashPosition === 1) {
                 heading.classList.remove("black");
@@ -260,9 +260,9 @@ function loadingScreenRight(buttonID) {
         position++;
         hero.style.right = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
         if (position % 2 === 0) {
-            hero.setAttribute("src", "assets/images/sprite-hero-still-left.png");
+            hero.setAttribute("src", "assets/images/sprite-hero-still-left.webp");
         } else if (position % 2 === 1) {
-            hero.setAttribute("src", "assets/images/sprite-hero-walk-left.png");
+            hero.setAttribute("src", "assets/images/sprite-hero-walk-left.webp");
             heading.innerText = heading.innerText + ".";
             if (flashPosition === 1) {
                 heading.classList.remove("black");
@@ -618,6 +618,7 @@ function speechUpdateGameOne() {
     const gameOneIntroCard = document.getElementById("game-one-game-intro-card-container");
     const gameOneToHubAreaButton = document.getElementById("game-one-to-hub-area-button");
     const gameOneBoxesContainer = document.getElementById("game-one-all-box-container");
+    const gameOneReturnHubNoKeyButton = document.getElementById("game-one-to-hub-area-no-key-button");
     if (gameOneMonster.getAttribute("data-game-one-text-tree") === "A") {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
@@ -632,7 +633,7 @@ function speechUpdateGameOne() {
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 3:
-                gameOneTextArea.innerText = `To get my key, you'll need to copy my pattern on the lava below.`
+                gameOneTextArea.innerText = `To get my key, you'll need to copy my pattern on the lava tiles below.`
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
@@ -659,7 +660,7 @@ function speechUpdateGameOne() {
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 8:
-                gameOneTextArea.innerText = `Challenge rules: The minotaur will light a pattern on the lava tiles below. When the pattern has been shown, you will have to click the correct tiles. For each correct sequence, you will receive a point. Get to 10 points to get the key.`
+                gameOneTextArea.innerText = `Challenge rules: Copy the pattern shown on the lava tiles above. For each correct sequence, you will receive a point. Get to 10 points to get the key.`
                 gameOneAreaButton.classList.add("hidden");
                 gameOneSpeakerName.classList.add("hidden");
                 gameOneStartButton.classList.remove("hidden");
@@ -724,34 +725,36 @@ function speechUpdateGameOne() {
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 gameOneTextArea.innerText = `The minotaur falls to the ground covered in blood (somehow) and you get the key from challenge 1!`;
                 gameOneSpeakerName.classList.add("hidden");
-                gameOneAreaButton.classList.add("hidden");
+                gameOneAreaButton.classList.add("visible-hidden");
+                gameOneReturnHubNoKeyButton.classList.add("visible-hidden");
                 let deathPose = 1;
                 let gameOneDeathAnimaton = setInterval(function () {
                     switch (deathPose) {
                         case 1:
-                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-2.png";
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-2.webp";
                             deathPose++;
                             break;
                         case 2:
-                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-3.png";
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-3.webp";
                             deathPose++;
                             break;
                         case 3:
-                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-4.png";
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-4.webp";
                             deathPose++;
                             break;
                         case 4:
-                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-5.png";
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-5.webp";
                             deathPose++;
                             break;
                         case 5:
-                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-6.png";
+                            gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-6.webp";
                             deathPose++;
                             break;
                     }
                     if (deathPose === 6) {
                         clearInterval(gameOneDeathAnimaton);
-                        gameOneAreaButton.classList.remove("hidden");
+                        gameOneAreaButton.classList.remove("visible-hidden");
+                        gameOneReturnHubNoKeyButton.classList.remove("visible-hidden");
                     }
                 }, 750);
                 break;
@@ -769,11 +772,11 @@ function speechUpdateGameOne() {
                 gameOneTextArea.innerText = `Let's go from the top now. My confidence has never been higher!`;
                 break;
             case 2:
-                gameOneTextArea.innerText = `As you left mid-game, the game completely restarts on level 1 round 1`;
+                gameOneTextArea.innerText = `As you left mid-game, the challenge completely restarts on level 1 round 1`;
                 gameOneAreaButton.classList.add("hidden");
                 gameOneSpeakerName.classList.add("hidden");
                 gameOneStartButton.classList.remove("hidden");
-                gameOneStartButton.innerText = "Restart Game"
+                gameOneStartButton.innerText = "Restart Challenge"
                 break;
 
         }
@@ -786,7 +789,10 @@ function speechUpdateGameOne() {
  */
 function setThenRunGameOne() {
     const gameOneStartButton = document.getElementById("game-one-start-button");
-    gameOneStartButton.classList.add("hidden");
+    const gameOneReturnHubNoKeyButton = document.getElementById("game-one-to-hub-area-no-key-button");
+    const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
+    gameOneStartButton.classList.add("visible-hidden");
+    gameOneReturnHubNoKeyButton.classList.add("visible-hidden");
     let answer = [];
     let counter = 0;
     let boxArea = document.getElementById("game-one-all-boxes");
@@ -814,6 +820,10 @@ function setThenRunGameOne() {
             clearInterval(gameOneLightBoxes);
             document.getElementById("game-one-text-area").innerText = "Now you copy the pattern";
             let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
+            gameOneReturnHubNoKeyButton.classList.remove("visible-hidden");
+            gameOneStartButton.classList.remove("visible-hidden");
+            gameOneStartButton.classList.add("hidden");
+            gameOneReplayPatternButton.classList.remove("hidden");
             for (boxes of gameOneBox) {
                 boxes.setAttribute("data-game-box-one-status", "active");
             }
@@ -833,9 +843,11 @@ function gameOneBoxLight(boxToLight) {
         if (parseInt(boxes.getAttribute("data-game-one-box-number")) === boxToLight) {
             let gameOneBoxNumber = parseInt(boxes.getAttribute("data-game-one-box-number"));
             console.log(boxes.getAttribute("data-game-one-box-number"));
-            boxes.classList.add("game-one-box-background");
+            boxes.classList.remove("game-one-indivdual-box-flash-off");
+            boxes.classList.add("game-one-indivdual-box-flash-on");
             setTimeout(function () {
-                gameOneBox[gameOneBoxNumber - 1].classList.remove("game-one-box-background");
+                gameOneBox[gameOneBoxNumber - 1].classList.remove("game-one-indivdual-box-flash-on");
+                gameOneBox[gameOneBoxNumber - 1].classList.add("game-one-indivdual-box-flash-off");
             }, 300 - ((parseInt(boxArea.getAttribute("data-game-one-level")) - 1) * 25));
         }
     }
@@ -870,7 +882,7 @@ function gameOneCheckAnswer(playerAnswer) {
                 gameOneTextArea.innerText = "Ahhh! I've underestimated you!";
                 gameOneMonster.setAttribute("data-game-one-text-tree", "B");
                 gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
-                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-2.png"
+                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-2.webp"
                 boxArea.setAttribute("data-game-one-level", "2");
                 gameOneSpeakerName.classList.remove("hidden");
                 gameOneAreaButton.classList.remove("hidden");
@@ -879,7 +891,7 @@ function gameOneCheckAnswer(playerAnswer) {
                 gameOneTextArea.innerText = "OK OK. You're slightly better than I thought you would be";
                 gameOneMonster.setAttribute("data-game-one-text-tree", "C");
                 gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
-                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-3.png"
+                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-3.webp"
                 boxArea.setAttribute("data-game-one-level", "3");
                 gameOneSpeakerName.classList.remove("hidden");
                 gameOneAreaButton.classList.remove("hidden");
@@ -889,7 +901,7 @@ function gameOneCheckAnswer(playerAnswer) {
                 gameOneSpeakerName.classList.remove("hidden");
                 gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
                 gameOneMonster.setAttribute("data-game-one-text-tree", "D");
-                gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-1.png";
+                gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-1.webp";
                 gameOneAreaButton.classList.remove("hidden");
                 globalVars.key1 = true;
             } else {
@@ -929,9 +941,11 @@ function gameOnePlayerBoxLight(PlayerBoxChosen) {
         if (parseInt(boxes.getAttribute("data-game-one-box-number")) === PlayerBoxChosen) {
             let gameOneBoxNumber = parseInt(boxes.getAttribute("data-game-one-box-number"));
             console.log(boxes.getAttribute("data-game-one-box-number"));
-            boxes.classList.add("game-one-box-background");
+            boxes.classList.remove("game-one-indivdual-box-flash-off");
+            boxes.classList.add("game-one-indivdual-box-flash-on");
             setTimeout(function () {
-                gameOneBox[gameOneBoxNumber - 1].classList.remove("game-one-box-background");
+                gameOneBox[gameOneBoxNumber - 1].classList.remove("game-one-indivdual-box-flash-on");
+                gameOneBox[gameOneBoxNumber - 1].classList.add("game-one-indivdual-box-flash-off");
             }, 100)
         }
     }
@@ -941,8 +955,11 @@ function gameOnePlayerBoxLight(PlayerBoxChosen) {
  * This repeats the pattern if the player wants the pattern to be repeated
  */
 function gameOneRepeatPattern() {
+    console.log("STEP 1");
     const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
-    gameOneReplayPatternButton.classList.add("hidden");
+    const gameOneReturnHubNoKeyButton = document.getElementById("game-one-to-hub-area-no-key-button");
+    gameOneReplayPatternButton.classList.add("visible-hidden");
+    gameOneReturnHubNoKeyButton.classList.add("visible-hidden");
     let boxArea = document.getElementById("game-one-all-boxes");
     let counter = 0;
     let answer = globalVars.gameOneAnswer;
@@ -956,9 +973,13 @@ function gameOneRepeatPattern() {
         if (counter < lengthOfAnswer) {
             gameOneBoxLight(gameOneBoxNumber);
             counter++;
+            console.log("STEPs 2");
         } else {
             clearInterval(gameOneLightBoxes);
             document.getElementById("game-one-text-area").innerText = "Now you copy the pattern";
+            gameOneReplayPatternButton.classList.remove("visible-hidden");
+            gameOneReturnHubNoKeyButton.classList.remove("visible-hidden");
+            console.log("STEP 3");
             let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
             for (boxes of gameOneBox) {
                 boxes.setAttribute("data-game-box-one-status", "active");

@@ -65,7 +65,8 @@ p {
     font-size: 1.5rem;
 }
 
-h2 {
+h2,
+h3 {
     font-family: var(--highlight-font);
     text-transform: uppercase;
 }
@@ -92,7 +93,12 @@ h2 {
 }
 
 .hero-size {
-    width: 30px;
+    width: 25px;
+}
+
+.speaker-name-style {
+    min-width: 100%;
+    font-weight: bold;
 }
 
 .hidden {
@@ -116,9 +122,13 @@ h2 {
 }
 
 .game-intro-card {
-    border: 1px solid red;
-    padding: 40px 80px;
-    display: inline-block;
+    border: 2px solid red;
+    width: 700px;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .bottom-left-sprite {
@@ -133,6 +143,10 @@ h2 {
     margin-bottom: 1rem;
 }
 
+.mb-05rem {
+    margin-bottom: 0.5rem;
+}
+
 .mb-no {
     margin-bottom: 0px;
 }
@@ -141,11 +155,16 @@ h2 {
     margin-top: 0px;
 }
 
+.mt-05rem {
+    margin-top: 0.5rem;
+}
+
 .mt-auto {
     margin-top: auto;
 }
 
-.lh-h2 {
+.lh-h2,
+.lh-h3 {
     line-height: 2rem;
 }
 
@@ -185,13 +204,13 @@ body {
 }
 
 .grasslands-image {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.3), rgba(255, 248, 248, 0.3)), url(../images/test-grasslands.jpg);
+    background-image: linear-gradient(rgba(255, 248, 248, 0.3), rgba(255, 248, 248, 0.3)), url(../images/background-hub-area.webp);
     background-position: center;
     background-size: cover;
 }
 
 .volcano-image {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/test-volcano.jpg);
+    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/background-game-one-area.webp);
     background-position: center;
     background-size: cover;
 }
@@ -378,19 +397,14 @@ input[type=text] {
     border: 2px solid red;
     width: 700px;
     height: 20vh;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-#npc-speaker-name {
-    min-width:100%;
-    font-weight: bold;
-}
-
 #game-hub-text-area {
-    padding:0px 10px;
+    padding: 0px 10px;
 }
 
 .npc-size {
@@ -403,9 +417,18 @@ input[type=text] {
     align-items: end;
 }
 
-
-
 /* Game one styles */
+#game-one-area {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#game-one-game-intro-card-container {
+        height:202px;
+    }
+
 #game-one-all-boxes {
     display: flex;
     flex-wrap: wrap;
@@ -423,32 +446,48 @@ input[type=text] {
     border: 1px solid red;
     width: 50px;
     height: 50px;
+    background-size: contain;
+}
+
+.game-one-indivdual-box-flash-off {
+    background-image: url(../images/tst-lave.png);
+}
+
+.game-one-indivdual-box-flash-on {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.8), rgba(255, 248, 248, 0.8));
 }
 
 #game-one-text-area-container {
     display: flex;
     justify-content: center;
-    padding: 25px 0px;
+    padding: 0px;
 }
 
 #game-one-text-area-box {
     border: 2px solid red;
     width: 700px;
-    height: 15vh;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.game-one-monster-size {
-    width: 50px;
-}
 
 #game-one-area-bottom {
     display: flex;
     justify-content: space-between;
     align-items: end;
+    padding-bottom: 35px;
+    min-width: 100%
 }
 
-.game-one-box-background {
-    background-color: red;
+.game-one-monster-container {
+    width:50px;
+    height:56px;
+    padding-right:10px;
+    display:flex;
+    align-items:end;
 }
 
 /* Game two styles */
@@ -483,7 +522,6 @@ input[type=text] {
 
 #game-two-text-area-box {
     border: 2px solid red;
-    border-radius: 25px;
     width: 700px;
     height: 15vh;
 }
@@ -561,9 +599,16 @@ input[type=text] {
         max-height: 98vh;
         min-height: 98vh;
     }
-    
-    p{
+
+    p {
         font-size: 1.2rem;
+    }
+
+    .game-intro-card {
+        border: 2px solid red;
+        width: 90vw;
+        height: 15vh;
+        padding: 0px;
     }
 
     /* Loading screen styles */
@@ -586,9 +631,34 @@ input[type=text] {
     }
 
     #games-container {
-    flex-direction: column;
-    justify-content: center;
-}
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #hub-area-option-one-button,
+    #hub-area-option-two-button {
+        width: 95px;
+    }
+
+    /* Game one styles */
+    #game-one-game-intro-card-container {
+        max-width: 90vw;
+        padding: 5px 5px 0px;
+    }
+
+    #game-one-area-bottom {
+        padding-bottom: 25px;
+    }
+
+    #game-one-text-area-box {
+        border: 2px solid red;
+        width: 90vw;
+        height: 15vh;
+    }
+
+    #game-one-area-bottom {
+        padding-bottom: 25px;
+    }
 
     /* Game two styles */
     .game-two-indivdual-box {

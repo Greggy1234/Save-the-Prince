@@ -55,7 +55,7 @@ Visit the deployed website [here](https://greggy1234.github.io/GJMR-Quartet/)
 As it is a game with a fixed viewing are for screen size tablet and above, the desktop/tablet layout are the exact same, so they will be grouped together in the table below.
 
 Page | Desktop/Tablet Version | Mobile Version
---- | --- | --- | ---
+--- | --- | ---
 Intro Page | ![Desktop intro page wireframe image](docs/wireframes/intro-page-desk-tab.png) | ![Mobile intro page wireframe image](docs/wireframes/intro-page-mobile.png)
 Front Page | ![Desktop front page wireframe image](docs/wireframes/front-page-desk-tab.png) | ![Mobile front page wireframe image](docs/wireframes/front-page-mobile.png)
 Loading Page | ![Desktop loading page wireframe image](docs/wireframes/loading-page-desk-tab.png) | ![Mobile loading page wireframe image](docs/wireframes/loading-page-mobile.png)

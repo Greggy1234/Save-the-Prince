@@ -179,7 +179,7 @@ body {
 }
 
 .campsite-image {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/test-campsite.png);
+    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/background-front-page.webp);
     background-position: center;
     background-size: cover;
 }
@@ -353,6 +353,12 @@ input[type=text] {
 
 
 /* Hub area styles */
+#game-hub-area {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 #games-container {
     display: flex;
     justify-content: space-around;
@@ -371,7 +377,20 @@ input[type=text] {
 #game-hub-text-area-box {
     border: 2px solid red;
     width: 700px;
-    height: 15vh;
+    height: 20vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#npc-speaker-name {
+    min-width:100%;
+    font-weight: bold;
+}
+
+#game-hub-text-area {
+    padding:0px 10px;
 }
 
 .npc-size {
@@ -383,6 +402,8 @@ input[type=text] {
     justify-content: space-between;
     align-items: end;
 }
+
+
 
 /* Game one styles */
 #game-one-all-boxes {
@@ -492,8 +513,6 @@ input[type=text] {
     background-color: green;
 }
 
-
-
 /*Final area styles*/
 .prince-size {
     width: 35px;
@@ -542,6 +561,10 @@ input[type=text] {
         max-height: 98vh;
         min-height: 98vh;
     }
+    
+    p{
+        font-size: 1.2rem;
+    }
 
     /* Loading screen styles */
     #loading-area-hero-container,
@@ -549,6 +572,23 @@ input[type=text] {
         width: 95vw;
         height: 15vh;
     }
+
+    /* Front page styles */
+    #front-page-text-para {
+        padding: 0px 10px;
+    }
+
+    /*Hub area styles*/
+    #game-hub-text-area-box {
+        border: 2px solid red;
+        width: 90vw;
+        height: 15vh;
+    }
+
+    #games-container {
+    flex-direction: column;
+    justify-content: center;
+}
 
     /* Game two styles */
     .game-two-indivdual-box {
@@ -560,10 +600,4 @@ input[type=text] {
     #game-two-area-bottom {
         padding-bottom: 25px;
     }
-
-    /* Front page styles */
-    #front-page-text-para {
-        padding: 0px 10px;
-    }
-
 }

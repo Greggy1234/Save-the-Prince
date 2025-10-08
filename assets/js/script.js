@@ -3,7 +3,7 @@
 const globalVars = {
     knightName: "",
     key1: false,
-    key2: true,
+    key2: false,
     gameOneAnswer: [],
     gameTwoOptions: [],
     gameTwoSetAnswers: [],
@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+    //Game box event listeners
     let gameOneBoxes = document.getElementsByClassName("game-one-indivdual-box");
     for (boxes of gameOneBoxes) {
         boxes.addEventListener("click", function (e) {
@@ -85,10 +86,15 @@ function changeSection(e) {
     let currentLink = e.getAttribute("data-current-page-id");
     let nextLink = e.getAttribute("data-next-page-id");
     const heading = document.getElementById("loading-text");
+    const headingRight = document.getElementById("loading-text-right");
     const loadingScreenButton = document.getElementById("loading-screen-button");
     const npc = document.getElementById("npc");
     const gameHubTextArea = document.getElementById("game-hub-text-area");
     const hubAreaButton = document.getElementById("hub-area-action-button");
+    const npcSpeakerName = document.getElementById("npc-speaker-name");
+    const heroRight = document.getElementById("hero-loading-right");    
+    const hubAreaButtonOptionOne = document.getElementById("hub-area-option-one-button");
+    const hubAreaButtonOptionTwo = document.getElementById("hub-area-option-two-button");
     console.log(currentLink);
     console.log(nextLink);
     document.getElementById(nextLink).classList.remove("hidden");
@@ -107,8 +113,11 @@ function changeSection(e) {
         heading.innerHTML = "ON THE WAY TO CHALLENGE 2<br>...";
         loadingScreen(buttonID);
     } else if (buttonID === "game-one-to-hub-area-button" || buttonID === "game-two-to-hub-area-button") {
+        headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
         loadingScreenRight(buttonID);
     } else if (buttonID == "game-one-to-hub-area-no-key-button") {
+        headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
+        heroRight.style.left = "";
         if (globalVars.key1 === false) {
             const gameOneSpeakerName = document.getElementById("game-one-speaker-name");
             const gameOneTextArea = document.getElementById("game-one-text-area");
@@ -132,6 +141,8 @@ function changeSection(e) {
         }
         loadingScreenRight(buttonID);
     } else if (buttonID === "game-two-to-hub-area-no-key-button") {
+        headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
+        heroRight.style.left = "";
         if (globalVars.key2 === false) {
             const gameTwoSpeakerName = document.getElementById("game-two-speaker-name");
             const gameTwoTextArea = document.getElementById("game-two-text-area");
@@ -154,14 +165,18 @@ function changeSection(e) {
             npc.setAttribute("data-npc-text-tree", "I");
             gameHubTextArea.innerText = "I see the wits of the evil necromancer were too much for you.";
             hubAreaButton.innerText = "Next";
-
+            hubAreaButton.classList.remove("hidden");
+            npcSpeakerName.classList.remove("hidden");
+            hubAreaButtonOptionOne.classList.add("hidden");
+            hubAreaButtonOptionTwo.classList.add("hidden");
         }
         else if (globalVars.key2 === true && globalVars.key1 === false) {
             npc.setAttribute("data-npc-text-tree", "E");
             gameHubTextArea.innerText = "You beat the the evil necromance at his own game. Well done!";
             hubAreaButton.innerText = "Next";
-            loadingScreenRight(buttonID);
+            
         }
+        loadingScreenRight(buttonID);
     }
 }
 
@@ -179,6 +194,7 @@ function loadingScreen(buttonID) {
     hero.style.bottom = "10 + px";
     loadingLink.classList.add("visible-hidden");
     const heading = document.getElementById("loading-text");
+    console.log("LOADING SCREEN BUTTON ID NEXT");
     console.log(buttonID);
     hero.classList.add("hero-left-position-left");
     let flashPosition = 1;
@@ -248,7 +264,23 @@ function loadingScreenRight(buttonID) {
         } else if (position % 2 === 1) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-left.png");
             heading.innerText = heading.innerText + ".";
-
+            if (flashPosition === 1) {
+                heading.classList.remove("black");
+                heading.classList.add("blue");
+                flashPosition++;
+            } else if (flashPosition === 2) {
+                heading.classList.add("yellow");
+                heading.classList.remove("blue");
+                flashPosition++;
+            } else if (flashPosition === 3) {
+                heading.classList.add("red");
+                heading.classList.remove("yellow");
+                flashPosition++;
+            } else if (flashPosition === 4) {
+                heading.classList.remove("red");
+                heading.classList.add("black");
+                flashPosition = 1;
+            }
         }
         if (position === maxPosition) {
             clearInterval(loadingAnimation);
@@ -554,22 +586,13 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                hubAreaButtonOptionOne.classList.add("hidden");
-                hubAreaButtonOptionTwo.classList.add("hidden");
-                npcSpeakerName.classList.remove("hidden");
-                hubAreaButton.classList.remove("hidden");
-                hubAreaButton.innerText = "Next";
-                gameHubTextArea.innerText = `I see the wits of the evil necromancer were too much for you.`;
+                gameHubTextArea.innerText = `I'm sure you'll beat his mind-bending puzzles next time!`;
                 break;
             case 2:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                gameHubTextArea.innerText = `I'm sure you'll beat his mind-bending puzzles next time!`;
+                gameHubTextArea.innerText = `The main thing is you're still alive.`;
                 break;
             case 3:
-                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                gameHubTextArea.innerText = `The main thing is you're still alive`;
-                break;
-            case 4:
                 npcSpeakerName.classList.add("hidden");
                 hubAreaButton.classList.add("hidden");
                 gameHubTextArea.innerText = `When you're ready, choose one of the challenges to start, or click below to find out more about the challenges.`;
@@ -876,7 +899,7 @@ function gameOneCheckAnswer(playerAnswer) {
             }
         }
     } else {
-        gameOneTextArea.innerText = "WRONG! YOU IDIOT! TRY AGAIN!";
+        gameOneTextArea.innerText = "WRONG! YOU IDIOT! TRY AGAIN! Or you can ask me to replay the pattern.";
         boxArea.setAttribute("data-game-one-check", "0");
         gameOneReplayPatternButton.classList.remove("hidden");
     }

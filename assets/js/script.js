@@ -759,7 +759,6 @@ function speechUpdateGameOne() {
                 }, 750);
                 break;
             case 5:
-                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 gameOneTextArea.innerText = `There's nothing else to do here apart from looking at the dead minotaur.`;
                 gameOneAreaButton.classList.add("hidden");
                 gameOneToHubAreaButton.classList.remove("hidden")
@@ -1082,6 +1081,40 @@ function speechUpdateGameTwo() {
                 break;
         }
     } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "D")) {
+        switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
+            case 1:
+                gameTwoTextArea.innerText = `Oh my God!`;
+                gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 2:
+                gameTwoTextArea.innerText = `You did it!`;
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 3:
+                gameTwoTextArea.innerText = `I am nothing. I am worthless. I am...`;
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 4:
+                gameTwoTextArea.innerText = `Useless. *embarassing sobbing from the skeleton*`;
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 5:
+                gameTwoTextArea.innerText = `Take the key, and leave me be`;
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 6:
+                gameTwoTextArea.innerText = `He throws the key at you and continues sobbing loudly.`;
+                gameTwoSpeakerName.classList.remove("hidden");
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 7:
+                gameTwoTextArea.innerText = `There's nothing else to do here apart from watching the evil necromancer cry..`;
+                gameTwoToHubAreaButton.classList.remove("hidden");
+                gameTwoAreaButton.classList.add("hidden");
+                break;
+        }
+    } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "E")) {
         switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
             case 1:
                 gameTwoTextArea.innerText = `I want to see you fail.`

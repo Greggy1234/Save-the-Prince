@@ -50,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 gameTwoCheckAnswer();
             } else if (button.id === "final-area-action-button") {
                 speechUpdateFinalArea();
+            } else if (button.id === "final-area-celebrate-button") {
+                finalAreaCelebration();
             } else if (button.id === "reset-button") {
                 resetGame();
             }
@@ -1401,6 +1403,7 @@ function speechUpdateFinalArea() {
     const finalAreaButton = document.getElementById("final-area-action-button");
     const prince = document.getElementById("prince");
     const resetGameButton = document.getElementById("reset-button");
+    const finalAreaCelebrateButton = document.getElementById("final-area-celebrate-button");
     switch (parseInt(prince.getAttribute("data-game-two-text-cycle"))) {
         case 1:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
@@ -1411,7 +1414,6 @@ function speechUpdateFinalArea() {
         case 2:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
             finalAreaTextArea.innerText = "Ah how I've missed the sun on my face and the air through my hair.";
-            finalAreaButton.innerText = "Next";
             break;
         case 3:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
@@ -1422,7 +1424,7 @@ function speechUpdateFinalArea() {
             finalAreaTextArea.innerText = "For now, it's time to celebrate";
             princeSpeakerName.classList.add("hidden");
             finalAreaButton.classList.add("hidden");
-            finalAreaCelebration();
+            finalAreaCelebrateButton.classList.remove("hidden");
             break;
         case 5:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
@@ -1471,5 +1473,28 @@ function speechUpdateFinalArea() {
 *This will run the celebration function
 */
 function finalAreaCelebration() {
-
+const headingText = document.getElementById("final-area-h3-text");
+let position = 1;
+    const logoFlash = setInterval(function () {
+        if (introPageSection.classList.contains("hidden")) {
+            clearInterval(logoFlash);
+        }
+        if (position === 1) {
+            introLogo.classList.remove("red");
+            introLogo.classList.add("blue");
+            position++;
+        } else if (position === 2) {
+            introLogo.classList.add("yellow");
+            introLogo.classList.remove("blue");
+            position++;
+        } else if (position === 3) {
+            introLogo.classList.add("black");
+            introLogo.classList.remove("yellow");
+            position++;
+        } else if (position === 4) {
+            introLogo.classList.remove("black");
+            introLogo.classList.add("red");
+            position = 1;
+        }
+    }, 750)
 }

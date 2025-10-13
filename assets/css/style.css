@@ -133,6 +133,7 @@ h3 {
 
 .bottom-left-sprite {
     padding-left: 10px;
+    width: 40px;
 }
 
 .bottom-right-sprite {
@@ -254,7 +255,7 @@ body {
 
 
 .prison-image {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/prison-test.png);
+    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/prison\ test.png);
     background-position: center;
     background-size: cover;
 }
@@ -422,8 +423,8 @@ input[type=text] {
 }
 
 #game-one-game-intro-card-container {
-        height:202px;
-    }
+    height: 202px;
+}
 
 #game-one-all-boxes {
     display: flex;
@@ -479,11 +480,11 @@ input[type=text] {
 }
 
 .game-one-monster-container {
-    width:50px;
-    height:56px;
-    padding-right:10px;
-    display:flex;
-    align-items:end;
+    width: 50px;
+    height: 56px;
+    padding-right: 10px;
+    display: flex;
+    align-items: end;
 }
 
 /* Game two styles */
@@ -495,9 +496,9 @@ input[type=text] {
 }
 
 #game-two-game-intro-card-container {
-        height:202px;
-        
-    }
+    height: 202px;
+
+}
 
 #game-two-all-boxes {
     display: flex;
@@ -547,11 +548,11 @@ input[type=text] {
 }
 
 .game-two-monster-container {
-    width:50px;
-    height:56px;
-    padding-right:10px;
-    display:flex;
-    align-items:end;
+    width: 50px;
+    height: 56px;
+    padding-right: 10px;
+    display: flex;
+    align-items: end;
 }
 
 .game-two-box-background {
@@ -564,25 +565,45 @@ input[type=text] {
 
 /*Final area styles*/
 .prince-size {
-    width: 35px;
+    width: 25px;
+}
+
+#final-area {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.final-area-celebration-individual-container {
+    max-width: 20%;
+    max-height: 50px;
+}
+
+.final-area-celebration-individual-container img {
+    height: 50px;
 }
 
 #final-area-text-area-container {
     display: flex;
     justify-content: center;
-    padding: 25px 0px;
+    padding: 0px;
 }
 
 #final-area-text-area-box {
-    border: 2px solid red;
+    border: 2px solid var(--red);
     width: 700px;
-    height: 15vh;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 #final-area-bottom {
-    display: flex;
     justify-content: space-between;
     align-items: end;
+    min-width: 100%
 }
 
 /*Footer styles*/
@@ -682,6 +703,16 @@ input[type=text] {
     }
 
     #game-two-text-area-box {
+        width: 90vw;
+        height: 15vh;
+    }
+
+    /* Final area styles*/
+    #final-area-bottom {
+        padding-bottom: 25px;
+    }
+
+    #final-area-text-area-box {
         width: 90vw;
         height: 15vh;
     }

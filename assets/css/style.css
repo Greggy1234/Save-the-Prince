@@ -717,3 +717,22 @@ input[type=text] {
         height: 15vh;
     }
 }
+
+/*Screen sizes below 374px (smallest devices)*/
+@media screen and (max-width: 374px) {
+
+    /*Global styles*/
+    p {
+        font-size: 1rem;
+    }
+
+    /*Button styles*/
+    button {
+        font-size: 1.2rem;
+    }
+
+    /*Footer styles*/
+#footer p {
+    font-size: 0.8rem;
+}
+}

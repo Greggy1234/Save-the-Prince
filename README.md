@@ -1,6 +1,10 @@
 # Save-the-Prince
 
-Visit the deployed website [here](https://greggy1234.github.io/GJMR-Quartet/)
+Save the Prince is pixel game that takes inspiration from the eraly era of video games using pixelated grpahics, tongue-in-cheek dialogue and simple game design that all together gives the user a hit of nostalgia of when games were simpler while also not being particularly mechanically complex.
+
+The game si set out with a classic 'Start Game' screen much like you see on an arcade, with a very simple story and the only player input being naming the knight who goes on this mini adventure. It utilises loading screens to add to the game feel and create a sense of journey for the knight as they explore. The hub of the game, the Grasslands, acts as choice for players to play either of the two games and add an explanation of what the knight is doing. From the hub, they can choose Challenge 1 or Challenge 2. Challenge 1 is set in a minotaur's lava domain and is a memory challenge where the player has to copy the patern, and the JavaScript code acts as a random number generator to give the player new paterns each time they play this game. Challenge 2 is set in the necromancer's castle, and requires the player to guess the connections between words. While the connections are set, the order they appear and where the words appear are set to random to give the player a unique experience each time. Each game gives a key, and once the player has both keys, they can go to the prison area and save the prince. This the final screen where you win the game and have the option of completely resetting the game and replaying it.
+
+Visit the deployed website [here](https://greggy1234.github.io/Save-the-Prince/)
 
 ## Table of Contents
 

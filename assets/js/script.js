@@ -1222,7 +1222,7 @@ function gameTwoDisplayWords(allSetAnswers) {
         for (let i = 0; i < 9; i++) {
             if (gameTwoBoxNumber === i + 1) {
                 setTimeout(function () {
-                    boxes.innerHTML = `<p class="prevent-select" data-game-two-box-number=${gameTwoBoxNumber}>${allSetAnswers[round][i]}<p>`;
+                    boxes.innerHTML = `<p data-game-two-box-number=${gameTwoBoxNumber}>${allSetAnswers[round][i]}<p>`;
                 }, i * 100);
             }
         }
@@ -1473,28 +1473,35 @@ function speechUpdateFinalArea() {
 *This will run the celebration function
 */
 function finalAreaCelebration() {
-const headingText = document.getElementById("final-area-h3-text");
-let position = 1;
-    const logoFlash = setInterval(function () {
-        if (introPageSection.classList.contains("hidden")) {
-            clearInterval(logoFlash);
+    const headingText = document.getElementById("final-area-h3-text");
+    headingText.innerHTML = `CONGRATS!!!!
+                    <br>
+                    CONGRATS!!!!`;
+    let flashPosition = 1;
+    const textFlash = setInterval(function () {
+        if (flashPosition === 1) {
+            heading.classList.remove("black");
+            heading.classList.add("blue");
+            flashPosition++;
+        } else if (flashPosition === 2) {
+            heading.classList.add("yellow");
+            heading.classList.remove("blue");
+            flashPosition++;
+        } else if (flashPosition === 3) {
+            heading.classList.add("red");
+            heading.classList.remove("yellow");
+            flashPosition++;
+        } else if (flashPosition === 4) {
+            heading.classList.remove("red");
+            heading.classList.add("black");
+            flashPosition = 1;
         }
-        if (position === 1) {
-            introLogo.classList.remove("red");
-            introLogo.classList.add("blue");
-            position++;
-        } else if (position === 2) {
-            introLogo.classList.add("yellow");
-            introLogo.classList.remove("blue");
-            position++;
-        } else if (position === 3) {
-            introLogo.classList.add("black");
-            introLogo.classList.remove("yellow");
-            position++;
-        } else if (position === 4) {
-            introLogo.classList.remove("black");
-            introLogo.classList.add("red");
-            position = 1;
+    }, 500);
+    for (let i = 0; i < 9; i++) {
+        if (gameTwoBoxNumber === i + 1) {
+            setTimeout(function () {
+                boxes.innerHTML = `<p data-game-two-box-number=${gameTwoBoxNumber}>${allSetAnswers[round][i]}<p>`;
+            }, i * 100);
         }
-    }, 750)
+    }
 }

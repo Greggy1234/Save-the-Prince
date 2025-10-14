@@ -1110,7 +1110,7 @@ function speechUpdateGameTwo() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 gameTwoAreaButton.classList.add("visible-hidden");
                 let deathPose = 1;
-                let gameTwoDeathAnimaton = setInterval(function () {
+                let gameTwoDefeatAnimaton = setInterval(function () {
                     switch (deathPose) {
                         case 1:
                             gameTwoMonster.src = "assets/images/sprite-game-two-enemy-death-2.webp";
@@ -1142,10 +1142,10 @@ function speechUpdateGameTwo() {
                             break;
                     }
                     if (deathPose === 8) {
-                        clearInterval(gameTwoDeathAnimaton);
+                        clearInterval(gameTwoDefeatAnimaton);
                         gameTwoAreaButton.classList.remove("visible-hidden");
                     }
-                }, 500);
+                }, 300);
                 break;
             case 5:
                 gameTwoTextArea.innerText = `Useless. *embarassing sobbing from the skeleton*`;

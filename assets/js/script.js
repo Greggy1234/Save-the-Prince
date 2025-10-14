@@ -13,6 +13,12 @@ const globalVars = {
 // Button element event listeners
 // Once the DOM is loaded, all the buttons throughout the game will have an event listener and will be directed to the corresponding function
 document.addEventListener("DOMContentLoaded", function () {
+    const checkErrorPage = document.getElementById("error-page");
+    if (document.body.contains(checkErrorPage)) {
+        flashingLogoErrorPage()
+    } else {
+        flashingLogo();
+    }
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
         const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button"];
@@ -75,11 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(gameTwoBoxNumber)
             gameTwoPlayerBoxLightToggle(gameTwoBoxNumber);
         });
-    }
-    if (window.location.href.indexOf("error") > -1) {
-        flashingLogoErrorPage();
-    } else {
-        flashingLogo();
     }
 });
 

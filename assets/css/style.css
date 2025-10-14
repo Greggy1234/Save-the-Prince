@@ -732,7 +732,7 @@ input[type=text] {
     }
 
     /*Footer styles*/
-#footer p {
-    font-size: 0.8rem;
-}
+    #footer p {
+        font-size: 0.8rem;
+    }
 }

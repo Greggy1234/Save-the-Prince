@@ -56,7 +56,7 @@ Visit the deployed website [here](https://greggy1234.github.io/Save-the-Prince/)
 ### Colour Scheme
 
 ### Wireframes
-[Balsamiq](https://balsamiq.com/) was the app used to create the wireframes. As the game is heavily based on JavaAcript changing the DOM, these are basic layouts which get more complex due to the code behind them.
+[Balsamiq](https://balsamiq.com/) was the app used to create the wireframes. As the game is heavily based on JavaScript changing the DOM, these are basic layouts which get more complex due to the code behind them.
 
 As it is a game with a fixed viewing are for screen size tablet and above, the desktop/tablet layout are the exact same, so they will be grouped together in the table below.
 

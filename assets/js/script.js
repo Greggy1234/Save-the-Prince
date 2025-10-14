@@ -13,6 +13,19 @@ const globalVars = {
 // Button element event listeners
 // Once the DOM is loaded, all the buttons throughout the game will have an event listener and will be directed to the corresponding function
 document.addEventListener("DOMContentLoaded", function () {
+    //This redirects the user if there is a 404 error page. Code taken from https://www.davidangulo.xyz/posts/redirect-404-pages-in-javascript/
+    const currentUrl = new URL(window.location.href);
+    const isRedirected = !!currentUrl.searchParams.get('r');
+    if (!isRedirected) {
+        fetch(window.location.href, {
+            method: 'HEAD',
+        }).then((response) => {
+            if (response.status !== 404) return;
+            const redirectUrl = new URL(window.location.origin); // Redirect to the home page
+            redirectUrl.searchParams.set('r', 1); // Append the 'r' parameter
+            window.location.href = redirectUrl.href; // Redirect to the home page
+        });
+    }
     flashingLogo();
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
@@ -1393,7 +1406,6 @@ function gameTwoConnection(correctAnswer) {
 
 
 // Final area code
-
 /**
 *This will run the final speech section of the game between the player and the prince 
 */
@@ -1422,45 +1434,34 @@ function speechUpdateFinalArea() {
         case 4:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
             finalAreaTextArea.innerText = "For now, it's time to celebrate";
-            princeSpeakerName.classList.add("hidden");
             finalAreaButton.classList.add("hidden");
             finalAreaCelebrateButton.classList.remove("hidden");
             break;
         case 5:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
-            finalAreaTextArea.innerText = `OK, celebration over. Thank you again knight ${globalVars.knightName}`;
-            princeSpeakerName.classList.remove("hidden");
-            finalAreaButton.classList.remove("hidden");
-            break;
-        case 6:
-            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
             finalAreaTextArea.innerText = `You have my eternal gratitude`;
             break;
-        case 7:
+        case 6:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
             finalAreaTextArea.innerText = `Well done knight ${globalVars.knightName}`;
             princeSpeakerName.classList.add("hidden");
             break;
+        case 7:
+            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
+            finalAreaTextArea.innerText = `You managed to vanquish the danger and in turn save the day.`;
+            break;
         case 8:
-            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
-            finalAreaTextArea.innerText = `You managed to vanquish the danger and in turn save the day.`;
-            break;
-        case 9:
-            prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
-            finalAreaTextArea.innerText = `You managed to vanquish the danger and in turn save the day.`;
-            break;
-        case 10:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
             finalAreaTextArea.innerText = `You can retire now and leave the life of a knight (exit the game) or you can retry this adventure again.`;
             finalAreaButton.innerHTML = `Let me replay the adventure`;
             break;
-        case 11:
+        case 9:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
-            finalAreaTextArea.innerText = `...wait. No. PLease don;t make me go back into the prison!`;
+            finalAreaTextArea.innerText = `...wait. No. PLease don't make me go back into the prison!`;
             princeSpeakerName.classList.remove("hidden");
             finalAreaButton.innerHTML = `I don't care.`;
             break;
-        case 12:
+        case 10:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
             finalAreaTextArea.innerText = `NO NO NO NO NO. I beg you. My complexion is too fair to survive more time in prison!`;
             finalAreaButton.classList.add("hidden");
@@ -1474,34 +1475,44 @@ function speechUpdateFinalArea() {
 */
 function finalAreaCelebration() {
     const headingText = document.getElementById("final-area-h3-text");
+    const partyPopper = document.getElementsByClassName("final-area-celebration-individual-container");
+    const finalAreaCelebrateButton = document.getElementById("final-area-celebrate-button");
+    const finalAreaButton = document.getElementById("final-area-action-button");
+    const finalAreaTextArea = document.getElementById("final-area-text-area");
+    finalAreaCelebrateButton.classList.add("hidden");
+    finalAreaButton.classList.remove("hidden");
+    finalAreaButton.classList.add("visible-hidden");
     headingText.innerHTML = `CONGRATS!!!!
                     <br>
                     CONGRATS!!!!`;
     let flashPosition = 1;
     const textFlash = setInterval(function () {
         if (flashPosition === 1) {
-            heading.classList.remove("black");
-            heading.classList.add("blue");
+            headingText.classList.remove("black");
+            headingText.classList.add("blue");
             flashPosition++;
         } else if (flashPosition === 2) {
-            heading.classList.add("yellow");
-            heading.classList.remove("blue");
+            headingText.classList.add("yellow");
+            headingText.classList.remove("blue");
             flashPosition++;
         } else if (flashPosition === 3) {
-            heading.classList.add("red");
-            heading.classList.remove("yellow");
+            headingText.classList.add("red");
+            headingText.classList.remove("yellow");
             flashPosition++;
         } else if (flashPosition === 4) {
-            heading.classList.remove("red");
-            heading.classList.add("black");
+            headingText.classList.remove("red");
+            headingText.classList.add("black");
             flashPosition = 1;
         }
     }, 500);
-    for (let i = 0; i < 9; i++) {
-        if (gameTwoBoxNumber === i + 1) {
-            setTimeout(function () {
-                boxes.innerHTML = `<p data-game-two-box-number=${gameTwoBoxNumber}>${allSetAnswers[round][i]}<p>`;
-            }, i * 100);
-        }
+    for (let i = 0; i < 5; i++) {
+        setTimeout(function () {
+            partyPopper[i].classList.remove("visible-hidden");
+            if (i === 4) {
+                clearInterval(textFlash);
+                finalAreaTextArea.innerText = `OK, celebration over. Thank you again knight ${globalVars.knightName}`;
+                finalAreaButton.classList.remove("visible-hidden");
+            };
+        }, i * 1000);
     }
 }

@@ -366,8 +366,6 @@ input[type=text] {
     margin-bottom: 5vh;
 }
 
-
-
 /* Hub area styles */
 #game-hub-area {
     flex-direction: column;
@@ -637,7 +635,7 @@ input[type=text] {
     }
 
     .game-intro-card {
-        border: 2px solid red;
+        border: 2px solid var(--red);
         width: 90vw;
         height: 15vh;
         padding: 0px;
@@ -716,14 +714,42 @@ input[type=text] {
         width: 90vw;
         height: 15vh;
     }
+
+    #final-area-message {
+        min-height: 166px;
+    }
 }
 
 /*Screen sizes below 374px (smallest devices)*/
 @media screen and (max-width: 374px) {
 
     /*Global styles*/
+    #main-viewing-area {
+        width: 99vw;
+        max-height: 99vh;
+        min-height: 99vh;
+    }
+
     p {
         font-size: 1rem;
+    }
+
+    button {
+        height: 48px;
+    }
+
+    .bold-text-start {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .game-intro-card {
+        border: 2px solid var(--red);
+        width: 96vw;
+        height: 15vh;
+        padding: 0px;
+        font-size: 0.9rem;
+        margin: 0px;
     }
 
     /*Button styles*/
@@ -731,8 +757,95 @@ input[type=text] {
         font-size: 1.2rem;
     }
 
+    /*Background images*/
+    body {
+        background-image: linear-gradient(white, white);
+        margin: 0px;
+    }
+
+    /*Intro page styles*/
+    #into-page-elements-container {
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-bottom: 75px
+    }
+
+    /* Front page styles */
+    form>label {
+        font-size: 1.2rem;
+    }
+
+    #front-page-text {
+        margin: 0.5rem;
+    }
+
+    /*Hub area styles*/
+    #game-hub-text-area-box {
+        height: 17vh;
+        width: 98vw;
+    }
+
+    #game-hub-area-text {
+        padding-top: 0.5rem;
+        margin-bottom: 0.2rem;
+        height:48px;
+    }
+
+    .game-box {
+        padding: 8px 15px 8px;
+    }
+
+    #game-hub-text-area-container {
+        padding: 11px 0px;
+    }
+
+    #game-hub-text-area {
+        padding: 0px 3px;
+    }
+
+    /* Game one styles */
+    #game-one-game-intro-card-container {
+        max-width: 97vw;
+        padding: 0px 5px;
+        height: 110px;
+    }
+
+    #game-one-area-bottom {
+        padding-bottom: 5px;
+    }
+
+    #game-one-text-area-box {
+        height: 17vh;
+        width: 98vw;
+    }
+    #game-one-text-area {
+        padding:0px 4px;
+    }
+
+    #game-one-area-text {
+        padding-top: 0px;
+        margin-bottom: 0.2rem;
+        margin-top: 0px;
+    }
+
+    #game-one-all-boxes {
+        height: 110px;
+    }
+
+    .game-one-indivdual-box {
+        height: 33.33px;
+        width: 33.33px;
+    }
+
+    .game-one-indivdual-box-container {
+        margin-bottom: 2px;
+    }
+
+
+
     /*Footer styles*/
     #footer p {
         font-size: 0.8rem;
+        padding-top: 0.4rem;
     }
 }

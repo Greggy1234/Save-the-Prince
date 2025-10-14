@@ -1512,6 +1512,9 @@ function finalAreaCelebration() {
                 clearInterval(textFlash);
                 finalAreaTextArea.innerText = `OK, celebration over. Thank you again knight ${globalVars.knightName}`;
                 finalAreaButton.classList.remove("visible-hidden");
+                headingText.innerHTML = `Celebration over!
+                    <br>
+                    Stop celebrating!`;
             };
         }, i * 1000);
     }

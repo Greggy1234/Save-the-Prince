@@ -730,6 +730,10 @@ input[type=text] {
         min-height: 99vh;
     }
 
+    h2 {
+        font-size:1.2rem;
+    }
+
     p {
         font-size: 1rem;
     }
@@ -745,7 +749,6 @@ input[type=text] {
 
     .game-intro-card {
         border: 2px solid var(--red);
-        width: 96vw;
         height: 15vh;
         padding: 0px;
         font-size: 0.9rem;
@@ -824,7 +827,7 @@ input[type=text] {
 
     #game-one-area-text {
         padding-top: 0px;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0px;
         margin-top: 0px;
     }
 
@@ -841,7 +844,73 @@ input[type=text] {
         margin-bottom: 2px;
     }
 
+    /* Game two styles */
+    #game-two-game-intro-card-container {
+        max-width: 97vw;
+        padding: 0px 5px;
+        height: 110px;
+    }
 
+    #game-two-area-bottom {
+        padding-bottom: 5px;
+    }
+
+    #game-two-text-area-box {
+        height: 17vh;
+        width: 98vw;
+    }
+    #game-two-text-area {
+        padding:0px 4px;
+    }
+
+    #game-two-area-text {
+        padding-top: 0px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        line-height: 1.5rem;
+    }
+
+    #game-two-all-boxes {
+        height: 110px;
+    }
+
+    .game-two-indivdual-box {
+        height: 33.33px;
+        width: 80px;
+    }
+
+    .game-two-indivdual-box-container {
+        margin-bottom: 2px;
+    }
+
+    /* Final area styles*/
+    #final-area-bottom {
+        padding-bottom: 5px;
+    }
+
+    #final-area-text-area-box {
+        height: 17vh;
+        width: 98vw;
+    }
+
+    #final-area-message {
+        height: 110px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #final-area-text {
+        padding-top: 0px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        line-height: 1.5rem;
+    }
+
+    #final-area-h3-text {
+        margin-bottom:0px;
+        font-size: 1rem;
+    }
 
     /*Footer styles*/
     #footer p {

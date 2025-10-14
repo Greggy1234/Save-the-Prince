@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
             method: 'HEAD',
         }).then((response) => {
             if (response.status !== 404) return;
-            const redirectUrl = new URL(window.location.origin); // Redirect to the home page
-            redirectUrl.searchParams.set('r', 1); // Append the 'r' parameter
-            window.location.href = redirectUrl.href; // Redirect to the home page
+            const redirectUrl = new URL(window.location.origin); 
+            redirectUrl.searchParams.set('r', 1); 
+            window.location.href = redirectUrl.href; 
         });
     }
     flashingLogo();
@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Global JavaScript code. The following apply throughout the whole game and are used for multiple sections
 /**
- * The changing section function
  * This is used to change the div to the correct one so the player can progress through the game
  */
 function changeSection(e) {
@@ -196,7 +195,6 @@ function changeSection(e) {
 }
 
 /**
- * The loading screen function from left to right
  * This is reused every time a player moves from one area to the next excluding returning from a game area
  */
 function loadingScreen(buttonID) {
@@ -255,7 +253,6 @@ function loadingScreen(buttonID) {
 }
 
 /**
- * The loading screen function from right to left
  * This is reused every time a player moves from one of the game areas to the hub area
  */
 function loadingScreenRight(buttonID) {
@@ -346,7 +343,6 @@ function flashingLogo() {
 
 // Front page code
 /**
- * The naming of the knight function
  * This is the first thing a player does. They input their name, and it gets stored to the global variable knightName
  */
 document.getElementById("knight-name-container").addEventListener("submit", function (e) {
@@ -363,7 +359,6 @@ document.getElementById("knight-name-container").addEventListener("submit", func
 
 // Game hub area code
 /**
- * The text area function specifically for the game hub area
  * This will carry out all combinations of the text area copy in the correct order and based on the corect text tree. The number within the text cycle custom attribute will also change various elements visually
  */
 function speechUpdateGameHub() {
@@ -619,10 +614,9 @@ function speechUpdateGameHub() {
     }
 }
 
-// Challenge one area code
+// Game one area - Speech pattern code
 /**
- * The text area function specifically for challenge one
- * This will carry out all combinations of the text area copy in the correct order and based on the corect text tree. The number within the text cycle custom attribute will also change various elements visually
+ * This will carry out all combinations of the text area copy in the correct order and based on the corect text tree for game 1. The number within the text cycle custom attribute will also change various elements visually
  */
 function speechUpdateGameOne() {
     const gameOneSpeakerName = document.getElementById("game-one-speaker-name");
@@ -797,7 +791,7 @@ function speechUpdateGameOne() {
     }
 }
 
-// Challenge one game function
+// Game one area - Game code
 /**
  * This sets the blocks which the player has to copy and shows an animation to display those blocks
  */
@@ -1008,7 +1002,6 @@ function gameOneRepeatPattern() {
  * The text area function specifically for challenge two
  * This will carry out all combinations of the text area copy in the correct order and based on the corect text tree. The number within the text cycle custom attribute will also change various elements visually
  */
-
 function speechUpdateGameTwo() {
     const gameTwoSpeakerName = document.getElementById("game-two-speaker-name");
     const gameTwoTextArea = document.getElementById("game-two-text-area");
@@ -1120,7 +1113,7 @@ function speechUpdateGameTwo() {
                 break;
             case 6:
                 gameTwoTextArea.innerText = `He throws the key at you and continues sobbing loudly.`;
-                gameTwoSpeakerName.classList.remove("hidden");
+                gameTwoSpeakerName.classList.add("hidden");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 7:
@@ -1154,7 +1147,7 @@ function speechUpdateGameTwo() {
  * This creates the random order which the sets of connections will appear for each level ensuring that there is some randomness for replayability value
  */
 function GameTwoSetRandomTextOptions() {
-    const gameTwoLevelOneOptions = [["SCROLL", "SWIPE", "TAP"], ["RANK", "RATE", "SCORE"], ["DOOR", "GATE", "HATCH"], ["DENT", "DING", "SCRATCH"], ["COMPLETE", "DONE", "OVER"], ["DAWN", "GENESIS", "START"], ["METAL", "POP", "CLASSICAL"], ["CHARM", "RIVET", "THRILL"], ["COACH", "DIRECT", "GUIDE"]];
+    const gameTwoLevelOneOptions = [["SCROLL", "SWIPE", "TAP"], ["RANK", "RATE", "SCORE"], ["DOOR", "GATE", "HATCH"], ["DENT", "DING", "SCRATCH"], ["COMPLETE", "DONE", "OVER"], ["DAWN", "GENESIS", "START"], ["METAL", "POP", "CLASSICAL"], ["AMAZE", "RIVET", "THRILL"], ["COACH", "DIRECT", "GUIDE"]];
     const gameTwoLevelTwoOptions = [["BILLY", "JACK", "RAM"], ["PLAYWRIGHT", "SWORD", "WRAP"], ["RESORT", "STRAW", "SUPPER"], ["AID", "LADY", "NATIONS"], ["GEODUCK", "SEAHORSE", "WOMBAT"], ["DRY", "GIN", "SHAKEN"], ["FLOSS", "MOONWALK", "ROBOT"], ["EUPHORIA", "SUCCESSION", "WESTWORLD"], ["CHARM", "FRIENDSHIP", "TENNIS"]];
     const gameTwoLevelThreeOptions = [["ORGANISM", "SOLAR PANEL", "SPREADSHEET"], ["BOWLING PINS", "COMMANDMENTS", "DECADE"], ["ABUT", "GROAN", "VOILA"], ["BET", "LAMB", "THE"], ["LORDING", "MISSING", "SIRING"], ["HEAL", "SOUL", "TOW"], ["CHINSTRAP", "EMPEROR", "KING"], ["HELL", "ILL", "SHELL"], ["CHORUS", "HERO", "HUBRIS"]];
     globalVars.gameTwoOptions = [gameTwoLevelOneOptions, gameTwoLevelTwoOptions, gameTwoLevelThreeOptions];
@@ -1307,7 +1300,7 @@ function gameTwoCheckAnswer() {
             }
             globalVars.gameTwoPlayerAnswer = [];
             if (parseInt(boxArea.getAttribute("data-game-two-check")) < 3) {
-                gameTwoTextArea.innerText = `Correct! That is a connection where they are all ${connectionType}`;
+                gameTwoTextArea.innerText = `Correct! That is a connection where they are all ${connectionType}. Pick the next connections.`;
             } else if (parseInt(boxArea.getAttribute("data-game-two-check")) > 3) {
                 alert("SOMETHING HAS GONE WRONG. PLEASE RELOAD THE PAGE");
                 throw "Something has gone wrong"
@@ -1378,7 +1371,7 @@ function gameTwoConnection(correctAnswer) {
         "COMPLETE": "words about finishing",
         "DAWN": "words describing beginnings",
         "CLASSICAL": "musical genres",
-        "CHARM": "captivating words",
+        "AMAZE": "captivating words",
         "COACH": "instructing words",
         "BILLY": "male animals",
         "PLAYWRIGHT": "words with a silent 'W'",

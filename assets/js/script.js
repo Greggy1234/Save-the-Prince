@@ -13,19 +13,6 @@ const globalVars = {
 // Button element event listeners
 // Once the DOM is loaded, all the buttons throughout the game will have an event listener and will be directed to the corresponding function
 document.addEventListener("DOMContentLoaded", function () {
-    //This redirects the user if there is a 404 error page. Code taken from https://www.davidangulo.xyz/posts/redirect-404-pages-in-javascript/
-    const currentUrl = new URL(window.location.href);
-    const isRedirected = !!currentUrl.searchParams.get('r');
-    if (!isRedirected) {
-        fetch(window.location.href, {
-            method: 'HEAD',
-        }).then((response) => {
-            if (response.status !== 404) return;
-            const redirectUrl = new URL(window.location.origin);
-            redirectUrl.searchParams.set('r', 1);
-            window.location.href = redirectUrl.href;
-        });
-    }
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
         const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button"];

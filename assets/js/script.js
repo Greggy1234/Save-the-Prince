@@ -1,5 +1,5 @@
 // Global Variables
-// These are for the various functions to access them throughout the game. They get referenced by multiple functions throughout. 
+// These are for the various functions to access them throughout the game. They get referenced by multiple functions throughout
 const globalVars = {
     knightName: "",
     key1: false,
@@ -7,7 +7,7 @@ const globalVars = {
     gameOneAnswer: [],
     gameTwoOptions: [],
     gameTwoSetAnswers: [],
-    gameTwoPlayerAnswer: [],
+    gameTwoPlayerAnswer: []
 };
 
 // Button element event listeners
@@ -15,7 +15,7 @@ const globalVars = {
 document.addEventListener("DOMContentLoaded", function () {
     const checkErrorPage = document.getElementById("error-page");
     if (document.body.contains(checkErrorPage)) {
-        flashingLogoErrorPage()
+        flashingLogoErrorPage();
     } else {
         flashingLogo();
     }
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     //Game box event listeners
     let gameOneBoxes = document.getElementsByClassName("game-one-indivdual-box");
-    for (boxes of gameOneBoxes) {
+    for (let boxes of gameOneBoxes) {
         boxes.addEventListener("click", function (e) {
             if (boxes.getAttribute("data-game-box-one-status") === "active") {
                 let gameOneBoxNumber = parseInt(e.target.getAttribute("data-game-one-box-number"));
@@ -74,11 +74,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     let gameTwoBoxes = document.getElementsByClassName("game-two-indivdual-box");
-    for (boxes of gameTwoBoxes) {
+    for (let boxes of gameTwoBoxes) {
         boxes.addEventListener("click", function (e) {
             let gameTwoBoxNumber = parseInt(e.target.getAttribute("data-game-two-box-number"));
             console.log(e.target);
-            console.log(gameTwoBoxNumber)
+            console.log(gameTwoBoxNumber);
             gameTwoPlayerBoxLightToggle(gameTwoBoxNumber);
         });
     }
@@ -241,7 +241,7 @@ function loadingScreen(buttonID) {
             heading.classList.remove("blue");
             heading.classList.add("black");
         }
-    }, 250)
+    }, 250);
 }
 
 /**
@@ -298,7 +298,7 @@ function loadingScreenRight(buttonID) {
             heading.classList.remove("blue");
             heading.classList.add("black");
         }
-    }, 250)
+    }, 250);
 }
 
 //Intro page code
@@ -330,7 +330,7 @@ function flashingLogo() {
             introLogo.classList.add("red");
             position = 1;
         }
-    }, 750)
+    }, 750);
 }
 
 // Front page code
@@ -348,7 +348,7 @@ document.getElementById("knight-name-container").addEventListener("submit", func
     console.log(globalVars.knightName);
     document.getElementById("knight-name-container").innerHTML = `<p class="mt-no">Knight ${globalVars.knightName} is ready for action!<br>Click below to start being a hero.</p>`;
     document.getElementById("start-full-game-button").classList.remove("hidden");
-})
+});
 
 // Game hub area code
 /**
@@ -375,7 +375,7 @@ function speechUpdateGameHub() {
                 gameHubTextArea.innerText = `...you're a lot shorter than I thought you would be.`;
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 npcSpeakerName.innerText = "Eric";
-                document.getElementById("game-hub-area-text").innerText = "The Grasslands"
+                document.getElementById("game-hub-area-text").innerText = "The Grasslands";
                 break;
             case 3:
                 gameHubTextArea.innerText = `Anyway, the prince has been locked away by 2 awful monsters.`;
@@ -413,7 +413,7 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 hubAreaButtonOptionTwo.classList.add("hidden");
-                hubAreaButtonOptionOne.innerText = "Next"
+                hubAreaButtonOptionOne.innerText = "Next";
                 gameHubTextArea.innerText = `Challenge 1 involves you picking the correct boxes that flash on your screen`;
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
@@ -444,7 +444,7 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 hubAreaButtonOptionOne.classList.add("hidden");
-                hubAreaButtonOptionTwo.innerText = "Next"
+                hubAreaButtonOptionTwo.innerText = "Next";
                 gameHubTextArea.innerText = `Challenge 2 involves you picking the correct boxes that flash on your screen.`;
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
@@ -624,45 +624,45 @@ function speechUpdateGameOne() {
     if (gameOneMonster.getAttribute("data-game-one-text-tree") === "A") {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
-                gameOneTextArea.innerText = `Welcome to my domain knight ${globalVars.knightName}!`
+                gameOneTextArea.innerText = `Welcome to my domain knight ${globalVars.knightName}!`;
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 gameOneSpeakerName.classList.remove("hidden");
                 break;
             case 2:
-                gameOneTextArea.innerText = `I've been expecting you.`
+                gameOneTextArea.innerText = `I've been expecting you.`;
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 3:
-                gameOneTextArea.innerText = `To get my key, you'll need to copy my pattern on the lava tiles below.`
+                gameOneTextArea.innerText = `To get my key, you'll need to copy my pattern on the lava tiles below.`;
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 4:
-                gameOneTextArea.innerText = `If you can get 10 patterns right, you'll defeat me.`
+                gameOneTextArea.innerText = `If you can get 10 patterns right, you'll defeat me.`;
                 gameOneIntroCard.classList.add("hidden");
                 gameOneBoxesContainer.classList.remove("hidden");
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 5:
-                gameOneTextArea.innerText = `But don't think it will be easy!`
+                gameOneTextArea.innerText = `But don't think it will be easy!`;
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 6:
-                gameOneTextArea.innerText = `This will test your memory like its never been tested before. I'm not just going to hand over the key!`
+                gameOneTextArea.innerText = `This will test your memory like its never been tested before. I'm not just going to hand over the key!`;
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 7:
-                gameOneTextArea.innerText = `Tell me when you're ready, and we shall begin.`
+                gameOneTextArea.innerText = `Tell me when you're ready, and we shall begin.`;
                 gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 8:
-                gameOneTextArea.innerText = `Challenge rules: Copy the pattern shown on the lava tiles above. For each correct sequence, you will receive a point. Get to 10 points to get the key.`
+                gameOneTextArea.innerText = `Challenge rules: Copy the pattern shown on the lava tiles above. For each correct sequence, you will receive a point. Get to 10 points to get the key.`;
                 gameOneAreaButton.classList.add("hidden");
                 gameOneSpeakerName.classList.add("hidden");
                 gameOneStartButton.classList.remove("hidden");
@@ -672,11 +672,11 @@ function speechUpdateGameOne() {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
-                gameOneTextArea.innerText = `Although let's be honest, that was incredibly easy.`
+                gameOneTextArea.innerText = `Although let's be honest, that was incredibly easy.`;
                 break;
             case 2:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
-                gameOneTextArea.innerText = `It would have been shameful if you had got anything wrong on that level.`
+                gameOneTextArea.innerText = `It would have been shameful if you had got anything wrong on that level.`;
                 break;
             case 3:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
@@ -688,14 +688,14 @@ function speechUpdateGameOne() {
                 gameOneAreaButton.classList.add("hidden");
                 gameOneSpeakerName.classList.add("hidden");
                 gameOneStartButton.classList.remove("hidden");
-                gameOneStartButton.innerText = "Start Level 2"
+                gameOneStartButton.innerText = "Start Level 2";
                 break;
         }
     } else if (gameOneMonster.getAttribute("data-game-one-text-tree") === "C") {
         switch (parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle"))) {
             case 1:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
-                gameOneTextArea.innerText = `But now I'll get you.`
+                gameOneTextArea.innerText = `But now I'll get you.`;
                 break;
             case 2:
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
@@ -706,7 +706,7 @@ function speechUpdateGameOne() {
                 gameOneAreaButton.classList.add("hidden");
                 gameOneSpeakerName.classList.add("hidden");
                 gameOneStartButton.classList.remove("hidden");
-                gameOneStartButton.innerText = "Start Level 3"
+                gameOneStartButton.innerText = "Start Level 3";
                 break;
         }
     } else if (gameOneMonster.getAttribute("data-game-one-text-tree") === "D") {
@@ -763,7 +763,7 @@ function speechUpdateGameOne() {
             case 5:
                 gameOneTextArea.innerText = `There's nothing else to do here apart from looking at the dead minotaur.`;
                 gameOneAreaButton.classList.add("hidden");
-                gameOneToHubAreaButton.classList.remove("hidden")
+                gameOneToHubAreaButton.classList.remove("hidden");
                 break;
         }
     } else if (gameOneMonster.getAttribute("data-game-one-text-tree") === "E") {
@@ -777,7 +777,7 @@ function speechUpdateGameOne() {
                 gameOneAreaButton.classList.add("hidden");
                 gameOneSpeakerName.classList.add("hidden");
                 gameOneStartButton.classList.remove("hidden");
-                gameOneStartButton.innerText = "Restart Challenge"
+                gameOneStartButton.innerText = "Restart Challenge";
                 break;
 
         }
@@ -806,7 +806,7 @@ function setThenRunGameOne() {
         lengthOfAnswer = 5;
     } else {
         alert("NO LEVEL DETECTED");
-        throw "Something has gone wrong"
+        throw "Something has gone wrong";
     }
     while (answer.length < lengthOfAnswer) {
         let randomNumber = Math.ceil(Math.random() * 9);
@@ -825,7 +825,7 @@ function setThenRunGameOne() {
             gameOneStartButton.classList.remove("visible-hidden");
             gameOneStartButton.classList.add("hidden");
             gameOneReplayPatternButton.classList.remove("hidden");
-            for (boxes of gameOneBox) {
+            for (let boxes of gameOneBox) {
                 boxes.setAttribute("data-game-box-one-status", "active");
             }
         }
@@ -840,7 +840,7 @@ function setThenRunGameOne() {
 function gameOneBoxLight(boxToLight) {
     const boxArea = document.getElementById("game-one-all-boxes");
     const gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
-    for (boxes of gameOneBox) {
+    for (let boxes of gameOneBox) {
         if (parseInt(boxes.getAttribute("data-game-one-box-number")) === boxToLight) {
             let gameOneBoxNumber = parseInt(boxes.getAttribute("data-game-one-box-number"));
             console.log(boxes.getAttribute("data-game-one-box-number"));
@@ -876,27 +876,27 @@ function gameOneCheckAnswer(playerAnswer) {
             boxArea.setAttribute("data-game-one-level-score", parseInt(boxArea.getAttribute("data-game-one-level-score")) + 1);
             gameOneMonsterHurtAnimation();
             let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
-            for (boxes of gameOneBox) {
+            for (let boxes of gameOneBox) {
                 boxes.setAttribute("data-game-box-one-status", "inactive");
             }
             if (parseInt(boxArea.getAttribute("data-game-one-level-score")) === 3) {
                 gameOneTextArea.innerText = "Ahhh! I've underestimated you!";
                 gameOneMonster.setAttribute("data-game-one-text-tree", "B");
                 gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
-                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-2.webp"
+                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-2.webp";
                 boxArea.setAttribute("data-game-one-level", "2");
                 gameOneSpeakerName.classList.remove("hidden");
                 gameOneAreaButton.classList.remove("hidden");
-                gameOneAreaButton.innerText = "Next"
+                gameOneAreaButton.innerText = "Next";
             } else if (parseInt(boxArea.getAttribute("data-game-one-level-score")) === 6) {
                 gameOneTextArea.innerText = "OK OK. You're slightly better than I thought you would be";
                 gameOneMonster.setAttribute("data-game-one-text-tree", "C");
                 gameOneMonster.setAttribute("data-game-one-text-cycle", "1");
-                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-3.webp"
+                gameOneMonster.src = "assets/images/sprite-game-one-enemy-pose-3.webp";
                 boxArea.setAttribute("data-game-one-level", "3");
                 gameOneSpeakerName.classList.remove("hidden");
                 gameOneAreaButton.classList.remove("hidden");
-                gameOneAreaButton.innerText = "Next"
+                gameOneAreaButton.innerText = "Next";
             } else if (parseInt(boxArea.getAttribute("data-game-one-level-score")) === 10) {
                 gameOneTextArea.innerText = "Nooooooooooooooooo";
                 gameOneSpeakerName.classList.remove("hidden");
@@ -906,7 +906,7 @@ function gameOneCheckAnswer(playerAnswer) {
                 gameOneAreaButton.classList.remove("hidden");
                 globalVars.key1 = true;
             } else {
-                gameOneTextArea.innerText = "CORRECT! Well Done"
+                gameOneTextArea.innerText = "CORRECT! Well Done";
                 gameOneStartButton.classList.remove("hidden");
                 gameOneStartButton.innerText = "Next Stage";
             }
@@ -930,7 +930,7 @@ function gameOneMonsterHurtAnimation() {
         if (flash === 6) {
             clearInterval(gameOneMonsterHurtFlash);
         }
-    }, 100)
+    }, 100);
 }
 
 /**
@@ -938,7 +938,7 @@ function gameOneMonsterHurtAnimation() {
  */
 function gameOnePlayerBoxLight(PlayerBoxChosen) {
     let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
-    for (boxes of gameOneBox) {
+    for (let boxes of gameOneBox) {
         if (parseInt(boxes.getAttribute("data-game-one-box-number")) === PlayerBoxChosen) {
             let gameOneBoxNumber = parseInt(boxes.getAttribute("data-game-one-box-number"));
             console.log(boxes.getAttribute("data-game-one-box-number"));
@@ -947,7 +947,7 @@ function gameOnePlayerBoxLight(PlayerBoxChosen) {
             setTimeout(function () {
                 gameOneBox[gameOneBoxNumber - 1].classList.remove("game-one-indivdual-box-flash-on");
                 gameOneBox[gameOneBoxNumber - 1].classList.add("game-one-indivdual-box-flash-off");
-            }, 100)
+            }, 100);
         }
     }
 }
@@ -966,7 +966,7 @@ function gameOneRepeatPattern() {
     let answer = globalVars.gameOneAnswer;
     let lengthOfAnswer = answer.length;
     let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
-    for (boxes of gameOneBox) {
+    for (let boxes of gameOneBox) {
         boxes.setAttribute("data-game-box-one-status", "inactive");
     }
     const gameOneLightBoxes = setInterval(function () {
@@ -982,7 +982,7 @@ function gameOneRepeatPattern() {
             gameOneReturnHubNoKeyButton.classList.remove("visible-hidden");
             console.log("STEP 3");
             let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
-            for (boxes of gameOneBox) {
+            for (let boxes of gameOneBox) {
                 boxes.setAttribute("data-game-box-one-status", "active");
             }
         }
@@ -1007,35 +1007,35 @@ function speechUpdateGameTwo() {
     if (gameTwoMonster.getAttribute("data-game-two-text-tree") === "A") {
         switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
             case 1:
-                gameTwoTextArea.innerText = `Greetings ${globalVars.knightName}! Please, make yourself welcome in my humble abode.`
+                gameTwoTextArea.innerText = `Greetings ${globalVars.knightName}! Please, make yourself welcome in my humble abode.`;
                 gameTwoAreaButton.innerText = "Next";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 gameTwoSpeakerName.classList.remove("hidden");
                 break;
             case 2:
-                gameTwoTextArea.innerText = `I know you're here for my key, and I don't like that at all.`
+                gameTwoTextArea.innerText = `I know you're here for my key, and I don't like that at all.`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 3:
-                gameTwoTextArea.innerText = `BUT, if you can show you've got brains, I will give it over willingly.`
+                gameTwoTextArea.innerText = `BUT, if you can show you've got brains, I will give it over willingly.`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 4:
-                gameTwoTextArea.innerText = `All you have to do is find the connections between the words in the hall below.`
+                gameTwoTextArea.innerText = `All you have to do is find the connections between the words in the hall below.`;
                 gameTwoIntroCard.classList.add("hidden");
                 gameTwoBoxesContainer.classList.remove("hidden");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 5:
-                gameTwoTextArea.innerText = `Do you think you beat my game of wits?`
+                gameTwoTextArea.innerText = `Do you think you beat my game of wits?`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 6:
-                gameTwoTextArea.innerText = `There will be three levels with three rounds in each. I would wish you luck, but I don't care enough about you.`
+                gameTwoTextArea.innerText = `There will be three levels with three rounds in each. I would wish you luck, but I don't care enough about you.`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 7:
-                gameTwoTextArea.innerText = `Challenge rules: The necromancer will present 9 words in the boxes. You will have to find 3 groups of 3 words, with each group of words having a connection between them.`
+                gameTwoTextArea.innerText = `Challenge rules: The necromancer will present 9 words in the boxes. You will have to find 3 groups of 3 words, with each group of words having a connection between them.`;
                 gameTwoAreaButton.classList.add("hidden");
                 gameTwoSpeakerName.classList.add("hidden");
                 gameTwoStartButton.classList.remove("hidden");
@@ -1044,42 +1044,42 @@ function speechUpdateGameTwo() {
     } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "B")) {
         switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
             case 1:
-                gameTwoTextArea.innerText = `Ok, you got through the first round, but those connections were easy.`
+                gameTwoTextArea.innerText = `Ok, you got through the first round, but those connections were easy.`;
                 gameTwoAreaButton.innerText = "Next";
                 gameTwoMonster.src = "assets/images/sprite-game-two-enemy-pose-2.webp";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 2:
-                gameTwoTextArea.innerText = `Round 2 is going to be so much harder.`
+                gameTwoTextArea.innerText = `Round 2 is going to be so much harder.`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 3:
                 gameTwoTextArea.innerText = `When you're ready, we shall begin round 2!`;
                 gameTwoAreaButton.classList.add("hidden");
-                gameTwoStartButton.innerText = "Begin round 2"
+                gameTwoStartButton.innerText = "Begin round 2";
                 gameTwoStartButton.classList.remove("hidden");
                 break;
         }
     } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "C")) {
         switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
             case 1:
-                gameTwoTextArea.innerText = `...I'm very impressed actually.`
+                gameTwoTextArea.innerText = `...I'm very impressed actually.`;
                 gameTwoAreaButton.innerText = "Next";
                 gameTwoMonster.src = "assets/images/sprite-game-two-enemy-pose-3.webp";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 2:
-                gameTwoTextArea.innerText = `You've beaten 2 rounds!`
+                gameTwoTextArea.innerText = `You've beaten 2 rounds!`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 3:
-                gameTwoTextArea.innerText = `Round 3 will beat you though. I know you;re not clever enough to guess these connections.`
+                gameTwoTextArea.innerText = `Round 3 will beat you though. I know you;re not clever enough to guess these connections.`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 4:
                 gameTwoTextArea.innerText = `Let me know when you'ree ready to begin round 3.`;
                 gameTwoAreaButton.classList.add("hidden");
-                gameTwoStartButton.innerText = "Begin round 3"
+                gameTwoStartButton.innerText = "Begin round 3";
                 gameTwoStartButton.classList.remove("hidden");
                 break;
         }
@@ -1162,14 +1162,14 @@ function speechUpdateGameTwo() {
     } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "E")) {
         switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
             case 1:
-                gameTwoTextArea.innerText = `I want to see you fail.`
+                gameTwoTextArea.innerText = `I want to see you fail.`;
                 gameTwoAreaButton.innerText = "Next";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 2:
                 gameTwoTextArea.innerText = `When you're ready, we will begin from the beginning! All the options have been randomised so you can't rely on your preious knowledge`;
                 gameTwoAreaButton.classList.add("hidden");
-                gameTwoStartButton.innerText = "Begin challenge 2"
+                gameTwoStartButton.innerText = "Begin challenge 2";
                 gameTwoStartButton.classList.remove("hidden");
                 break;
         }
@@ -1228,7 +1228,7 @@ function GameTwoSetRandomTextOptions() {
     gameTwoLevelThreeRoundThree = fisherYatesMethod(gameTwoLevelThreeRoundThree);
     globalVars.gameTwoSetAnswers = [gameTwoLevelOneRoundOne, gameTwoLevelOneRoundTwo, gameTwoLevelOneRoundThree, gameTwoLevelTwoRoundOne, gameTwoLevelTwoRoundTwo, gameTwoLevelTwoRoundThree, gameTwoLevelThreeRoundOne, gameTwoLevelThreeRoundTwo, gameTwoLevelThreeRoundThree];
     console.log(globalVars.gameTwoSetAnswers);
-    gameTwoDisplayWords(globalVars.gameTwoSetAnswers)
+    gameTwoDisplayWords(globalVars.gameTwoSetAnswers);
 }
 
 /**
@@ -1281,15 +1281,15 @@ function gameTwoDisplayWords(allSetAnswers) {
 function gameTwoPlayerBoxLightToggle(PlayerBoxChosen) {
     let gameTwoBox = document.getElementsByClassName("game-two-indivdual-box");
     let gameTwoPlayerAnswer = globalVars.gameTwoPlayerAnswer;
-    for (boxes of gameTwoBox) {
+    for (let boxes of gameTwoBox) {
         if (parseInt(boxes.getAttribute("data-game-two-box-number")) === PlayerBoxChosen && boxes.getAttribute("data-game-box-two-status") === "active") {
             boxes.classList.toggle("game-two-box-background");
             const gameBoxTwoInnerText = boxes.innerText;
-            let elementIndex = gameTwoPlayerAnswer.indexOf(gameBoxTwoInnerText)
+            let elementIndex = gameTwoPlayerAnswer.indexOf(gameBoxTwoInnerText);
             if (gameTwoPlayerAnswer.includes(gameBoxTwoInnerText)) {
                 gameTwoPlayerAnswer.splice(elementIndex, 1);
             } else {
-                gameTwoPlayerAnswer.push(gameBoxTwoInnerText)
+                gameTwoPlayerAnswer.push(gameBoxTwoInnerText);
             }
             console.log(gameTwoPlayerAnswer);
         }
@@ -1329,7 +1329,7 @@ function gameTwoCheckAnswer() {
         if (gameTwoCorrectAnswer) {
             let connectionType = gameTwoConnection(globalVars.gameTwoPlayerAnswer);
             boxArea.setAttribute("data-game-two-check", parseInt(boxArea.getAttribute("data-game-two-check")) + 1);
-            for (boxes of gameTwoBox) {
+            for (let boxes of gameTwoBox) {
                 if (boxes.classList.contains("game-two-box-background")) {
                     boxes.setAttribute("data-game-box-two-status", "inactive");
                     boxes.classList.remove("game-two-box-background");
@@ -1350,7 +1350,7 @@ function gameTwoCheckAnswer() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
                 gameTwoTextArea.innerText = `Correct! That is a connection where all the words are ${connectionType}`;
                 gameTwoAreaButton.classList.remove("hidden");
-                gameTwoAreaButton.innerText = "Complete Level"
+                gameTwoAreaButton.innerText = "Complete Level";
                 gameTwoCheckAnswersButton.classList.add("hidden");
             } else if (parseInt(boxArea.getAttribute("data-game-two-level-score")) === 5) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
@@ -1360,7 +1360,7 @@ function gameTwoCheckAnswer() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
                 gameTwoTextArea.innerText = `Correct! That is a connection where all the words are ${connectionType}`;
                 gameTwoAreaButton.classList.remove("hidden");
-                gameTwoAreaButton.innerText = "Complete Level"
+                gameTwoAreaButton.innerText = "Complete Level";
                 gameTwoCheckAnswersButton.classList.add("hidden");
             } else if (parseInt(boxArea.getAttribute("data-game-two-level-score")) === 8) {
                 boxArea.setAttribute("data-game-two-check", "0");
@@ -1368,14 +1368,14 @@ function gameTwoCheckAnswer() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", "1");
                 gameTwoTextArea.innerText = `Correct! That is a connection where all the words are ${connectionType}`;
                 gameTwoAreaButton.classList.remove("hidden");
-                gameTwoAreaButton.innerText = "Complete Level"
+                gameTwoAreaButton.innerText = "Complete Level";
                 gameTwoCheckAnswersButton.classList.add("hidden");
                 gameTwoReturnHubNoKeyButton.classList.add("visible-hidden");
             } else {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
                 boxArea.setAttribute("data-game-two-check", "0");
                 gameTwoStartButton.classList.remove("hidden");
-                gameTwoStartButton.innerText = "Next round"
+                gameTwoStartButton.innerText = "Next round";
                 gameTwoCheckAnswersButton.classList.add("hidden");
                 gameTwoTextArea.innerText = `Correct! That is a connection where all the words are ${connectionType}. And you've managed complete this round. I'm slightly more impressed than before`;
             }
@@ -1393,7 +1393,7 @@ function arrayCheck(option, answer) {
     let answerSort = answer.sort();
     let checkedArray = optionSort.every(function (value, index) {
         return value === answerSort[index];
-    })
+    });
     return checkedArray;
 }
 
@@ -1430,7 +1430,7 @@ function gameTwoConnection(correctAnswer) {
         "CHINSTRAP": "types of penguins",
         "HELL": "contractions of 'HE WILL', SHE WILL' and 'I WILL' without the apostraphe",
         "CHORUS": "elements of a Greek tragedy",
-    }
+    };
     let firstTerm = correctAnswer[0];
     return connectionMeaning[firstTerm];
 }
@@ -1547,7 +1547,7 @@ function finalAreaCelebration() {
                 headingText.innerHTML = `Celebration over!
                     <br>
                     Stop celebrating!`;
-            };
+            }
         }, i * 1000);
     }
 }
@@ -1560,7 +1560,6 @@ function finalAreaCelebration() {
 function flashingLogoErrorPage() {
     let position = 1;
     const errorLogo = document.getElementById("error-page-logo");
-    const introPageSection = document.getElementById("error-page");
     const logoFlash = setInterval(function () {
         if (position === 1) {
             errorLogo.classList.remove("red");
@@ -1579,5 +1578,5 @@ function flashingLogoErrorPage() {
             errorLogo.classList.add("red");
             position = 1;
         }
-    }, 750)
+    }, 750);
 }

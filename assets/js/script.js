@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
             method: 'HEAD',
         }).then((response) => {
             if (response.status !== 404) return;
-            const redirectUrl = new URL(window.location.origin); 
-            redirectUrl.searchParams.set('r', 1); 
-            window.location.href = redirectUrl.href; 
+            const redirectUrl = new URL(window.location.origin);
+            redirectUrl.searchParams.set('r', 1);
+            window.location.href = redirectUrl.href;
         });
     }
     flashingLogo();
@@ -1053,6 +1053,7 @@ function speechUpdateGameTwo() {
             case 1:
                 gameTwoTextArea.innerText = `Ok, you got through the first round, but those connections were easy.`
                 gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.src = "assets/images/sprite-game-two-enemy-pose-2.webp";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 2:
@@ -1071,6 +1072,7 @@ function speechUpdateGameTwo() {
             case 1:
                 gameTwoTextArea.innerText = `...I'm very impressed actually.`
                 gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.src = "assets/images/sprite-game-two-enemy-pose-3.webp";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 2:
@@ -1093,6 +1095,7 @@ function speechUpdateGameTwo() {
             case 1:
                 gameTwoTextArea.innerText = `Oh my God!`;
                 gameTwoAreaButton.innerText = "Next";
+                gameTwoMonster.src = "assets/images/sprite-game-two-enemy-death-1.webp";
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 2:
@@ -1104,19 +1107,60 @@ function speechUpdateGameTwo() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 4:
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                gameTwoAreaButton.classList.add("visible-hidden");
+                let deathPose = 1;
+                let gameTwoDeathAnimaton = setInterval(function () {
+                    switch (deathPose) {
+                        case 1:
+                            gameTwoMonster.src = "assets/images/sprite-game-two-enemy-death-2.webp";
+                            deathPose++;
+                            break;
+                        case 2:
+                            gameTwoMonster.src = "assets/images/sprite-game-two-enemy-death-3.webp";
+                            deathPose++;
+                            break;
+                        case 3:
+                            gameTwoMonster.src = "assets/images/sprite-game-two-enemy-death-4.webp";
+                            deathPose++;
+                            break;
+                        case 4:
+                            gameTwoMonster.src = "assets/images/sprite-game-two-enemy-death-5.webp";
+                            deathPose++;
+                            break;
+                        case 5:
+                            gameTwoMonster.src = "assets/images/sprite-game-two-enemy-death-6.webp";
+                            deathPose++;
+                            break;
+                        case 6:
+                            gameTwoMonster.src = "assets/images/sprite-game-two-enemy-death-7.webp";
+                            deathPose++;
+                            break;
+                        case 7:
+                            gameTwoMonster.src = "assets/images/sprite-game-two-enemy-death-8.webp";
+                            deathPose++;
+                            break;
+                    }
+                    if (deathPose === 8) {
+                        clearInterval(gameTwoDeathAnimaton);
+                        gameTwoAreaButton.classList.remove("visible-hidden");
+                    }
+                }, 500);
+                break;
+            case 5:
                 gameTwoTextArea.innerText = `Useless. *embarassing sobbing from the skeleton*`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
-            case 5:
+            case 6:
                 gameTwoTextArea.innerText = `Take the key, and leave me be`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
-            case 6:
+            case 7:
                 gameTwoTextArea.innerText = `He throws the key at you and continues sobbing loudly.`;
                 gameTwoSpeakerName.classList.add("hidden");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
-            case 7:
+            case 8:
                 gameTwoTextArea.innerText = `There's nothing else to do here apart from watching the evil necromancer cry..`;
                 gameTwoToHubAreaButton.classList.remove("hidden");
                 gameTwoAreaButton.classList.add("hidden");
@@ -1273,6 +1317,7 @@ function gameTwoCheckAnswer() {
     const gameTwoBox = document.getElementsByClassName("game-two-indivdual-box");
     const gameTwoMonster = document.getElementById("game-two-monster");
     const gameTwoAreaButton = document.getElementById("game-two-area-action-button");
+    const gameTwoReturnHubNoKeyButton = document.getElementById("game-two-to-hub-area-no-key-button");
     console.log(gameTwoLevelIndex);
     console.log(globalVars.gameTwoOptions[gameTwoLevelIndex]);
     console.log(globalVars.gameTwoPlayerAnswer);
@@ -1303,7 +1348,7 @@ function gameTwoCheckAnswer() {
                 gameTwoTextArea.innerText = `Correct! That is a connection where they are all ${connectionType}. Pick the next connections.`;
             } else if (parseInt(boxArea.getAttribute("data-game-two-check")) > 3) {
                 alert("SOMETHING HAS GONE WRONG. PLEASE RELOAD THE PAGE");
-                throw "Something has gone wrong"
+                throw "Something has gone wrong";
             } else if (parseInt(boxArea.getAttribute("data-game-two-level-score")) === 2) {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
                 boxArea.setAttribute("data-game-two-level", parseInt(boxArea.getAttribute("data-game-two-level")) + 1);
@@ -1332,6 +1377,7 @@ function gameTwoCheckAnswer() {
                 gameTwoAreaButton.classList.remove("hidden");
                 gameTwoAreaButton.innerText = "Complete Level"
                 gameTwoCheckAnswersButton.classList.add("hidden");
+                gameTwoReturnHubNoKeyButton.classList.add("visible-hidden");
             } else {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
                 boxArea.setAttribute("data-game-two-check", "0");

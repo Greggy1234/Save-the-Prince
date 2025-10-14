@@ -222,6 +222,12 @@ body {
     background-size: cover;
 }
 
+.prison-image {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/background-final-area.webp);
+    background-position: center;
+    background-size: cover;
+}
+
 .loading-image-1 {
     background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l1.png);
     background-position: center;
@@ -254,11 +260,7 @@ body {
 
 
 
-.prison-image {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.5), rgba(255, 248, 248, 0.5)), url(../images/prison\ test.png);
-    background-position: center;
-    background-size: cover;
-}
+
 
 /*Header styles*/
 #header {

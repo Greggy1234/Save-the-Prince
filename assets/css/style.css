@@ -19,8 +19,8 @@
 
 /*Button styles*/
 button {
-    background-color: #D0021B;
-    border: 5px solid #F5A623;
+    background-color: var(--red);
+    border: 5px solid var(--yellow);
     width: 175px;
     height: 60px;
     font-family: var(--primary-text-font);
@@ -281,13 +281,13 @@ h1 {
     align-content: center;
 }
 
-#into-page-elements-container {
+#intro-page-elements-container {
     justify-content: center;
     flex-wrap: wrap;
     padding-bottom: 200px
 }
 
-#into-page-logo {
+#intro-page-logo {
     min-width: 100%;
     font-family: var(--highlight-font);
     font-size: 3rem;
@@ -606,6 +606,44 @@ input[type=text] {
     min-width: 100%
 }
 
+/*Error page styles*/
+#error-message-button {
+    background-color: var(--red);
+    border: 5px solid var(--yellow);
+    width: 153px;
+    padding:12px 0px;
+    font-family: var(--primary-text-font);
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #error-message-button:hover {
+        background-color: rgba(208, 2, 27, 0.5);
+    }
+}
+
+#error-message-button:active {
+    background-color: #4A90E2;
+}
+
+#error-page {
+    align-content: center;
+}
+
+#error-page-elements-container {
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 200px
+}
+
+#error-page-logo {
+    min-width: 100%;
+    font-family: var(--highlight-font);
+    font-size: 3rem;
+}
+
 /*Footer styles*/
 #footer {
     background-color: black;
@@ -733,7 +771,7 @@ input[type=text] {
     }
 
     h2 {
-        font-size:1.2rem;
+        font-size: 1.2rem;
     }
 
     p {
@@ -769,7 +807,7 @@ input[type=text] {
     }
 
     /*Intro page styles*/
-    #into-page-elements-container {
+    #intro-page-elements-container {
         justify-content: center;
         flex-wrap: wrap;
         padding-bottom: 75px
@@ -793,7 +831,7 @@ input[type=text] {
     #game-hub-area-text {
         padding-top: 0.5rem;
         margin-bottom: 0.2rem;
-        height:48px;
+        height: 48px;
     }
 
     .game-box {
@@ -823,8 +861,9 @@ input[type=text] {
         height: 17vh;
         width: 98vw;
     }
+
     #game-one-text-area {
-        padding:0px 4px;
+        padding: 0px 4px;
     }
 
     #game-one-area-text {
@@ -861,8 +900,9 @@ input[type=text] {
         height: 17vh;
         width: 98vw;
     }
+
     #game-two-text-area {
-        padding:0px 4px;
+        padding: 0px 4px;
     }
 
     #game-two-area-text {
@@ -897,7 +937,7 @@ input[type=text] {
 
     #final-area-message {
         height: 110px;
-        display:flex;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -910,7 +950,7 @@ input[type=text] {
     }
 
     #final-area-h3-text {
-        margin-bottom:0px;
+        margin-bottom: 0px;
         font-size: 1rem;
     }
 

@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = redirectUrl.href;
         });
     }
-    flashingLogo();
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
         const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button"];
@@ -89,6 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(gameTwoBoxNumber)
             gameTwoPlayerBoxLightToggle(gameTwoBoxNumber);
         });
+    }
+    if (window.location.href.indexOf("error") > -1) {
+        flashingLogoErrorPage();
+    } else {
+        flashingLogo();
     }
 });
 
@@ -315,7 +319,7 @@ function loadingScreenRight(buttonID) {
  */
 function flashingLogo() {
     let position = 1;
-    const introLogo = document.getElementById("into-page-logo");
+    const introLogo = document.getElementById("intro-page-logo");
     const introPageSection = document.getElementById("intro-page");
     const logoFlash = setInterval(function () {
         if (introPageSection.classList.contains("hidden")) {
@@ -345,6 +349,7 @@ function flashingLogo() {
 /**
  * This is the first thing a player does. They input their name, and it gets stored to the global variable knightName
  */
+
 document.getElementById("knight-name-container").addEventListener("submit", function (e) {
     e.preventDefault();
     globalVars.knightName = document.getElementById("knight-name").value;
@@ -1557,4 +1562,34 @@ function finalAreaCelebration() {
             };
         }, i * 1000);
     }
+}
+
+
+// Error code
+/**
+*This will flash the error message 
+*/
+function flashingLogoErrorPage() {
+    let position = 1;
+    const errorLogo = document.getElementById("error-page-logo");
+    const introPageSection = document.getElementById("error-page");
+    const logoFlash = setInterval(function () {
+        if (position === 1) {
+            errorLogo.classList.remove("red");
+            errorLogo.classList.add("blue");
+            position++;
+        } else if (position === 2) {
+            errorLogo.classList.add("yellow");
+            errorLogo.classList.remove("blue");
+            position++;
+        } else if (position === 3) {
+            errorLogo.classList.add("black");
+            errorLogo.classList.remove("yellow");
+            position++;
+        } else if (position === 4) {
+            errorLogo.classList.remove("black");
+            errorLogo.classList.add("red");
+            position = 1;
+        }
+    }, 750)
 }

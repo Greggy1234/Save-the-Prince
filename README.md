@@ -1,6 +1,6 @@
 # Save-the-Prince
 
-![Am I Responsive Image](docs/images/am-i-responsive-image.png)
+![Am I Responsive Image](docs/other-images/website-final-design.png)
 
 Save the Prince is pixel game that takes inspiration from the eraly era of video games using pixelated grpahics, tongue-in-cheek dialogue and simple game design that all together gives the user a hit of nostalgia of when games were simpler while also not being particularly mechanically complex.
 

@@ -654,13 +654,14 @@ input[type=text] {
     align-items: center;
 }
 
-#footer p, .icons {
+#footer p,
+.icons {
     font-family: var(--title-font);
     font-size: 1rem;
 }
 
 .icons {
-    color:white;
+    color: white;
     padding: 0px 6px;
     display: flex;
     justify-content: center;
@@ -954,7 +955,8 @@ input[type=text] {
     }
 
     #final-area-message {
-        height: 110px;
+        min-height: 128px;
+        max-height: 128px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -970,7 +972,10 @@ input[type=text] {
     #final-area-h3-text {
         margin-bottom: 0px;
         font-size: 1rem;
+        margin-top: 0px;
     }
+
+
 
     /*Error page styles*/
     #error-page-elements-container {
@@ -978,7 +983,8 @@ input[type=text] {
     }
 
     /*Footer styles*/
-    #footer p, .icons {
+    #footer p,
+    .icons {
         font-size: 0.8rem;
     }
 }

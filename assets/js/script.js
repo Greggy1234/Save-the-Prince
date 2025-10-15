@@ -1441,6 +1441,7 @@ function gameTwoConnection(correctAnswer) {
 */
 function speechUpdateFinalArea() {
     const princeSpeakerName = document.getElementById("prince-speaker-name");
+    const headingText = document.getElementById("final-area-h3-text");
     const finalAreaTextArea = document.getElementById("final-area-text-area");
     const finalAreaButton = document.getElementById("final-area-action-button");
     const prince = document.getElementById("prince");
@@ -1474,7 +1475,8 @@ function speechUpdateFinalArea() {
         case 6:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
             finalAreaTextArea.innerText = `Well done knight ${globalVars.knightName}`;
-            princeSpeakerName.classList.add("hidden");
+            headingText.innerHTML =`Peace is upon all the land!`
+                princeSpeakerName.classList.add("hidden");
             break;
         case 7:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
@@ -1493,7 +1495,7 @@ function speechUpdateFinalArea() {
             break;
         case 10:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
-            finalAreaTextArea.innerText = `NO NO NO NO NO. I beg you. My complexion is too fair to survive more time in prison!`;
+            finalAreaTextArea.innerText = `NO NO NO NO NO. I beg you. Hasn't my skin suffered enough from that musty prison???`;
             finalAreaButton.classList.add("hidden");
             resetGameButton.classList.remove("hidden");
             break;

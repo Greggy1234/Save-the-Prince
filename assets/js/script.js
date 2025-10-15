@@ -75,8 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let boxes of gameTwoBoxes) {
         boxes.addEventListener("click", function (e) {
             let gameTwoBoxNumber = parseInt(e.target.getAttribute("data-game-two-box-number"));
-            console.log(e.target);
-            console.log(gameTwoBoxNumber);
             gameTwoPlayerBoxLightToggle(gameTwoBoxNumber);
         });
     }
@@ -1019,20 +1017,24 @@ function speechUpdateGameTwo() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 4:
-                gameTwoTextArea.innerText = `All you have to do is find the connections between the words in the hall below.`;
+                gameTwoTextArea.innerText = `All you have to do is find the connections on the broken bits of wall over there.`;
                 gameTwoIntroCard.classList.add("hidden");
                 gameTwoBoxesContainer.classList.remove("hidden");
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 5:
-                gameTwoTextArea.innerText = `Do you think you beat my game of wits?`;
+                gameTwoTextArea.innerText = `If you get them right, the wall will repair itself, so at least I get some DIY done.`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 6:
-                gameTwoTextArea.innerText = `There will be three levels with three rounds in each. I would wish you luck, but I don't care enough about you.`;
+                gameTwoTextArea.innerText = `Do you think you beat my game of wits?`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 7:
+                gameTwoTextArea.innerText = `There will be three levels with three rounds in each. I would wish you luck, but I don't care enough about you.`;
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 8:
                 gameTwoTextArea.innerText = `Challenge rules: The necromancer will present 9 words in the boxes. You will have to find 3 groups of 3 words, with each group of words having a connection between them.`;
                 gameTwoAreaButton.classList.add("hidden");
                 gameTwoSpeakerName.classList.add("hidden");
@@ -1281,7 +1283,8 @@ function gameTwoPlayerBoxLightToggle(PlayerBoxChosen) {
     let gameTwoPlayerAnswer = globalVars.gameTwoPlayerAnswer;
     for (let boxes of gameTwoBox) {
         if (parseInt(boxes.getAttribute("data-game-two-box-number")) === PlayerBoxChosen && boxes.getAttribute("data-game-box-two-status") === "active") {
-            boxes.classList.toggle("game-two-box-background");
+            boxes.classList.toggle("game-two-indivdual-box-no");
+            boxes.classList.toggle("game-two-indivdual-box-selected");
             const gameBoxTwoInnerText = boxes.innerText;
             let elementIndex = gameTwoPlayerAnswer.indexOf(gameBoxTwoInnerText);
             if (gameTwoPlayerAnswer.includes(gameBoxTwoInnerText)) {
@@ -1289,7 +1292,6 @@ function gameTwoPlayerBoxLightToggle(PlayerBoxChosen) {
             } else {
                 gameTwoPlayerAnswer.push(gameBoxTwoInnerText);
             }
-            console.log(gameTwoPlayerAnswer);
         }
     }
 }
@@ -1328,10 +1330,11 @@ function gameTwoCheckAnswer() {
             let connectionType = gameTwoConnection(globalVars.gameTwoPlayerAnswer);
             boxArea.setAttribute("data-game-two-check", parseInt(boxArea.getAttribute("data-game-two-check")) + 1);
             for (let boxes of gameTwoBox) {
-                if (boxes.classList.contains("game-two-box-background")) {
+                if (boxes.classList.contains("game-two-indivdual-box-selected")) {
                     boxes.setAttribute("data-game-box-two-status", "inactive");
-                    boxes.classList.remove("game-two-box-background");
-                    boxes.classList.add("game-two-box-background-correct");
+                    boxes.classList.remove("game-two-indivdual-box-selected");
+                    boxes.classList.add("game-two-indivdual-box-yes");
+                    boxes.innerHTML = ""
                 }
             }
             globalVars.gameTwoPlayerAnswer = [];
@@ -1475,8 +1478,8 @@ function speechUpdateFinalArea() {
         case 6:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
             finalAreaTextArea.innerText = `Well done knight ${globalVars.knightName}`;
-            headingText.innerHTML =`Peace is upon all the land!`
-                princeSpeakerName.classList.add("hidden");
+            headingText.innerHTML = `Peace is upon all the land!`
+            princeSpeakerName.classList.add("hidden");
             break;
         case 7:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);

@@ -162,6 +162,10 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
   - Throughout the building of the website, Chrome DevTools was used to solve any problems I had with my HTML or CSS
 
+- [JSHint](https://jshint.com/)
+
+  - To test the JaaScript code, this was used
+
 - [W3C Markup Validator](https://validator.w3.org/)
 
   - To test the HTML code, this was used

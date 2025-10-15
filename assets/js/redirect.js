@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.location.hostname === "127.0.0.1") {
             window.location.replace("/index.html");
         } else if (window.location.hostname === "greggy1234.github.io") {
-            window.location.replace("/");
+            window.location.replace("/Save-the-Prince/");
         }
     }
 })

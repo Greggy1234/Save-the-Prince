@@ -21,11 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        const changeSectionOptions = ["start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button"];
+        const changeSectionOptions = ["intro-page-button", "start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button"];
         button.addEventListener("click", function () {
-            if (button.id === "intro-page-button") {
-                changeSection(this);
-            } else if (changeSectionOptions.includes(this.getAttribute("id"))) {
+            if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
             } else if (button.id === "hub-area-action-button" || button.id === "hub-area-option-one-button" || button.id === "hub-area-option-two-button") {
                 if (button.id === "hub-area-option-one-button") {
@@ -1154,7 +1152,7 @@ function speechUpdateGameTwo() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 8:
-                gameTwoTextArea.innerText = `There's nothing else to do here apart from watching the evil necromancer cry..`;
+                gameTwoTextArea.innerText = `There's nothing else to do here apart from watching the evil necromancer cry...`;
                 gameTwoToHubAreaButton.classList.remove("hidden");
                 gameTwoAreaButton.classList.add("hidden");
                 break;
@@ -1560,7 +1558,11 @@ function finalAreaCelebration() {
 function flashingLogoErrorPage() {
     let position = 1;
     const errorLogo = document.getElementById("error-page-logo");
+    const introLogo = document.getElementById("intro-page-logo");
     const logoFlash = setInterval(function () {
+        if (document.body.contains(introLogo)) {
+            clearInterval(logoFlash);
+        }
         if (position === 1) {
             errorLogo.classList.remove("red");
             errorLogo.classList.add("blue");

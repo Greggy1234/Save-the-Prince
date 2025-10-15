@@ -1254,7 +1254,12 @@ function gameTwoDisplayWords(allSetAnswers) {
     const gameTwoStartButton = document.getElementById("game-two-start-button");
     const gameTwoCheckAnswersButton = document.getElementById("game-two-check-answers-button");
     const gameTwoSpeakerName = document.getElementById("game-two-speaker-name");
+    const gameTwoReturnHubNoKeyButton = document.getElementById("game-two-to-hub-area-no-key-button");
     gameTwoSpeakerName.classList.add("hidden");
+    gameTwoStartButton.classList.add("hidden");
+    gameTwoCheckAnswersButton.classList.remove("hidden");
+    gameTwoCheckAnswersButton.classList.add("visible-hidden");
+    gameTwoReturnHubNoKeyButton.classList.add("visible-hidden");
     gameTwoTextArea.innerText = "Find the connections";
     for (let boxes of gameTwoIndividualBoxes) {
         let gameTwoBoxNumber = parseInt(boxes.getAttribute("data-game-two-box-number"));
@@ -1266,13 +1271,15 @@ function gameTwoDisplayWords(allSetAnswers) {
             if (gameTwoBoxNumber === i + 1) {
                 setTimeout(function () {
                     boxes.innerHTML = `<p data-game-two-box-number=${gameTwoBoxNumber}>${allSetAnswers[round][i]}<p>`;
+                    if (i === 8) {
+                        gameTwoReturnHubNoKeyButton.classList.remove("visible-hidden");
+                        gameTwoCheckAnswersButton.classList.remove("visible-hidden");
+                    }
                 }, i * 100);
             }
         }
         boxes.setAttribute("data-game-box-two-status", "active");
     }
-    gameTwoStartButton.classList.add("hidden");
-    gameTwoCheckAnswersButton.classList.remove("hidden");
 }
 
 /**

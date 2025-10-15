@@ -611,7 +611,7 @@ input[type=text] {
     background-color: var(--red);
     border: 5px solid var(--yellow);
     width: 153px;
-    padding:12px 0px;
+    padding: 12px 0px;
     font-family: var(--primary-text-font);
     font-size: 1.3rem;
     color: white;
@@ -650,12 +650,32 @@ input[type=text] {
     color: white;
     width: 100%;
     height: 25px;
+    justify-content: center;
+    align-items: center;
 }
 
-#footer p {
+#footer p, .icons {
     font-family: var(--title-font);
-    padding-top: 0.2rem;
     font-size: 1rem;
+}
+
+.icons {
+    color:white;
+    padding: 0px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .icons:hover {
+        color: var(--red);
+    }
+}
+
+.icons:active {
+    color: var(--blue);
 }
 
 
@@ -808,8 +828,6 @@ input[type=text] {
 
     /*Intro page styles*/
     #intro-page-elements-container {
-        justify-content: center;
-        flex-wrap: wrap;
         padding-bottom: 75px
     }
 
@@ -954,9 +972,13 @@ input[type=text] {
         font-size: 1rem;
     }
 
+    /*Error page styles*/
+    #error-page-elements-container {
+        padding-bottom: 75px
+    }
+
     /*Footer styles*/
-    #footer p {
+    #footer p, .icons {
         font-size: 0.8rem;
-        padding-top: 0.4rem;
     }
 }

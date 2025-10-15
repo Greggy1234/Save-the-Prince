@@ -114,9 +114,48 @@ function changeSection(e) {
         loadingScreenButton.innerText = "Click to face the evil necromancer!";
         heading.innerHTML = "ON THE WAY TO CHALLENGE 2<br>...";
         loadingScreen(buttonID);
-    } else if (buttonID === "game-one-to-hub-area-button" || buttonID === "game-two-to-hub-area-button") {
+    } else if (buttonID === "game-one-to-hub-area-button") {
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
-        loadingScreenRight(buttonID);
+        if (globalVars.key1 === true && globalVars.key2 === false) {
+            npc.setAttribute("data-npc-text-tree", "D");
+            gameHubTextArea.innerText = "Well done on beating the minotaur!";
+            hubAreaButton.innerText = "Next";
+            hubAreaButtonOptionOne.classList.add("hidden");
+            hubAreaButtonOptionTwo.classList.add("hidden");
+            npcSpeakerName.classList.remove("hidden");
+            hubAreaButton.classList.remove("hidden");
+            loadingScreenRight(buttonID);
+        } else if (globalVars.key1 === true && globalVars.key2 === true) {
+            npc.setAttribute("data-npc-text-tree", "F");
+            gameHubTextArea.innerText = "With the minotaur beat, that's the second key!";
+            hubAreaButton.innerText = "Next";
+            hubAreaButtonOptionOne.classList.add("hidden");
+            hubAreaButtonOptionTwo.classList.add("hidden");
+            npcSpeakerName.classList.remove("hidden");
+            hubAreaButton.classList.remove("hidden");
+            loadingScreenRight(buttonID);
+        }
+    } else if (buttonID === "game-two-to-hub-area-button") {
+        headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
+        if (globalVars.key2 === true && globalVars.key1 === false) {
+            npc.setAttribute("data-npc-text-tree", "E");
+            gameHubTextArea.innerText = "You beat the the evil necromance at his own game. Well done!";
+            hubAreaButton.innerText = "Next";
+            hubAreaButtonOptionOne.classList.add("hidden");
+            hubAreaButtonOptionTwo.classList.add("hidden");
+            npcSpeakerName.classList.remove("hidden");
+            hubAreaButton.classList.remove("hidden");
+            loadingScreenRight(buttonID);
+        } else if (globalVars.key2 === true && globalVars.key1 === true) {
+            npc.setAttribute("data-npc-text-tree", "G");
+            gameHubTextArea.innerText = "With the evil necromance beat, that's the second key!";
+            hubAreaButton.innerText = "Next";
+            hubAreaButtonOptionOne.classList.add("hidden");
+            hubAreaButtonOptionTwo.classList.add("hidden");
+            npcSpeakerName.classList.remove("hidden");
+            hubAreaButton.classList.remove("hidden");
+            loadingScreenRight(buttonID);
+        }
     } else if (buttonID == "game-one-to-hub-area-no-key-button") {
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
         heroRight.style.left = "";
@@ -140,6 +179,12 @@ function changeSection(e) {
             boxArea.setAttribute("data-game-one-level-score", "0");
             boxArea.setAttribute("data-game-one-level", "1");
             npc.setAttribute("data-npc-text-tree", "H");
+            gameHubTextArea.innerText = "Oh no, I see no key! Is the minotaur still alive?";
+            hubAreaButton.innerText = "Next";
+            hubAreaButton.classList.remove("hidden");
+            npcSpeakerName.classList.remove("hidden");
+            hubAreaButtonOptionOne.classList.add("hidden");
+            hubAreaButtonOptionTwo.classList.add("hidden");
         }
         loadingScreenRight(buttonID);
     } else if (buttonID === "game-two-to-hub-area-no-key-button") {
@@ -171,12 +216,10 @@ function changeSection(e) {
             npcSpeakerName.classList.remove("hidden");
             hubAreaButtonOptionOne.classList.add("hidden");
             hubAreaButtonOptionTwo.classList.add("hidden");
-        }
-        else if (globalVars.key2 === true && globalVars.key1 === false) {
+        } else if (globalVars.key2 === true && globalVars.key1 === false) {
             npc.setAttribute("data-npc-text-tree", "E");
             gameHubTextArea.innerText = "You beat the the evil necromance at his own game. Well done!";
             hubAreaButton.innerText = "Next";
-
         }
         loadingScreenRight(buttonID);
     }
@@ -467,12 +510,8 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                hubAreaButtonOptionOne.classList.add("hidden");
-                hubAreaButtonOptionTwo.classList.add("hidden");
-                npcSpeakerName.classList.remove("hidden");
-                hubAreaButton.classList.remove("hidden");
                 hubAreaButton.innerText = "Next";
-                gameHubTextArea.innerText = `Well done on beating the minotaur!`;
+                gameHubTextArea.innerText = `I knew you could smash him up...at a memory game.`;
                 break;
             case 2:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
@@ -490,12 +529,7 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                hubAreaButtonOptionOne.classList.add("hidden");
-                hubAreaButtonOptionTwo.classList.add("hidden");
-                npcSpeakerName.classList.remove("hidden");
-                hubAreaButton.classList.remove("hidden");
-                hubAreaButton.innerText = "Next";
-                gameHubTextArea.innerText = `You beat the the evil necromance at his own game. Well done!`;
+                gameHubTextArea.innerText = `You've brains with your brawn!`;
                 break;
             case 2:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
@@ -513,12 +547,8 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                hubAreaButtonOptionOne.classList.add("hidden");
-                hubAreaButtonOptionTwo.classList.add("hidden");
-                npcSpeakerName.classList.remove("hidden");
-                hubAreaButton.classList.remove("hidden");
-                hubAreaButton.innerText = "Next";
-                gameHubTextArea.innerText = `With the minotaur beat, that's the second key!`;
+               hubAreaButton.innerText = "Next";
+                gameHubTextArea.innerText = `I wish I could have seen the look on his face when you smashed him up good...at memory games`;
                 break;
             case 2:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
@@ -528,19 +558,13 @@ function speechUpdateGameHub() {
                 hubAreaButton.classList.add("hidden");
                 gameHubTextArea.innerText = `Go to the prison and let him out of his cage!`;
                 hubAreaFinalAreaButton.classList.remove("hidden");
-                npc.setAttribute("data-npc-text-cycle", "1");
                 break;
         }
     } else if (npc.getAttribute("data-npc-text-tree") === "G") {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                hubAreaButtonOptionOne.classList.add("hidden");
-                hubAreaButtonOptionTwo.classList.add("hidden");
-                npcSpeakerName.classList.remove("hidden");
-                hubAreaButton.classList.remove("hidden");
-                hubAreaButton.innerText = "Next";
-                gameHubTextArea.innerText = `With the evil necromance beat, that's the second key!`;
+                gameHubTextArea.innerText = `Well done on defeating him with the power of your brain.`;
                 break;
             case 2:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
@@ -550,29 +574,19 @@ function speechUpdateGameHub() {
                 hubAreaButton.classList.add("hidden");
                 gameHubTextArea.innerText = `Go to the prison and let him out of his cage!`;
                 hubAreaFinalAreaButton.classList.remove("hidden");
-                npc.setAttribute("data-npc-text-cycle", "1");
                 break;
         }
     } else if (npc.getAttribute("data-npc-text-tree") === "H") {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                hubAreaButtonOptionOne.classList.add("hidden");
-                hubAreaButtonOptionTwo.classList.add("hidden");
-                npcSpeakerName.classList.remove("hidden");
-                hubAreaButton.classList.remove("hidden");
-                hubAreaButton.innerText = "Next";
-                gameHubTextArea.innerText = `Oh no, I see no key! Is the minotaur still alive?`;
+                gameHubTextArea.innerText = `At least you got out safe!`;
                 break;
             case 2:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                gameHubTextArea.innerText = `At least you got out safe!`;
-                break;
-            case 3:
-                npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 gameHubTextArea.innerText = `I'm sure you'll get him next time!`;
                 break;
-            case 4:
+            case 3:
                 npcSpeakerName.classList.add("hidden");
                 hubAreaButton.classList.add("hidden");
                 gameHubTextArea.innerText = `When you're ready, choose one of the challenges to start, or click below to find out more about the challenges.`;
@@ -627,41 +641,40 @@ function speechUpdateGameOne() {
                 break;
             case 2:
                 gameOneTextArea.innerText = `I've been expecting you.`;
-                gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 3:
                 gameOneTextArea.innerText = `To get my key, you'll need to copy my pattern on the lava tiles below.`;
-                gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 4:
                 gameOneTextArea.innerText = `If you can get 10 patterns right, you'll defeat me.`;
                 gameOneIntroCard.classList.add("hidden");
                 gameOneBoxesContainer.classList.remove("hidden");
-                gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 5:
                 gameOneTextArea.innerText = `But don't think it will be easy!`;
-                gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 6:
                 gameOneTextArea.innerText = `This will test your memory like its never been tested before. I'm not just going to hand over the key!`;
-                gameOneAreaButton.innerText = "Next";
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 7:
-                gameOneTextArea.innerText = `Tell me when you're ready, and we shall begin.`;
-                gameOneAreaButton.innerText = "Next";
+                gameOneTextArea.innerText = `Oh and if you leave at any point, we start right back at the begining!`;
                 gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
                 break;
             case 8:
+                gameOneTextArea.innerText = `Tell me when you're ready, and we shall begin.`;
+                gameOneMonster.setAttribute("data-game-one-text-cycle", parseInt(gameOneMonster.getAttribute("data-game-one-text-cycle")) + 1);
+                break;
+            case 9:
                 gameOneTextArea.innerText = `Challenge rules: Copy the pattern shown on the lava tiles above. For each correct sequence, you will receive a point. Get to 10 points to get the key.`;
                 gameOneAreaButton.classList.add("hidden");
                 gameOneSpeakerName.classList.add("hidden");
                 gameOneStartButton.classList.remove("hidden");
+                gameOneReturnHubNoKeyButton.classList.remove("visible-hidden")
                 break;
         }
     } else if (gameOneMonster.getAttribute("data-game-one-text-tree") === "B") {
@@ -1000,6 +1013,7 @@ function speechUpdateGameTwo() {
     const gameTwoIntroCard = document.getElementById("game-two-game-intro-card-container");
     const gameTwoToHubAreaButton = document.getElementById("game-two-to-hub-area-button");
     const gameTwoBoxesContainer = document.getElementById("game-two-all-box-container");
+    const gameTwoReturnHubNoKeyButton = document.getElementById("game-two-to-hub-area-no-key-button");
     if (gameTwoMonster.getAttribute("data-game-two-text-tree") === "A") {
         switch (parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle"))) {
             case 1:
@@ -1031,14 +1045,19 @@ function speechUpdateGameTwo() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 7:
-                gameTwoTextArea.innerText = `There will be three levels with three rounds in each. I would wish you luck, but I don't care enough about you.`;
+                gameTwoTextArea.innerText = `Don't thinka bout running away either. I'll start his whole game over form the beginning if you do!`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 8:
+                gameTwoTextArea.innerText = `There will be three levels with three rounds in each. I would wish you luck, but I don't care enough about you.`;
+                gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
+                break;
+            case 9:
                 gameTwoTextArea.innerText = `Challenge rules: The necromancer will present 9 words in the boxes. You will have to find 3 groups of 3 words, with each group of words having a connection between them.`;
                 gameTwoAreaButton.classList.add("hidden");
                 gameTwoSpeakerName.classList.add("hidden");
                 gameTwoStartButton.classList.remove("hidden");
+                gameTwoReturnHubNoKeyButton.classList.remove("visible-hidden");
                 break;
         }
     } else if ((gameTwoMonster.getAttribute("data-game-two-text-tree") === "B")) {

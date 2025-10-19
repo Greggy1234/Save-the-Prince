@@ -623,6 +623,12 @@ input[type=text] {
     text-decoration: none;
 }
 
+#error-page-text {
+    min-width:100%;
+}
+
+
+
 @media (hover: hover) and (pointer: fine) {
     #error-message-button:hover {
         background-color: rgba(208, 2, 27, 0.5);
@@ -640,7 +646,7 @@ input[type=text] {
 #error-page-elements-container {
     justify-content: center;
     flex-wrap: wrap;
-    padding-bottom: 200px
+    padding-bottom: 150px
 }
 
 #error-page-logo {
@@ -984,7 +990,15 @@ input[type=text] {
 
     /*Error page styles*/
     #error-page-elements-container {
-        padding-bottom: 75px
+        padding-bottom: 30px
+    }
+
+    #error-page-logo {
+        margin:1rem 0rem;
+    }
+
+    #error-page-text {
+        margin-top:0px;
     }
 
     /*Footer styles*/

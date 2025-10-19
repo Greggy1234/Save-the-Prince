@@ -74,9 +74,10 @@ The header font used throughout the game in the viewing area is Press Start 2P, 
 The paragraph font, used everyhwere else, is VT323, which is slightly more readable than the previous fonts, making it suitable for long text batches, but still has a pixelated feel, adding to the essence of the game.
 
 ### Colour Scheme
+
 ![Colour palette image](docs/other-images/colour-palette-image.png)
 
-The main look and feel of this game comes from the 16-bit style imagery in the background, which changes based on where the knight is located. This means that the colour palette for this game is used sparingly. 
+The main look and feel of this game comes from the 16-bit style imagery in the background, which changes based on where the knight is located. This means that the colour palette for this game is used sparingly.
 
 But the buttons and the flashing text colours are based on the strong block colours of older games. Along with the base white (#FFFFFF) and black (#000000) colours, the red used was #D0021B, the blue used was #4A90E2 and the yellow used was #f5A623.
 
@@ -86,14 +87,14 @@ But the buttons and the flashing text colours are based on the strong block colo
 
 As it is a game with a fixed viewing are for screen size tablet and above, the desktop/tablet layout are the exact same, so they will be grouped together in the table below.
 
-| Page         | Desktop/Tablet Version                                                             | Mobile Version                                                                  |
-| ------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| Intro Page   | ![Desktop intro page wireframe image](docs/wireframes/intro-page-desk-tab.png)     | ![Mobile intro page wireframe image](docs/wireframes/intro-page-mobile.png)     |
-| Front Page   | ![Desktop front page wireframe image](docs/wireframes/front-page-desk-tab.png)     | ![Mobile front page wireframe image](docs/wireframes/front-page-mobile.png)     |
-| Loading Page | ![Desktop loading page wireframe image](docs/wireframes/loading-page-desk-tab.png) | ![Mobile loading page wireframe image](docs/wireframes/loading-page-mobile.png) |
-| Hub Area     | ![Desktop hub area wireframe image](docs/wireframes/hub-area-desk-tab.png)         | ![Mobile hub area wireframe image](docs/wireframes/hub-area-mobile.png)         |
-| Game Areas   | ![Desktop game areas wireframe image](docs/wireframes/game-area-desk-tab.png)      | ![Mobile game areas wireframe image](docs/wireframes/game-area-mobile.png)      |
-| Final Page   | ![Desktop final area wireframe image](docs/wireframes/final-page-desk-tab.png)     | ![Mobile final area wireframe image](docs/wireframes/final-page-mobile.png)     |
+| Page         | Desktop/Tablet Version                                                                      | Mobile Version                                                                  |
+| ------------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Intro Page   | ![Desktop & tablet intro page wireframe image](docs/wireframes/intro-page-desk-tab.png)     | ![Mobile intro page wireframe image](docs/wireframes/intro-page-mobile.png)     |
+| Front Page   | ![Desktop & tablet front page wireframe image](docs/wireframes/front-page-desk-tab.png)     | ![Mobile front page wireframe image](docs/wireframes/front-page-mobile.png)     |
+| Loading Page | ![Desktop & tablet loading page wireframe image](docs/wireframes/loading-page-desk-tab.png) | ![Mobile loading page wireframe image](docs/wireframes/loading-page-mobile.png) |
+| Hub Area     | ![Desktop & tablet hub area wireframe image](docs/wireframes/hub-area-desk-tab.png)         | ![Mobile hub area wireframe image](docs/wireframes/hub-area-mobile.png)         |
+| Game Areas   | ![Desktop & tablet game areas wireframe image](docs/wireframes/game-area-desk-tab.png)      | ![Mobile game areas wireframe image](docs/wireframes/game-area-mobile.png)      |
+| Final Area   | ![Desktop & tablet final area wireframe image](docs/wireframes/final-page-desk-tab.png)     | ![Mobile final area wireframe image](docs/wireframes/final-page-mobile.png)     |
 
 [Back to top ⇧](#Save-the-Prince)
 
@@ -101,9 +102,48 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
 ### General
 
+* Responsive design is applied throughout the website, so all the information is displayed correctly no matter the screen size or device type, and the entire game can be played without any modification on any device
+
+* The 16-bit style and typography remain consistent across all pages so the website feels unified
+
+**Buttons**
+
+![Button Image](docs/other-images/general-buttons.png)
+
+* This button style is the only button style used. It shows when a mouse is hovering over it and responds by changing to blue in the centre to notify the user that they have clicked a button.
+
+* The style is reminiscent of the almost gaudy design of early games.
+
+**Header**
+![Header Image](docs/other-images/general-header.png)
+    
+* An incredibly simple header that is present throughout the game, much like an arcade game machine has the title of the game at the top.
+
+**Footer**
+![Header Image](docs/other-images/general-footer.png)
+    
+* Again, very simple with link to support the developer of the game. the icons change to red when hovered over and to blue when clicked to show that the icons have been interacted with.
+
+* An itch.io logo is used in addition to the more popular general soical media sites as this site specialises in indie games.
+
+**Text Area**
+![Text Area Image](docs/other-images/general-text-area.png)
+    
+* A basic text box that is used for all speech patterns and general info throughout the game, adhering to the conventions of older video games to keep the text in a specific area and adding tot he nostalgia of the very static placement of this type of text. Used in the hub area, game areas and final area.
+
+**Hero Sprite**
+![Hero Sprite Image](docs/other-images/general-hero-sprite.png)
+    
+* This sprite is the hero of the game, and is present throughout to give the player a sense of identity and give a visual representation of the hero to the story. It is present on the loading pages, hub area, game areas and final area.
+
 ### Intro Page
 
-### Fron Page
+**Flashin logo**
+![Flashing Logo Image](docs/other-images/intro-flashing-logo.png)
+    
+* A very blocky title which dominates the screen in a pixel style that also flashes in the main colours, giving a very obvious and clear demonstration that this will be a old-school game
+
+### Front Page
 
 ### Loading Page
 
@@ -183,28 +223,116 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
 - **HTML**
 
-Page | Validator Confirmation
---- | ---
-Index Page | ![Index page validation](docs/other-images/index-page-html-validator.png)
-Error Page | ![Error page validation](docs/other-images/error-page-html-validator.png)
+| Page       | Validator Confirmation                                                    |
+| ---------- | ------------------------------------------------------------------------- |
+| Index Page | ![Index page validation](docs/other-images/index-page-html-validator.png) |
+| Error Page | ![Error page validation](docs/other-images/error-page-html-validator.png) |
 
 - **CSS**
 
 ![CSS validated image](docs/other-images/css-validator.png)
 
-   - CSS has been checked and no errors were found
+- CSS has been checked and no errors were found
 
 ### User Story Testing
 
+| User Story | Feature to Address User Story | Evidence |
+| ---------- | ----------------------------- | -------- |
+
 ### Common Elements Testing
+
+- General
+
+| Feature | Outcome | Pass/Fail |
+| ------- | ------- | --------- |
+
+- Intro Page Section
+
+| Feature | Outcome | Pass/Fail |
+| ------- | ------- | --------- |
+
+- Start Page Section
+
+| Feature | Outcome | Pass/Fail |
+| ------- | ------- | --------- |
+
+- Loading Screen Section
+
+| Feature | Outcome | Pass/Fail |
+| ------- | ------- | --------- |
+
+- Hub Area Section
+
+| Feature | Outcome | Pass/Fail |
+| ------- | ------- | --------- |
+
+- Game 1 Section
+
+| Feature | Outcome | Pass/Fail |
+| ------- | ------- | --------- |
+
+- Game 2 Section
+
+| Feature | Outcome | Pass/Fail |
+| ------- | ------- | --------- |
+
+- Final Area Section
+
+| Feature | Outcome | Pass/Fail |
+| ------- | ------- | --------- |
+
+- Error Page
+
+| Feature | Outcome | Pass/Fail |
+| ------- | ------- | --------- |
 
 ### Lighthouse Testing
 
+- Lighthouse testing was used to review performance and accessibility of the pages
+
+| Page       | Lighthouse Result                                                                 |
+| ---------- | --------------------------------------------------------------------------------- |
+| Index Page | ![Index page lighthouse report](docs/other-images/lighthouse-test-index-html.png) |
+| Error Page | ![Error page lighthouse report](docs/other-images/lighthouse-test-404-html.png)   |
+
 ### Browser & Device Testing
+
+**Browser Testing**
+
+| Browser         | Outcome | Pass/Fail |
+| --------------- | ------- | --------- |
+| Google Chrome   | X       | X         |
+| Safari          | X       | X         |
+| Mozilla Firefox | X       | X         |
+| Microsoft Edge  | X       | X         |
+
+**Device Testing**
+
+| Device                   | Outcome | Pass/Fail |
+| ------------------------ | ------- | --------- |
+| iPhone SE                | X       | X         |
+| iPhone XR                | X       | X         |
+| iPhone 12 Pro            | X       | X         |
+| iPhone 14 Pro Max        | X       | X         |
+| Samsung Galaxy S20 Ultra | X       | X         |
+| iPad Pro                 | X       | X         |
+| Surface Pro 7            | X       | X         |
+| HP Laptop                | X       | X         |
 
 [Back to top ⇧](#Save-the-Prince)
 
 ## Final Website
+
+| Page         | Desktop Layout                                                                | Mobile Layout                                                  |
+| ------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Intro Page   | ![Desktop & tablet intro page](docs/other-images/intro-page-desk-tab.png)     | ![Mobile intro page](docs/other-images/intro-page-mob.png)     |
+| Front Page   | ![Desktop & tablet front page](docs/other-images/front-page-desk-tab.png)     | ![Mobile front page](docs/other-images/front-page-mob.png)     |
+| Loading Page | ![Desktop & tablet loading page](docs/other-images/loading-page-desk-tab.png) | ![Mobile loading page](docs/other-images/loading-page-mob.png) |
+| Hub Area     | ![Desktop & tablet hub area](docs/other-images/hub-area-desk-tab.png)         | ![Mobile hub area](docs/other-images/hub-area-mob.png)         |
+| Game 1 Area  | ![Desktop & tablet game 1 area](docs/other-images/game-1-area-desk-tab.png)   | ![Mobile game 1 area](docs/other-images/game-1-area-mob.png)   |
+| Game 2 Area  | ![Desktop & tablet game 2 area](docs/other-images/game-2-area-desk-tab.png)   | ![Mobile game 2 area](docs/other-images/game-2-area-mob.png)   |
+| Final Area   | ![Desktop & tablet final area](docs/other-images/final-area-desk-tab.png)       | ![Mobile final area](docs/other-images/final-area-mob.png)    |
+| Error Page   | ![Desktop & tablet error page](docs/other-images/error-page-desk-tab.png)       | ![Mobile error page](docs/other-images/error-page-mob.png)    |
 
 [Back to top ⇧](#Save-the-Prince)
 

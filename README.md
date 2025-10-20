@@ -24,7 +24,8 @@ Visit the deployed website [here](https://greggy1234.github.io/Save-the-Prince/)
    5. [Hub Area](#hub-area)
    6. [Game Areas](#game-areas)
    7. [Final Page](#final-page)
-   8. [Future Features & Pages](#future-features--pages)
+   8. [Error Page](#error-page)
+   9. [Future Features & Pages](#future-features--pages)
 3. [Technologies Used](#technologies-used)
    1. [Languages](#languages)
    2. [Frameworks & Libraries](#frameworks--libraries)
@@ -136,23 +137,85 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
 - This sprite is the hero of the game, and is present throughout to give the player a sense of identity and give a visual representation of the hero to the story. It is present on the loading pages, hub area, game areas and final area.
 
+**Area Titles**
+<br />![Hero Sprite Image](docs/other-images/general-area-headers.png)
+
+- Most areas, excluding the Intro page, Front page and Loading page, have a title at the top of the page to guide the player into understanding what area they should be to help immersion.
+
 ### Intro Page
 
-**Flashing logo**
-
-![Flashing Logo Image](docs/other-images/intro-flashing-logo.png)
+**Flashing Logo**
+<br /> ![Flashing Logo Image](docs/other-images/intro-flashing-logo.png)
 
 - A very blocky title which dominates the screen in a pixel style that also flashes in the main colours, giving a very obvious and clear demonstration that this will be a old-school game
 
 ### Front Page
 
+**Character Name Entry**
+<br />![Character Name Input Image](docs/other-images/front-page-character-name-entry.png)
+
+- A basic character name entry that adds some personalisation to the user. This is maxed out at 8 characters as a callback to older games where a user couldn't input large names.
+
 ### Loading Page
+
+**Flashing Text & Increasing Dots**
+<br />![Flashing Text & Increasing Dots Image](docs/other-images/loading-flashing-text.png)
+
+- The text changes depending on where the character is going adding to teh immersion of the game, and the dots increase in quantity to give the effect of a page actually loading, even though there is no need to load.
+
+**Moving Character**
+<br />![Character Animation Image](docs/other-images/loading-character-animation.png)
+
+- The hero moves across the screen to represent the feeling of travelling and a journey to the next destination.
 
 ### Hub Area
 
+**NPC Sprite**
+<br />![NPC Sprite Image](docs/other-images/hub-npc.png)
+
+- This faceless plain looking sprite is used to build up a sense of characer in the world adn make it seem like there are otehr inhabitants, along with used as a vehicle for progressing the story of the game.
+
+**Challenge Room Buttons**
+<br />![Challenge Room Buttons Image](docs/other-images/hub-challenge-buttons.png)
+
+- This gives the player choice for what they want to do first in the app. Much like the room choices in MegaMan games.
+
 ### Game Areas
 
+**Monster Sprites**
+
+| Game 1 | Game 2 |
+| ------ | ------ |
+|![Game 1 Monster Image](docs/other-images/game-1-monster.png) | ![Game 2 Monster Image](docs/other-images/game-2-monster.png)| 
+
+- These are the monster sprites which adds character to the game, adds flavour to the games, and a little bit of humour (hopefully). Ther also undergoe defeat animations when the game is complete.
+
+**Game Tile Area**
+
+| Game 1 | Game 2 |
+| ------ | ------ |
+|![Game 1 Tile Area Image](docs/other-images/game-1-tiles.png) | ![Game 2 Broken Tile Area Image](docs/other-images/game-2-tiles-broken.png) <br /> ![Game 2 Fixed Tile Area Image](docs/other-images/game-2-tiles-fixed.png)| 
+
+- Both games are played on a 3x3 grid to keep a sense of familiarity betwen them, and the simple structure is also reminiscient of past games. 
+
 ### Final Page
+
+**Prince Sprite**
+<br />![Prince Sprite Image](docs/other-images/final-prince.png)
+
+- This is the sprite used for the prince as a representation of the character to save. If you want to restart the game using the action button when the choice apperas, he tries to stop you, adding to the tongue-in-cheek feeling of the game.
+
+**Celebration Tiles**
+<br />![Celebration Tiles Image](docs/other-images/final-celebration.png)
+
+- These are used to commerate you beating the game, and the underwhelming feeling of the completion which is on purpose as it adds to the silliness of the whole game which older games exhibited.
+
+## Error Page
+
+**Flashing Error Message**
+<br />![Flashing Error Image](docs/other-images/error-flashing-error.png)
+
+- This replicates the flashing logo of the intro screen, and keeps the old school feel of the game and gives the player an obvious indication that they shouldn't be on the page.
 
 ### Future Features & Pages
 

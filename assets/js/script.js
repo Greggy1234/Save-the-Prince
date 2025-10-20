@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function changeSection(e) {
     let currentLink = e.getAttribute("data-current-page-id");
     let nextLink = e.getAttribute("data-next-page-id");
-    const loadingScreenArea = document.getElementById("loading-area")
+    const loadingScreenArea = document.getElementById("loading-area");
     const heading = document.getElementById("loading-text");
     const headingRight = document.getElementById("loading-text-right");
     const loadingScreenButton = document.getElementById("loading-screen-button");
@@ -110,7 +110,7 @@ function changeSection(e) {
         loadingScreenArea.classList.remove("nature-image-3");
         loadingScreenArea.classList.remove("nature-image-2");
         loadingScreenArea.classList.add("nature-image-4");
-        loadingScreen(buttonID)
+        loadingScreen(buttonID);
     } else if (buttonID === "to-game-one-area-button") {
         loadingScreenButton.setAttribute("data-next-page-id", "game-one-area");
         loadingScreenButton.innerText = "Click to face the minotaur!";
@@ -683,7 +683,7 @@ function speechUpdateGameOne() {
                 gameOneAreaButton.classList.add("hidden");
                 gameOneSpeakerName.classList.add("hidden");
                 gameOneStartButton.classList.remove("hidden");
-                gameOneReturnHubNoKeyButton.classList.remove("visible-hidden")
+                gameOneReturnHubNoKeyButton.classList.remove("visible-hidden");
                 break;
         }
     } else if (gameOneMonster.getAttribute("data-game-one-text-tree") === "B") {
@@ -1358,7 +1358,7 @@ function gameTwoCheckAnswer() {
                     boxes.setAttribute("data-game-box-two-status", "inactive");
                     boxes.classList.remove("game-two-indivdual-box-selected");
                     boxes.classList.add("game-two-indivdual-box-yes");
-                    boxes.innerHTML = ""
+                    boxes.innerHTML = "";
                 }
             }
             globalVars.gameTwoPlayerAnswer = [];
@@ -1502,7 +1502,7 @@ function speechUpdateFinalArea() {
         case 6:
             prince.setAttribute("data-game-two-text-cycle", parseInt(prince.getAttribute("data-game-two-text-cycle")) + 1);
             finalAreaTextArea.innerText = `Well done knight ${globalVars.knightName}`;
-            headingText.innerHTML = `Peace is upon all the land!`
+            headingText.innerHTML = `Peace is upon all the land!`;
             princeSpeakerName.classList.add("hidden");
             break;
         case 7:
@@ -1579,8 +1579,14 @@ function finalAreaCelebration() {
     }
 }
 
+/**
+ * This resets the entire game to the very beginning
+ */
+function resetGame() {
+    location.reload();
+}
 
-// Error code
+// Error page code
 /**
 *This will flash the error message 
 */
@@ -1612,9 +1618,3 @@ function flashingLogoErrorPage() {
     }, 750);
 }
 
-/**
- * This resets the entire game to the very beginning
- */
-function resetGame() {
-    location.reload();
-}

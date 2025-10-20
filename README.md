@@ -102,51 +102,47 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
 ### General
 
-* Responsive design is applied throughout the website, so all the information is displayed correctly no matter the screen size or device type, and the entire game can be played without any modification on any device
+- Responsive design is applied throughout the website, so all the information is displayed correctly no matter the screen size or device type, and the entire game can be played without any modification on any device
 
-* The 16-bit style and typography remain consistent across all pages so the website feels unified
+- The 16-bit style and typography remain consistent across all pages so the website feels unified
 
 **Buttons**
 
 ![Button Image](docs/other-images/general-buttons.png)
 
-* This button style is the only button style used. It shows when a mouse is hovering over it and responds by changing to blue in the centre to notify the user that they have clicked a button.
+- This button style is the only button style used. It shows when a mouse is hovering over it and responds by changing to blue in the centre to notify the user that they have clicked a button.
 
-* The style is reminiscent of the almost gaudy design of early games.
+- The style is reminiscent of the almost gaudy design of early games.
 
 **Header**
+<br />![Header Image](docs/other-images/general-header.png)
 
-![Header Image](docs/other-images/general-header.png)
-    
-* An incredibly simple header that is present throughout the game, much like an arcade game machine has the title of the game at the top.
+- An incredibly simple header that is present throughout the game, much like an arcade game machine has the title of the game at the top.
 
 **Footer**
+<br />![Header Image](docs/other-images/general-footer.png)
 
-![Header Image](docs/other-images/general-footer.png)
-    
-* Again, very simple with link to support the developer of the game. the icons change to red when hovered over and to blue when clicked to show that the icons have been interacted with.
+- Again, very simple with link to support the developer of the game. the icons change to red when hovered over and to blue when clicked to show that the icons have been interacted with.
 
-* An itch.io logo is used in addition to the more popular general soical media sites as this site specialises in indie games.
+- An itch.io logo is used in addition to the more popular general soical media sites as this site specialises in indie games.
 
 **Text Area**
+<br />![Text Area Image](docs/other-images/general-text-area.png)
 
-![Text Area Image](docs/other-images/general-text-area.png)
-    
-* A basic text box that is used for all speech patterns and general info throughout the game, adhering to the conventions of older video games to keep the text in a specific area and adding tot he nostalgia of the very static placement of this type of text. Used in the hub area, game areas and final area.
+- A basic text box that is used for all speech patterns and general info throughout the game, adhering to the conventions of older video games to keep the text in a specific area and adding tot he nostalgia of the very static placement of this type of text. Used in the hub area, game areas and final area.
 
 **Hero Sprite**
+<br />![Hero Sprite Image](docs/other-images/general-hero-sprite.png)
 
-![Hero Sprite Image](docs/other-images/general-hero-sprite.png)
-    
-* This sprite is the hero of the game, and is present throughout to give the player a sense of identity and give a visual representation of the hero to the story. It is present on the loading pages, hub area, game areas and final area.
+- This sprite is the hero of the game, and is present throughout to give the player a sense of identity and give a visual representation of the hero to the story. It is present on the loading pages, hub area, game areas and final area.
 
 ### Intro Page
 
 **Flashing logo**
 
 ![Flashing Logo Image](docs/other-images/intro-flashing-logo.png)
-    
-* A very blocky title which dominates the screen in a pixel style that also flashes in the main colours, giving a very obvious and clear demonstration that this will be a old-school game
+
+- A very blocky title which dominates the screen in a pixel style that also flashes in the main colours, giving a very obvious and clear demonstration that this will be a old-school game
 
 ### Front Page
 
@@ -336,8 +332,8 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 | Hub Area     | ![Desktop & tablet hub area](docs/other-images/hub-area-desk-tab.png)         | ![Mobile hub area](docs/other-images/hub-area-mob.png)         |
 | Game 1 Area  | ![Desktop & tablet game 1 area](docs/other-images/game-1-area-desk-tab.png)   | ![Mobile game 1 area](docs/other-images/game-1-area-mob.png)   |
 | Game 2 Area  | ![Desktop & tablet game 2 area](docs/other-images/game-2-area-desk-tab.png)   | ![Mobile game 2 area](docs/other-images/game-2-area-mob.png)   |
-| Final Area   | ![Desktop & tablet final area](docs/other-images/final-area-desk-tab.png)       | ![Mobile final area](docs/other-images/final-area-mob.png)    |
-| Error Page   | ![Desktop & tablet error page](docs/other-images/error-page-desk-tab.png)       | ![Mobile error page](docs/other-images/error-page-mob.png)    |
+| Final Area   | ![Desktop & tablet final area](docs/other-images/final-area-desk-tab.png)     | ![Mobile final area](docs/other-images/final-area-mob.png)     |
+| Error Page   | ![Desktop & tablet error page](docs/other-images/error-page-desk-tab.png)     | ![Mobile error page](docs/other-images/error-page-mob.png)     |
 
 [Back to top ⇧](#Save-the-Prince)
 

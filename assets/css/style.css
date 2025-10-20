@@ -228,32 +228,26 @@ body {
     background-size: cover;
 }
 
-.loading-image-1 {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l1.png);
+.nature-image-1 {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.4), rgba(255, 248, 248, 0.4)), url(..//images/background-loading-page-1.webp);
     background-position: center;
     background-size: cover;
 }
 
-.loading-image-2 {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l2.png);
+.nature-image-2 {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.4), rgba(255, 248, 248, 0.4)), url(../images/background-loading-page-2.webp);
     background-position: center;
     background-size: cover;
 }
 
-.loading-image-3 {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l3.png);
+.nature-image-3 {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.4), rgba(255, 248, 248, 0.4)), url(../images/background-loading-page-3.webp);
     background-position: center;
     background-size: cover;
 }
 
-.loading-image-4 {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l4.png);
-    background-position: center;
-    background-size: cover;
-}
-
-.loading-image-5 {
-    background-image: linear-gradient(rgba(255, 248, 248, 0.2), rgba(255, 248, 248, 0.2)), url(../images/test-l5.png);
+.nature-image-4 {
+    background-image: linear-gradient(rgba(255, 248, 248, 0.4), rgba(255, 248, 248, 0.4)), url(../images/background-loading-page-4.webp);
     background-position: center;
     background-size: cover;
 }

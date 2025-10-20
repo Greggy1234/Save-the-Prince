@@ -34,7 +34,7 @@
             </div>
         </section>
         <!-- Front page of the game when someone starts the game. Players can enter their names for their knight -->
-        <section id="front-page" class="mt-no mb-no section-layout campsite-image flex">
+        <section id="front-page" class="mt-no mb-no section-layout campsite-image flex hidden">
             <div id="front-page-elements-container" class="flex">
                 <h2 id="front-page-text" class="lh-h2">HERE'S THE STORY</h2>
                 <p id="front-page-text-para">You are a legendary knight, but you are bored.
@@ -62,7 +62,7 @@
         </section>
 
         <!-- The loading screen animation screen from left to right. This gets used as a way to link areas within the game -->
-        <section id="loading-area" class="mt-no mb-no section-layout loading-image-1 flex hidden">
+        <section id="loading-area" class="mt-no mb-no section-layout nature-image-1 flex hidden">
             <h2 id="loading-text" class="lh-h2 black">SEARCHING FOR DANGER<br>...</h2>
             <div id="loading-area-hero-container" class="relative">
                 <img id="hero-loading" src="assets/images/sprite-hero-still-right.webp" alt="Hero Sprite"
@@ -75,7 +75,7 @@
         </section>
 
         <!-- The loading screen animation screen from right to left. This gets used as a way to link areas within the game -->
-        <section id="loading-area-right" class="hidden mt-no mb-no section-layout loading-image-2 flex">
+        <section id="loading-area-right" class="mt-no mb-no section-layout nature-image-2 flex hidden">
             <h2 id="loading-text-right" class="lh-h2 black">RETURNING TO GRASSLANDS<br>...</h2>
             <div id="loading-area-right-hero-container" class="relative">
                 <img id="hero-loading-right" src="assets/images/sprite-hero-still-left.webp" alt="Hero Sprite"
@@ -88,7 +88,7 @@
         </section>
 
         <!-- The main area of the game. This is where the player can choose the challenges (referenced as games in the code) -->
-        <section id="game-hub-area" class="grasslands-image section-layout flex hidden">
+        <section id="game-hub-area" class="grasslands-image section-layout flex">
             <h2 id="game-hub-area-text" class="mt-no ">Unknown Area</h2>
             <div id="games-container">
                 <div id="game-one-hub-area" class="game-box">
@@ -111,10 +111,11 @@
                     <img id="hero-hub-area" src="assets/images/sprite-hero-still-right.webp" alt="Hero"
                         class="hero-size">
                 </div>
-                <button id="hub-area-action-button">Talk to the screaming man</button>
+                <button id="hub-area-action-button" class="hidden">Talk to the screaming man</button>
                 <button id="hub-area-option-one-button" class="hidden">Challenge 1 info</button>
                 <button id="hub-area-option-two-button" class="hidden">Challenge 2 info</button>
-                <button id="hub-area-save-the-prince-button" class="hidden">Save the prince!</button>
+                <button id="hub-area-save-the-prince-button" data-current-page-id="game-hub-area"
+                        data-next-page-id="loading-area">Save the prince!</button>
                 <div class="bottom-right-sprite">
                     <img id="npc" src="assets/images/sprite-npc.webp" alt="npc" class="npc-size" data-npc-text-cycle="1"
                         data-npc-text-tree="A">

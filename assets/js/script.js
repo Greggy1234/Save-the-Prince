@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        const changeSectionOptions = ["intro-page-button", "start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button"];
+        const changeSectionOptions = ["intro-page-button", "start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button", "hub-area-save-the-prince-button"];
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function changeSection(e) {
     let currentLink = e.getAttribute("data-current-page-id");
     let nextLink = e.getAttribute("data-next-page-id");
+    const loadingScreenArea = document.getElementById("loading-area")
     const heading = document.getElementById("loading-text");
     const headingRight = document.getElementById("loading-text-right");
     const loadingScreenButton = document.getElementById("loading-screen-button");
@@ -97,22 +98,34 @@ function changeSection(e) {
     const heroRight = document.getElementById("hero-loading-right");
     const hubAreaButtonOptionOne = document.getElementById("hub-area-option-one-button");
     const hubAreaButtonOptionTwo = document.getElementById("hub-area-option-two-button");
-    console.log(currentLink);
-    console.log(nextLink);
     document.getElementById(nextLink).classList.remove("hidden");
     document.getElementById(currentLink).classList.add("hidden");
     let buttonID = e.getAttribute("id");
     if (buttonID === "start-full-game-button") {
         loadingScreen(buttonID);
+    } else if (buttonID === "hub-area-save-the-prince-button") {
+        loadingScreenButton.setAttribute("data-next-page-id", "final-area");
+        loadingScreenButton.innerText = "SAVE THE PRINCE!";
+        heading.innerHTML = "ON THE WAY TO THE PRISON <br>...";
+        loadingScreenArea.classList.remove("nature-image-3");
+        loadingScreenArea.classList.remove("nature-image-2");
+        loadingScreenArea.classList.add("nature-image-4");
+        loadingScreen(buttonID)
     } else if (buttonID === "to-game-one-area-button") {
         loadingScreenButton.setAttribute("data-next-page-id", "game-one-area");
         loadingScreenButton.innerText = "Click to face the minotaur!";
         heading.innerHTML = "ON THE WAY TO CHALLENGE 1<br>...";
+        loadingScreenArea.classList.remove("nature-image-1");
+        loadingScreenArea.classList.remove("nature-image-3");
+        loadingScreenArea.classList.add("nature-image-2");
         loadingScreen(buttonID);
     } else if (buttonID === "to-game-two-area-button") {
         loadingScreenButton.setAttribute("data-next-page-id", "game-two-area");
         loadingScreenButton.innerText = "Click to face the evil necromancer!";
         heading.innerHTML = "ON THE WAY TO CHALLENGE 2<br>...";
+        loadingScreenArea.classList.remove("nature-image-1");
+        loadingScreenArea.classList.remove("nature-image-2");
+        loadingScreenArea.classList.add("nature-image-3");
         loadingScreen(buttonID);
     } else if (buttonID === "game-one-to-hub-area-button") {
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
@@ -238,8 +251,6 @@ function loadingScreen(buttonID) {
     hero.style.bottom = "10 + px";
     loadingLink.classList.add("visible-hidden");
     const heading = document.getElementById("loading-text");
-    console.log("LOADING SCREEN BUTTON ID NEXT");
-    console.log(buttonID);
     hero.classList.add("hero-left-position-left");
     let flashPosition = 1;
     const loadingAnimation = setInterval(function () {
@@ -296,7 +307,6 @@ function loadingScreenRight(buttonID) {
     hero.style.bottom = "10 + px";
     loadingLink.classList.add("visible-hidden");
     const heading = document.getElementById("loading-text-right");
-    console.log(buttonID);
     hero.classList.add("hero-right-position-right");
     let flashPosition = 1;
     const loadingAnimation = setInterval(function () {
@@ -384,7 +394,6 @@ document.getElementById("knight-name-container").addEventListener("submit", func
         alert("You must give your knight a name so the masses can recognise you across the land (and so we know what to put on your gravestone)");
         return;
     }
-    console.log(globalVars.knightName);
     document.getElementById("knight-name-container").innerHTML = `<p class="mt-no">Knight ${globalVars.knightName} is ready for action!<br>Click below to start being a hero.</p>`;
     document.getElementById("start-full-game-button").classList.remove("hidden");
 });
@@ -547,7 +556,7 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-               hubAreaButton.innerText = "Next";
+                hubAreaButton.innerText = "Next";
                 gameHubTextArea.innerText = `I wish I could have seen the look on his face when you smashed him up good...at memory games`;
                 break;
             case 2:
@@ -840,7 +849,6 @@ function setThenRunGameOne() {
         }
     }, 500 - ((parseInt(boxArea.getAttribute("data-game-one-level")) - 1) * 75));
     globalVars.gameOneAnswer = answer;
-    console.log(globalVars.gameOneAnswer);
 }
 
 /**
@@ -852,7 +860,6 @@ function gameOneBoxLight(boxToLight) {
     for (let boxes of gameOneBox) {
         if (parseInt(boxes.getAttribute("data-game-one-box-number")) === boxToLight) {
             let gameOneBoxNumber = parseInt(boxes.getAttribute("data-game-one-box-number"));
-            console.log(boxes.getAttribute("data-game-one-box-number"));
             boxes.classList.remove("game-one-indivdual-box-flash-off");
             boxes.classList.add("game-one-indivdual-box-flash-on");
             setTimeout(function () {
@@ -950,7 +957,6 @@ function gameOnePlayerBoxLight(PlayerBoxChosen) {
     for (let boxes of gameOneBox) {
         if (parseInt(boxes.getAttribute("data-game-one-box-number")) === PlayerBoxChosen) {
             let gameOneBoxNumber = parseInt(boxes.getAttribute("data-game-one-box-number"));
-            console.log(boxes.getAttribute("data-game-one-box-number"));
             boxes.classList.remove("game-one-indivdual-box-flash-off");
             boxes.classList.add("game-one-indivdual-box-flash-on");
             setTimeout(function () {
@@ -965,7 +971,6 @@ function gameOnePlayerBoxLight(PlayerBoxChosen) {
  * This repeats the pattern if the player wants the pattern to be repeated
  */
 function gameOneRepeatPattern() {
-    console.log("STEP 1");
     const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
     const gameOneReturnHubNoKeyButton = document.getElementById("game-one-to-hub-area-no-key-button");
     gameOneReplayPatternButton.classList.add("visible-hidden");
@@ -983,13 +988,11 @@ function gameOneRepeatPattern() {
         if (counter < lengthOfAnswer) {
             gameOneBoxLight(gameOneBoxNumber);
             counter++;
-            console.log("STEPs 2");
         } else {
             clearInterval(gameOneLightBoxes);
             document.getElementById("game-one-text-area").innerText = "Now you copy the pattern";
             gameOneReplayPatternButton.classList.remove("visible-hidden");
             gameOneReturnHubNoKeyButton.classList.remove("visible-hidden");
-            console.log("STEP 3");
             let gameOneBox = document.getElementsByClassName("game-one-indivdual-box");
             for (let boxes of gameOneBox) {
                 boxes.setAttribute("data-game-box-one-status", "active");
@@ -1246,7 +1249,6 @@ function GameTwoSetRandomTextOptions() {
     gameTwoLevelThreeRoundTwo = fisherYatesMethod(gameTwoLevelThreeRoundTwo);
     gameTwoLevelThreeRoundThree = fisherYatesMethod(gameTwoLevelThreeRoundThree);
     globalVars.gameTwoSetAnswers = [gameTwoLevelOneRoundOne, gameTwoLevelOneRoundTwo, gameTwoLevelOneRoundThree, gameTwoLevelTwoRoundOne, gameTwoLevelTwoRoundTwo, gameTwoLevelTwoRoundThree, gameTwoLevelThreeRoundOne, gameTwoLevelThreeRoundTwo, gameTwoLevelThreeRoundThree];
-    console.log(globalVars.gameTwoSetAnswers);
     gameTwoDisplayWords(globalVars.gameTwoSetAnswers);
 }
 
@@ -1337,9 +1339,6 @@ function gameTwoCheckAnswer() {
     const gameTwoMonster = document.getElementById("game-two-monster");
     const gameTwoAreaButton = document.getElementById("game-two-area-action-button");
     const gameTwoReturnHubNoKeyButton = document.getElementById("game-two-to-hub-area-no-key-button");
-    console.log(gameTwoLevelIndex);
-    console.log(globalVars.gameTwoOptions[gameTwoLevelIndex]);
-    console.log(globalVars.gameTwoPlayerAnswer);
     gameTwoSpeakerName.classList.remove("hidden");
     if (gameTwoPlayerAnswerLength === 0) {
         gameTwoTextArea.innerText = `Idiot! You have to actually pick a word.`;
@@ -1351,7 +1350,6 @@ function gameTwoCheckAnswer() {
         let gameTwoCorrectAnswer = globalVars.gameTwoOptions[gameTwoLevelIndex].some(function (value) {
             return arrayCheck(value, globalVars.gameTwoPlayerAnswer);
         });
-        console.log(gameTwoCorrectAnswer);
         if (gameTwoCorrectAnswer) {
             let connectionType = gameTwoConnection(globalVars.gameTwoPlayerAnswer);
             boxArea.setAttribute("data-game-two-check", parseInt(boxArea.getAttribute("data-game-two-check")) + 1);
@@ -1612,4 +1610,11 @@ function flashingLogoErrorPage() {
             position = 1;
         }
     }, 750);
+}
+
+/**
+ * This resets the entire game to the very beginning
+ */
+function resetGame() {
+    location.reload();
 }

@@ -20,7 +20,7 @@
             <h1 class="mb-no mt-no">Save the Prince</h1>
         </header>
         <!-- Intro screen where the logo flashes to replicate what playing an arcade game could have felt like -->
-        <section id="intro-page" class="section-layout map-image">
+        <section id="intro-page" class="section-layout map-image hidden">
             <div id="intro-page-elements-container" class="flex">
                 <h2 id="intro-page-logo" class="lh-intro-logo red">
                     SAVE
@@ -34,7 +34,7 @@
             </div>
         </section>
         <!-- Front page of the game when someone starts the game. Players can enter their names for their knight -->
-        <section id="front-page" class="mt-no mb-no section-layout campsite-image flex hidden">
+        <section id="front-page" class="mt-no mb-no section-layout campsite-image flex">
             <div id="front-page-elements-container" class="flex">
                 <h2 id="front-page-text" class="lh-h2">HERE'S THE STORY</h2>
                 <p id="front-page-text-para">You are a legendary knight, but you are bored.
@@ -52,7 +52,7 @@
                 <form id="knight-name-container">
                     <label for="knight-name">What is your name? </label>
                     <br>
-                    <input type="text" id="knight-name" name="knight-name" maxlength="12">
+                    <input type="text" id="knight-name" name="knight-name" maxlength="8" placeholder="max 8 char.">
                     <br>
                     <button type="submit" id="knight-name-submit-button" value="Submit">Submit!</button>
                 </form>

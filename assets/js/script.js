@@ -98,6 +98,8 @@ function changeSection(e) {
     const heroRight = document.getElementById("hero-loading-right");
     const hubAreaButtonOptionOne = document.getElementById("hub-area-option-one-button");
     const hubAreaButtonOptionTwo = document.getElementById("hub-area-option-two-button");
+    const keyOneChecked = npc.getAttribute("data-key-one");
+    const keyTwoChecked = npc.getAttribute("data-key-two");
     document.getElementById(nextLink).classList.remove("hidden");
     document.getElementById(currentLink).classList.add("hidden");
     let buttonID = e.getAttribute("id");
@@ -129,7 +131,12 @@ function changeSection(e) {
         loadingScreen(buttonID);
     } else if (buttonID === "game-one-to-hub-area-button") {
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
-        if (globalVars.key1 === true && globalVars.key2 === false) {
+        if (keyOneChecked === "true") {
+            hubAreaButtonOptionOne.classList.remove("hidden");
+            hubAreaButtonOptionTwo.classList.remove("hidden");
+            hubAreaButton.classList.add("hidden");
+        }
+        else if (globalVars.key1 === true && globalVars.key2 === false) {
             npc.setAttribute("data-npc-text-tree", "D");
             gameHubTextArea.innerText = "Well done on beating the minotaur!";
             hubAreaButton.innerText = "Next";

@@ -184,19 +184,19 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
 **Monster Sprites**
 
-| Game 1 | Game 2 |
-| ------ | ------ |
-|![Game 1 Monster Image](docs/other-images/game-1-monster.png) | ![Game 2 Monster Image](docs/other-images/game-2-monster.png)| 
+| Game 1                                                        | Game 2                                                        |
+| ------------------------------------------------------------- | ------------------------------------------------------------- |
+| ![Game 1 Monster Image](docs/other-images/game-1-monster.png) | ![Game 2 Monster Image](docs/other-images/game-2-monster.png) |
 
 - These are the monster sprites which adds character to the game, adds flavour to the games, and a little bit of humour (hopefully). Ther also undergoe defeat animations when the game is complete.
 
 **Game Tile Area**
 
-| Game 1 | Game 2 |
-| ------ | ------ |
-|![Game 1 Tile Area Image](docs/other-images/game-1-tiles.png) | ![Game 2 Broken Tile Area Image](docs/other-images/game-2-tiles-broken.png) <br /> ![Game 2 Fixed Tile Area Image](docs/other-images/game-2-tiles-fixed.png)| 
+| Game 1                                                        | Game 2                                                                                                                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ![Game 1 Tile Area Image](docs/other-images/game-1-tiles.png) | ![Game 2 Broken Tile Area Image](docs/other-images/game-2-tiles-broken.png) <br /> ![Game 2 Fixed Tile Area Image](docs/other-images/game-2-tiles-fixed.png) |
 
-- Both games are played on a 3x3 grid to keep a sense of familiarity betwen them, and the simple structure is also reminiscient of past games. 
+- Both games are played on a 3x3 grid to keep a sense of familiarity betwen them, and the simple structure is also reminiscient of past games.
 
 ### Final Page
 
@@ -210,12 +210,17 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
 - These are used to commerate you beating the game, and the underwhelming feeling of the completion which is on purpose as it adds to the silliness of the whole game which older games exhibited.
 
-## Error Page
+### Error Page
 
 **Flashing Error Message**
 <br />![Flashing Error Image](docs/other-images/error-flashing-error.png)
 
 - This replicates the flashing logo of the intro screen, and keeps the old school feel of the game and gives the player an obvious indication that they shouldn't be on the page.
+
+**Automatic JavaScript Redirect**
+<br />![Redirect JS Code Image](docs/other-images/error-automatic-js-redirect.png)
+
+- This code isused on the error page so if a user arrives at a page they shouldn't be at, they will automatically beredirected back to the main page of the game after the page has loaded and at least 2seconds have passed. There is also a button present in case the JavaScript breaks so there is no chance a userwon;t be able to return
 
 ### Future Features & Pages
 
@@ -249,6 +254,10 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 - [Cloud Convert](https://cloudconvert.com/)
 
   - This was used to turn files to the WEBP format
+
+- [Sprite Sheet Extractor](https://spritesheet-extractor.vercel.app/)
+
+  -This extracted the sprites used for the game from their respective style sheets
 
 - [GitHub](https://github.com/)
 
@@ -284,6 +293,11 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 ### Code Validation
 
 - **JavaScript**
+
+| Script      | Validator Confirmation                                                |
+| ----------- | --------------------------------------------------------------------- |
+| script.js   | X                                                                     |
+| redirect.js | ![Error page validation](docs/other-images/redirect-js-validator.png) |
 
 - **HTML**
 
@@ -437,5 +451,24 @@ To clone this project from GitHub to make further changes:
 - All content was written by the developer
 
 ### Media
+
+| Page                                                       | File Name                                                                                                                                                                                                                                                                                                                                                                                | Credit Link                                                                                      |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Background to Screen                                       | background-behind-viewing-area                                                                                                                                                                                                                                                                                                                                                           | [Stock Cake](https://stockcake.com/i/arcade-neon-glow_142304_17948)                              |
+| Intro Page/Error Screen                                    | background-intro-screen                                                                                                                                                                                                                                                                                                                                                                  | Created using Google Gemini                                                                      |
+| Front Page                                                 | background-front-page                                                                                                                                                                                                                                                                                                                                                                    | Created using Google Gemini                                                                      |
+| Loading Screen/Hub Area/Game 1 Area/Game 2 Area/Final Area | sprite-hero-still-left<br />sprite-hero-still-right<br />sprite-hero-walk-left<br />sprite-hero-walk-right                                                                                                                                                                                                                                                                               | [itch.io](https://elvgames.itch.io/cellar-tileset-16x16-pixelart)                                |
+| Loading Screen                                             | background-loading-page-1<br />background-loading-page-2<br />background-loading-page-3<br />background-loading-page-4                                                                                                                                                                                                                                                                   | [itch.io](https://free-game-assets.itch.io/nature-landscapes-free-pixel-art)                     |
+| Hub Area                                                   | background-hub-area                                                                                                                                                                                                                                                                                                                                                                      | [Freepik](https://www.freepik.com/free-vector/pixel-art-rural-landscape-background_49685500.htm) |
+| Hub Area                                                   | sprite-npc                                                                                                                                                                                                                                                                                                                                                                               | [itch.io](https://admurin.itch.io/free-monster-pack-character)                                   |
+| Game 1 Area                                                | background-game-one-area                                                                                                                                                                                                                                                                                                                                                                 | [Stock Cake](https://stockcake.com/i/fiery-mountain-night_3119874_1577548)                       |
+| Game 1 Area                                                | game-tile-game-one-lava                                                                                                                                                                                                                                                                                                                                                                  | Created using Google Gemini                                                                      |
+| Game 1 Area                                                | sprite-game-one-enemy-pose-1<br />sprite-game-one-enemy-pose-2<br />sprite-game-one-enemy-pose-3<br />sprite-game-one-enemy-death-1<br />sprite-game-one-enemy-death-2<br />sprite-game-one-enemy-death-3<br />sprite-game-one-enemy-death-4<br />sprite-game-one-enemy-death-5<br />sprite-game-one-enemy-death-6                                                                       | [itch.io](https://elthen.itch.io/2d-pixel-art-minotaur-sprites)                                  |
+| Game 2 Area                                                | background-game-two-area                                                                                                                                                                                                                                                                                                                                                                 | [itch.io](https://free-game-assets.itch.io/free-castle-interior-pixel-game-backgrounds)          |
+| Game 2 Area                                                | game-tile-game-two-broken<br />game-tile-game-two-fixed                                                                                                                                                                                                                                                                                                                                  | Created using Google Gemini                                                                      |
+| Game 2 Area                                                | sprite-game-two-enemy-pose-1<br />sprite-game-two-enemy-pose-2<br />sprite-game-two-enemy-pose-3<br />sprite-game-two-enemy-death-1<br />sprite-game-two-enemy-death-2<br />sprite-game-two-enemy-death-3<br />sprite-game-two-enemy-death-4<br />sprite-game-two-enemy-death-5<br />sprite-game-two-enemy-death-6<br />sprite-game-two-enemy-death-7<br />sprite-game-two-enemy-death-8 | [itch.io](https://oco.itch.io/medieval-fantasy-character-pack-6)                                 |
+| Final Area                                                 | background-final-area                                                                                                                                                                                                                                                                                                                                                                    | Created using Google Gemini                                                                      |
+| Final Area                                                 | sprite-prince                                                                                                                                                                                                                                                                                                                                                                            | [itch.io](https://chasersgaming.itch.io/rpg-asset-character-king-sms)                            |
+| Final Area                                                 | game-tile-final-area-confetti                                                                                                                                                                                                                                                                                                                                                            | Created using Google Gemini                                                                      |
 
 ### Code

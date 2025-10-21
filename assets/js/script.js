@@ -100,6 +100,7 @@ function changeSection(e) {
     const hubAreaButtonOptionTwo = document.getElementById("hub-area-option-two-button");
     const keyOneChecked = npc.getAttribute("data-key-one");
     const keyTwoChecked = npc.getAttribute("data-key-two");
+    const hubAreaFinalAreaButton = document.getElementById("hub-area-save-the-prince-button");
     document.getElementById(nextLink).classList.remove("hidden");
     document.getElementById(currentLink).classList.add("hidden");
     let buttonID = e.getAttribute("id");
@@ -131,12 +132,21 @@ function changeSection(e) {
         loadingScreen(buttonID);
     } else if (buttonID === "game-one-to-hub-area-button") {
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
-        if (keyOneChecked === "true") {
-            hubAreaButtonOptionOne.classList.remove("hidden");
-            hubAreaButtonOptionTwo.classList.remove("hidden");
+        if (keyOneChecked === "true" && keyTwoChecked === "true") {
+            hubAreaButtonOptionOne.classList.add("hidden");
+            hubAreaButtonOptionTwo.classList.add("hidden");
             hubAreaButton.classList.add("hidden");
-        }
-        else if (globalVars.key1 === true && globalVars.key2 === false) {
+            hubAreaFinalAreaButton.classList.remove("hidden");
+            gameHubTextArea.innerText = "Go to the prison and let the prince out of his cage!";
+            hubAreaButton.innerText = "Next";
+        } else if (keyOneChecked === "true") {
+            hubAreaButtonOptionTwo.classList.add("hidden");
+            npcSpeakerName.classList.add("hidden");
+            hubAreaButton.classList.add("hidden");
+            gameHubTextArea.innerText = `When you're ready, choose challenge 2 to get the second key, or click below to find out more about challenge 2.`;
+            hubAreaButtonOptionTwo.classList.remove("hidden");
+            hubAreaButton.innerText = "Next";
+        } else if (globalVars.key1 === true && globalVars.key2 === false) {
             npc.setAttribute("data-npc-text-tree", "D");
             gameHubTextArea.innerText = "Well done on beating the minotaur!";
             hubAreaButton.innerText = "Next";
@@ -157,7 +167,21 @@ function changeSection(e) {
         }
     } else if (buttonID === "game-two-to-hub-area-button") {
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
-        if (globalVars.key2 === true && globalVars.key1 === false) {
+        if (keyOneChecked === "true" && keyTwoChecked === "true") {
+            hubAreaButtonOptionOne.classList.add("hidden");
+            hubAreaButtonOptionTwo.classList.add("hidden");
+            hubAreaButton.classList.add("hidden");
+            hubAreaFinalAreaButton.classList.remove("hidden");
+            gameHubTextArea.innerText = "Go to the prison and let the prince out of his cage!";
+            hubAreaButton.innerText = "Next";
+        } else if (keyTwoChecked === "true") {
+            hubAreaButtonOptionOne.classList.add("hidden");
+            npcSpeakerName.classList.add("hidden");
+            hubAreaButton.classList.add("hidden");
+            gameHubTextArea.innerText = `When you're ready, choose challenge 2 to get the second key, or click below to find out more about challenge 2.`;
+            hubAreaButtonOptionTwo.classList.remove("hidden");
+            hubAreaButton.innerText = "Next";
+        } else if (globalVars.key2 === true && globalVars.key1 === false) {
             npc.setAttribute("data-npc-text-tree", "E");
             gameHubTextArea.innerText = "You beat the the evil necromance at his own game. Well done!";
             hubAreaButton.innerText = "Next";
@@ -526,7 +550,7 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
-                hubAreaButton.innerText = "Next";
+                npc.setAttribute("data-key-one", "true");
                 gameHubTextArea.innerText = `I knew you could smash him up...at a memory game.`;
                 break;
             case 2:
@@ -545,6 +569,7 @@ function speechUpdateGameHub() {
         switch (parseInt(npc.getAttribute("data-npc-text-cycle"))) {
             case 1:
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
+                npc.setAttribute("data-key-two", "true");
                 gameHubTextArea.innerText = `You've brains with your brawn!`;
                 break;
             case 2:

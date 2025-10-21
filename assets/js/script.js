@@ -1254,18 +1254,18 @@ function GameTwoSetRandomTextOptions() {
     let gameTwoLevelOneSetOrder = fisherYatesMethod(gameTwoLevelOneOptions);
     let gameTwoLevelTwoSetOrder = fisherYatesMethod(gameTwoLevelTwoOptions);
     let gameTwoLevelThreeSetOrder = fisherYatesMethod(gameTwoLevelThreeOptions);
-    for (j = 0; j < 3; j++) {
-        for (i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+        for (let i = 0; i < 3; i++) {
             gameTwoLevelOneRoundOne.push(gameTwoLevelOneSetOrder[i][j]);
             gameTwoLevelTwoRoundOne.push(gameTwoLevelTwoSetOrder[i][j]);
             gameTwoLevelThreeRoundOne.push(gameTwoLevelThreeSetOrder[i][j]);
         }
-        for (i = 3; i < 6; i++) {
+        for (let i = 3; i < 6; i++) {
             gameTwoLevelOneRoundTwo.push(gameTwoLevelOneSetOrder[i][j]);
             gameTwoLevelTwoRoundTwo.push(gameTwoLevelTwoSetOrder[i][j]);
             gameTwoLevelThreeRoundTwo.push(gameTwoLevelThreeSetOrder[i][j]);
         }
-        for (i = 6; i < 9; i++) {
+        for (let i = 6; i < 9; i++) {
             gameTwoLevelOneRoundThree.push(gameTwoLevelOneSetOrder[i][j]);
             gameTwoLevelTwoRoundThree.push(gameTwoLevelTwoSetOrder[i][j]);
             gameTwoLevelThreeRoundThree.push(gameTwoLevelThreeSetOrder[i][j]);

@@ -317,10 +317,12 @@ Automated testing should be carried out when embarking on longer projects as ove
 
 - **JavaScript**
 
-| Script      | Validator Confirmation                                                |
-| ----------- | --------------------------------------------------------------------- |
-| script.js   | X                                                                     |
-| redirect.js | ![Error page validation](docs/other-images/redirect-js-validator.png) |
+| Script      | Validator Confirmation                                                 |
+| ----------- | ---------------------------------------------------------------------- |
+| script.js   | ![Script JS validation](docs/other-images/script-js-validator.png) |
+| redirect.js | ![Redirect JS validation](docs/other-images/redirect-js-validator.png) |
+
+While the script.js file received seven warnings, they were just to note that confusing semantics can come about with referencing variables outside the scope. There were no errors in the code.
 
 - **HTML**
 

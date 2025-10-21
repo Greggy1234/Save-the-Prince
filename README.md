@@ -31,11 +31,12 @@ Visit the deployed website [here](https://greggy1234.github.io/Save-the-Prince/)
    2. [Frameworks & Libraries](#frameworks--libraries)
    3. [Other Programs](#other-programs)
 4. [Testing](#testing)
-   1. [Code Validation](#code-validation)
-   2. [User Story Testing](#user-story-testing)
-   3. [Common Element Testing](#common-elements-testing)
-   4. [Lighthouse Testing](#lighthouse-testing)
-   5. [Browser & Device Testing](#browser--device-testing)
+   1. [Automated vs Manual Testing](#automated-vs-manual-testing)
+   2. [Code Validation](#code-validation)
+   3. [User Story Testing](#user-story-testing)
+   4. [Common Element Testing](#common-elements-testing)
+   5. [Lighthouse Testing](#lighthouse-testing)
+   6. [Browser & Device Testing](#browser--device-testing)
 5. [Final Website](#final-website)
 6. [Deployment](#deployment)
 7. [Development Lifecycle](#development-lifecycle)
@@ -290,6 +291,28 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
 ## Testing
 
+### Automated vs Manual Testing
+
+**Manual Testing**
+
+Maunal testing is testing humans do where they maunally go through an application to test the various aspects of it. It allows for a flexible approach to testing that can be quickly adapted to the specific apps needs through more in depth testing of certain functions that were not thought of before, and is essential for testing the visual aspects of an app as a machine cannot pick up on those things. Drawbacks include the fact that humans are carrying it out, so more complex testing requires more knowledgable people which can be hard to find, mistakes can be missed and it takes a lot of time, exponentially getting longer as a project increases in size.
+
+| Benefits                                                                                                                                                                                                                                                                                             | Drawbacks                                                                                                                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - Flexible in what is tested and the method of how its done<br/>- Adaptable to sudden changes in the app<br/>- Instant feedback on shorter projects without requiring building automated processes<br/>- Can also test for UI and UX issues<br/>- Flexible and adaptable<br/>- Cheaper to begin with | - Higher chance of missing bugs due to human error<br/>- For longer projects, it takes longer to carry out testing<br/>- Hard to find those who are knowledgable enough to carry out every test<br/>- Less precise in in replicability |
+
+Maunal testing should be used for in the moment testing of newly made functions, shorter projects, testing for UI, UX and visual designs, and exploratory testing.
+
+**Automated Testing**
+
+Testing where tools are used to perform test is called automated testing, where the tests themselves are all pre-scripted, allowing for a large amount of easily replicated tests to made continously throughout development, saving significant time on larger scale projects. If the tests are made correctly, they can find more bugs without the need for pause like a human. However, it requires a whole new skillset to write, maintain and create these tests which puts a barrier up, along with expensive testing automation software, and they cannot help with finding bugs in the visual elements of the app
+
+| Benefits                                                                                                                                                                                                                                                                                                                | Drawbacks                                                                                                                                                                                                                                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - Tests run quickly and can be repeated<br />- No need for rest between tests<br />- Saves money oin the long run for larger projects<br />- Will not miss defects (if the test is written correctly)<br />- Can instantly show errors in larger functions witout having to manually go through each line of code<br /> | - Can't test for visual elements, UI, UX, or user journey<br /> - Software requries a high upfront costs<br />- A high level of skill is needed to whoever writes and mainains the code, so resources might be hard to find<br /> - Time consuming at the beginning to write the tests so feedback on new functions can take time<br /> |
+
+Automated testing should be carried out when embarking on longer projects as over time the cost and time spend up front will pay off in the long run. If wasily replicated tests that need to be running constantly are needed, this is also where automated testing shines.
+
 ### Code Validation
 
 - **JavaScript**
@@ -472,3 +495,7 @@ To clone this project from GitHub to make further changes:
 | Final Area                                                 | game-tile-final-area-confetti                                                                                                                                                                                                                                                                                                                                                            | Created using Google Gemini                                                                      |
 
 ### Code
+
+- The FIsher Yates method of shuffling was used for Game 2, and it was taken from [W3Schools](https://www.w3schools.com/js/js_array_sort.asp)
+
+- [Stack Overflow](https://stackoverflow.com/) and [W3Schools](https://www.w3schools.com/) were consulted throughout the project to check the code was correctly implemented

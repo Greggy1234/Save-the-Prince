@@ -404,7 +404,7 @@ While the script.js file received seven warnings, they were just to note that co
 
 | Browser         | Outcome | Pass/Fail |
 | --------------- | ------- | --------- |
-| Google Chrome   | X       | X         |
+| Google Chrome   | No appearance, responsiveness or functionality issues | Pass |
 | Safari          | X       | X         |
 | Mozilla Firefox | X       | X         |
 | Microsoft Edge  | X       | X         |

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     let buttons = document.getElementsByTagName("button");
     for (let button of buttons) {
-        const changeSectionOptions = ["intro-page-button", "start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button", "hub-area-save-the-prince-button"];
+        const changeSectionOptions = ["intro-page-button", "start-full-game-button", "loading-screen-button", "to-game-one-area-button", "game-one-to-hub-area-button", "to-game-two-area-button", "game-two-to-hub-area-button", "loading-screen-button-right", "game-one-to-hub-area-no-key-button", "game-two-to-hub-area-no-key-button", "hub-area-save-the-prince-button"];
         button.addEventListener("click", function () {
             if (changeSectionOptions.includes(this.getAttribute("id"))) {
                 changeSection(this);
@@ -131,7 +131,10 @@ function changeSection(e) {
         loadingScreenArea.classList.add("nature-image-3");
         loadingScreen(buttonID);
     } else if (buttonID === "game-one-to-hub-area-button") {
+        document.getElementById("game-hub-area-text").innerText = "The Grasslands";
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
+        npc.setAttribute("data-npc-text-cycle", "1");
+        heroRight.style.left = "";
         if (keyOneChecked === "true" && keyTwoChecked === "true") {
             hubAreaButtonOptionOne.classList.add("hidden");
             hubAreaButtonOptionTwo.classList.add("hidden");
@@ -139,6 +142,7 @@ function changeSection(e) {
             hubAreaFinalAreaButton.classList.remove("hidden");
             gameHubTextArea.innerText = "Go to the prison and let the prince out of his cage!";
             hubAreaButton.innerText = "Next";
+            loadingScreenRight(buttonID);
         } else if (keyOneChecked === "true") {
             hubAreaButtonOptionTwo.classList.add("hidden");
             npcSpeakerName.classList.add("hidden");
@@ -146,6 +150,7 @@ function changeSection(e) {
             gameHubTextArea.innerText = `When you're ready, choose challenge 2 to get the second key, or click below to find out more about challenge 2.`;
             hubAreaButtonOptionTwo.classList.remove("hidden");
             hubAreaButton.innerText = "Next";
+            loadingScreenRight(buttonID);
         } else if (globalVars.key1 === true && globalVars.key2 === false) {
             npc.setAttribute("data-npc-text-tree", "D");
             gameHubTextArea.innerText = "Well done on beating the minotaur!";
@@ -166,7 +171,10 @@ function changeSection(e) {
             loadingScreenRight(buttonID);
         }
     } else if (buttonID === "game-two-to-hub-area-button") {
+        document.getElementById("game-hub-area-text").innerText = "The Grasslands";
+        heroRight.style.left = "";
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
+        npc.setAttribute("data-npc-text-cycle", "1");
         if (keyOneChecked === "true" && keyTwoChecked === "true") {
             hubAreaButtonOptionOne.classList.add("hidden");
             hubAreaButtonOptionTwo.classList.add("hidden");
@@ -174,6 +182,7 @@ function changeSection(e) {
             hubAreaFinalAreaButton.classList.remove("hidden");
             gameHubTextArea.innerText = "Go to the prison and let the prince out of his cage!";
             hubAreaButton.innerText = "Next";
+            loadingScreenRight(buttonID);
         } else if (keyTwoChecked === "true") {
             hubAreaButtonOptionOne.classList.add("hidden");
             npcSpeakerName.classList.add("hidden");
@@ -181,6 +190,7 @@ function changeSection(e) {
             gameHubTextArea.innerText = `When you're ready, choose challenge 2 to get the second key, or click below to find out more about challenge 2.`;
             hubAreaButtonOptionTwo.classList.remove("hidden");
             hubAreaButton.innerText = "Next";
+            loadingScreenRight(buttonID);
         } else if (globalVars.key2 === true && globalVars.key1 === false) {
             npc.setAttribute("data-npc-text-tree", "E");
             gameHubTextArea.innerText = "You beat the the evil necromance at his own game. Well done!";
@@ -201,8 +211,10 @@ function changeSection(e) {
             loadingScreenRight(buttonID);
         }
     } else if (buttonID == "game-one-to-hub-area-no-key-button") {
+        document.getElementById("game-hub-area-text").innerText = "The Grasslands";
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
         heroRight.style.left = "";
+        npc.setAttribute("data-npc-text-cycle", "1");
         if (globalVars.key1 === false) {
             const gameOneSpeakerName = document.getElementById("game-one-speaker-name");
             const gameOneTextArea = document.getElementById("game-one-text-area");
@@ -232,8 +244,10 @@ function changeSection(e) {
         }
         loadingScreenRight(buttonID);
     } else if (buttonID === "game-two-to-hub-area-no-key-button") {
+        document.getElementById("game-hub-area-text").innerText = "The Grasslands";
         headingRight.innerHTML = "RETURNING TO GRASSLANDS<br>...";
         heroRight.style.left = "";
+        npc.setAttribute("data-npc-text-cycle", "1");
         if (globalVars.key2 === false) {
             const gameTwoSpeakerName = document.getElementById("game-two-speaker-name");
             const gameTwoTextArea = document.getElementById("game-two-text-area");
@@ -260,10 +274,6 @@ function changeSection(e) {
             npcSpeakerName.classList.remove("hidden");
             hubAreaButtonOptionOne.classList.add("hidden");
             hubAreaButtonOptionTwo.classList.add("hidden");
-        } else if (globalVars.key2 === true && globalVars.key1 === false) {
-            npc.setAttribute("data-npc-text-tree", "E");
-            gameHubTextArea.innerText = "You beat the the evil necromance at his own game. Well done!";
-            hubAreaButton.innerText = "Next";
         }
         loadingScreenRight(buttonID);
     }
@@ -339,7 +349,8 @@ function loadingScreenRight(buttonID) {
     loadingLink.classList.add("visible-hidden");
     const heading = document.getElementById("loading-text-right");
     hero.classList.add("hero-right-position-right");
-    let flashPosition = 1;
+    let flashPosition = 0;
+    const colors = ["black", "blue", "yellow", "red"];
     const loadingAnimation = setInterval(function () {
         position++;
         hero.style.right = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
@@ -348,23 +359,9 @@ function loadingScreenRight(buttonID) {
         } else if (position % 2 === 1) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-left.webp");
             heading.innerText = heading.innerText + ".";
-            if (flashPosition === 1) {
-                heading.classList.remove("black");
-                heading.classList.add("blue");
-                flashPosition++;
-            } else if (flashPosition === 2) {
-                heading.classList.add("yellow");
-                heading.classList.remove("blue");
-                flashPosition++;
-            } else if (flashPosition === 3) {
-                heading.classList.add("red");
-                heading.classList.remove("yellow");
-                flashPosition++;
-            } else if (flashPosition === 4) {
-                heading.classList.remove("red");
-                heading.classList.add("black");
-                flashPosition = 1;
-            }
+            heading.classList.remove(colors[flashPosition - 1]);
+            heading.classList.add(colors[flashPosition % colors.length]);
+            flashPosition = (flashPosition % colors.length) + 1;
         }
         if (position === maxPosition) {
             clearInterval(loadingAnimation);
@@ -373,9 +370,7 @@ function loadingScreenRight(buttonID) {
             hero.classList.remove("hero-left-position-right");
             loadingLink.classList.remove("visible-hidden");
             hero.style.bottom = parseInt(hero.style.bottom) + "px";
-            heading.classList.remove("red");
-            heading.classList.remove("yellow");
-            heading.classList.remove("blue");
+            heading.classList.remove("red", "yellow", "blue");
             heading.classList.add("black");
         }
     }, 250);
@@ -386,30 +381,18 @@ function loadingScreenRight(buttonID) {
  * This is used to create the flashing logo at the beginning of the game
  */
 function flashingLogo() {
-    let position = 1;
+    let position = 0;
+    const colors = ["red", "blue", "yellow", "black"];
     const introLogo = document.getElementById("intro-page-logo");
     const introPageSection = document.getElementById("intro-page");
-    const logoFlash = setInterval(function () {
+    const logoFlash = setInterval(() => {
         if (introPageSection.classList.contains("hidden")) {
             clearInterval(logoFlash);
+            return;
         }
-        if (position === 1) {
-            introLogo.classList.remove("red");
-            introLogo.classList.add("blue");
-            position++;
-        } else if (position === 2) {
-            introLogo.classList.add("yellow");
-            introLogo.classList.remove("blue");
-            position++;
-        } else if (position === 3) {
-            introLogo.classList.add("black");
-            introLogo.classList.remove("yellow");
-            position++;
-        } else if (position === 4) {
-            introLogo.classList.remove("black");
-            introLogo.classList.add("red");
-            position = 1;
-        }
+        introLogo.classList.remove(colors[position]);
+        position = (position + 1) % colors.length;
+        introLogo.classList.add(colors[position]);
     }, 750);
 }
 
@@ -580,7 +563,7 @@ function speechUpdateGameHub() {
                 npcSpeakerName.classList.add("hidden");
                 hubAreaButton.classList.add("hidden");
                 gameHubTextArea.innerText = `When you're ready, choose challenge 1 to get the second key, or click below to find out more about challenge 1.`;
-                hubAreaButtonOptionTwo.classList.remove("hidden");
+                hubAreaButtonOptionOne.classList.remove("hidden");
                 npc.setAttribute("data-npc-text-cycle", "1");
                 break;
         }
@@ -778,7 +761,6 @@ function speechUpdateGameOne() {
                 gameOneTextArea.innerText = `The minotaur falls to the ground covered in blood (somehow) and you get the key from challenge 1!`;
                 gameOneSpeakerName.classList.add("hidden");
                 gameOneAreaButton.classList.add("visible-hidden");
-                gameOneReturnHubNoKeyButton.classList.add("visible-hidden");
                 let deathPose = 1;
                 let gameOneDeathAnimaton = setInterval(function () {
                     switch (deathPose) {
@@ -806,7 +788,6 @@ function speechUpdateGameOne() {
                     if (deathPose === 6) {
                         clearInterval(gameOneDeathAnimaton);
                         gameOneAreaButton.classList.remove("visible-hidden");
-                        gameOneReturnHubNoKeyButton.classList.remove("visible-hidden");
                     }
                 }, 750);
                 break;
@@ -916,6 +897,7 @@ function gameOneCheckAnswer(playerAnswer) {
     const gameOneMonster = document.getElementById("game-one-monster");
     const gameOneTextArea = document.getElementById("game-one-text-area");
     const gameOneReplayPatternButton = document.getElementById("game-one-repeat-pattern");
+    const gameOneReturnHubNoKeyButton = document.getElementById("game-one-to-hub-area-no-key-button");
     if (playerAnswer === globalVars.gameOneAnswer[checkNumber]) {
         boxArea.setAttribute("data-game-one-check", checkNumber + 1);
         if (realAnswerLength - 1 === checkNumber) {
@@ -952,6 +934,7 @@ function gameOneCheckAnswer(playerAnswer) {
                 gameOneMonster.setAttribute("data-game-one-text-tree", "D");
                 gameOneMonster.src = "assets/images/sprite-game-one-enemy-death-1.webp";
                 gameOneAreaButton.classList.remove("hidden");
+                gameOneReturnHubNoKeyButton.classList.add("visible-hidden");
                 globalVars.key1 = true;
             } else {
                 gameOneTextArea.innerText = "CORRECT! Well Done";
@@ -1080,7 +1063,7 @@ function speechUpdateGameTwo() {
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 7:
-                gameTwoTextArea.innerText = `Don't thinka bout running away either. I'll start his whole game over form the beginning if you do!`;
+                gameTwoTextArea.innerText = `Don't think about running away either. I'll start his whole game over form the beginning if you do!`;
                 gameTwoMonster.setAttribute("data-game-two-text-cycle", parseInt(gameTwoMonster.getAttribute("data-game-two-text-cycle")) + 1);
                 break;
             case 8:
@@ -1317,7 +1300,9 @@ function gameTwoDisplayWords(allSetAnswers) {
     for (let boxes of gameTwoIndividualBoxes) {
         let gameTwoBoxNumber = parseInt(boxes.getAttribute("data-game-two-box-number"));
         let round = parseInt(allGameTwoBoxes.getAttribute("data-game-two-level-score"));
-        boxes.classList.remove("game-two-box-background-correct");
+        boxes.classList.add("game-two-indivdual-box-no");
+        boxes.classList.remove("game-two-indivdual-box-selected");
+        boxes.classList.remove("game-two-box-background-yes");
         boxes.setAttribute("data-game-box-two-status", "active");
         boxes.innerHTML = `<p></p>`;
         for (let i = 0; i < 9; i++) {
@@ -1428,6 +1413,7 @@ function gameTwoCheckAnswer() {
                 gameTwoAreaButton.innerText = "Complete Level";
                 gameTwoCheckAnswersButton.classList.add("hidden");
                 gameTwoReturnHubNoKeyButton.classList.add("visible-hidden");
+                globalVars.key2 = true;
             } else {
                 boxArea.setAttribute("data-game-two-level-score", parseInt(boxArea.getAttribute("data-game-two-level-score")) + 1);
                 boxArea.setAttribute("data-game-two-check", "0");
@@ -1570,32 +1556,19 @@ function finalAreaCelebration() {
     const finalAreaCelebrateButton = document.getElementById("final-area-celebrate-button");
     const finalAreaButton = document.getElementById("final-area-action-button");
     const finalAreaTextArea = document.getElementById("final-area-text-area");
+    let flashPosition = 0;
+    const colors = ["black", "blue", "yellow", "red"];
     finalAreaCelebrateButton.classList.add("hidden");
     finalAreaButton.classList.remove("hidden");
     finalAreaButton.classList.add("visible-hidden");
     headingText.innerHTML = `CONGRATS!!!!
                     <br>
                     CONGRATS!!!!`;
-    let flashPosition = 1;
     const textFlash = setInterval(function () {
-        if (flashPosition === 1) {
-            headingText.classList.remove("black");
-            headingText.classList.add("blue");
-            flashPosition++;
-        } else if (flashPosition === 2) {
-            headingText.classList.add("yellow");
-            headingText.classList.remove("blue");
-            flashPosition++;
-        } else if (flashPosition === 3) {
-            headingText.classList.add("red");
-            headingText.classList.remove("yellow");
-            flashPosition++;
-        } else if (flashPosition === 4) {
-            headingText.classList.remove("red");
-            headingText.classList.add("black");
-            flashPosition = 1;
-        }
-    }, 500);
+        headingText.classList.remove(colors[flashPosition - 1]);
+        headingText.classList.add(colors[flashPosition % colors.length]);
+        flashPosition = (flashPosition % colors.length) + 1;
+    }, 250);
     for (let i = 0; i < 5; i++) {
         setTimeout(function () {
             partyPopper[i].classList.remove("visible-hidden");
@@ -1603,6 +1576,8 @@ function finalAreaCelebration() {
                 clearInterval(textFlash);
                 finalAreaTextArea.innerText = `OK, celebration over. Thank you again knight ${globalVars.knightName}`;
                 finalAreaButton.classList.remove("visible-hidden");
+                headingText.classList.add("black");
+                headingText.classList.remove("blue", "yellow", "red");
                 headingText.innerHTML = `Celebration over!
                     <br>
                     Stop celebrating!`;
@@ -1623,30 +1598,15 @@ function resetGame() {
 *This will flash the error message 
 */
 function flashingLogoErrorPage() {
-    let position = 1;
-    const errorLogo = document.getElementById("error-page-logo");
+    let position = 0;
+    const colors = ["red", "blue", "yellow", "black"];
     const introLogo = document.getElementById("intro-page-logo");
-    const logoFlash = setInterval(function () {
+    const logoFlash = setInterval(() => {
         if (document.body.contains(introLogo)) {
             clearInterval(logoFlash);
         }
-        if (position === 1) {
-            errorLogo.classList.remove("red");
-            errorLogo.classList.add("blue");
-            position++;
-        } else if (position === 2) {
-            errorLogo.classList.add("yellow");
-            errorLogo.classList.remove("blue");
-            position++;
-        } else if (position === 3) {
-            errorLogo.classList.add("black");
-            errorLogo.classList.remove("yellow");
-            position++;
-        } else if (position === 4) {
-            errorLogo.classList.remove("black");
-            errorLogo.classList.add("red");
-            position = 1;
-        }
+        introLogo.classList.remove(colors[position]);
+        position = (position + 1) % colors.length;
+        introLogo.classList.add(colors[position]);
     }, 750);
 }
-

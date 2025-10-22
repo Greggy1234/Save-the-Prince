@@ -252,10 +252,6 @@ body {
     background-size: cover;
 }
 
-
-
-
-
 /*Header styles*/
 #header {
     background-color: black;
@@ -551,7 +547,6 @@ input[type=text] {
 
 .game-two-indivdual-box-yes {
     background-image: url(../images/game-tile-game-two-fixed.webp);
-    border:0px;
 }
 
 .game-two-indivdual-box-no {
@@ -573,6 +568,10 @@ input[type=text] {
     justify-content: space-evenly;
     align-items: center;
 }
+
+ #final-area-message {
+        min-height: 102px;
+    }
 
 .final-area-celebration-individual-container {
     max-width: 20%;

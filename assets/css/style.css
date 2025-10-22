@@ -465,7 +465,7 @@ input[type=text] {
     display: flex;
     justify-content: space-between;
     align-items: end;
-    padding-bottom: 35px;
+    padding-bottom: 20px;
     min-width: 100%
 }
 
@@ -533,7 +533,7 @@ input[type=text] {
     display: flex;
     justify-content: space-between;
     align-items: end;
-    padding-bottom: 35px;
+    padding-bottom: 20px;
     min-width: 100%
 }
 
@@ -742,7 +742,7 @@ input[type=text] {
     }
 
     #game-one-area-bottom {
-        padding-bottom: 25px;
+        padding-bottom:10px;
     }
 
     #game-one-text-area-box {
@@ -762,7 +762,7 @@ input[type=text] {
     }
 
     #game-two-area-bottom {
-        padding-bottom: 25px;
+        padding-bottom: 10px;
     }
 
     #game-two-text-area-box {
@@ -772,7 +772,7 @@ input[type=text] {
 
     /* Final area styles*/
     #final-area-bottom {
-        padding-bottom: 25px;
+        padding-bottom: 10px;
     }
 
     #final-area-text-area-box {

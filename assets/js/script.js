@@ -484,7 +484,7 @@ function speechUpdateGameHub() {
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
             case 3:
-                gameHubTextArea.innerText = `There are three levels. Level one involves three box sequences, level 2 has four box squence, and round 3 has five box sequences.`;
+                gameHubTextArea.innerText = `There are three levels. Level one involves three box sequences, level 2 has four box squence, and level 3 has five box sequences.`;
                 npc.setAttribute("data-npc-text-cycle", parseInt(npc.getAttribute("data-npc-text-cycle")) + 1);
                 break;
             case 4:

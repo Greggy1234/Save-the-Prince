@@ -57,15 +57,37 @@ Visit the deployed website [here](https://greggy1234.github.io/Save-the-Prince/)
 
 - Create an experience that throws back to older pixel games to build a sense of nostalgia
 
+- Allow for users to name their knight to give personalisation
+
+- Give players a choice on which games to play first to get the keys
+
+- Allow players to learn what the games are before choosing them
+
+- Give players feedback on the buttons pressed and the games tiles clicked within the games
+
+- Show a celebration at the end of the game but in a comdeic way
+
+- Support the developer in an easy way
+
 ### User Stories
 
-- As a user, I want to play an easy to pick up game
+- As a user, I want to play an easy to pick up game in an old pixelated style that is fun so I feel my time is well spent
 
-- As a user, I want to play an old-school, pixel game
+- As a user, I want to choose the knight's name so I feel some personalisation
 
-- As a user, I want to play a game that is easy to pick up
+- As a user, I want to know the rules of the challenges before choosing so I ca decide my own path
 
-- As a user, I want to be able to support the developer of the game
+- As a user, I want to be able to choose the challenge I attempt first
+
+- As a user, I want to know when I click a button or a game tile so that I know what is being pressed
+
+- As a user, I want to be entertained throughout with humourous dialogue so I keep playing
+
+- As a user, I want to see a final section of the game to know its over in the syle fo the game so there is a satisfying conclusion
+
+- As a user, I want to support the dev in an easy way so I can follow other works by him
+
+- As a user, I want to be able to play the game on a number of devices and browsers easily so I can play it wherever and whenever
 
 ### Typography
 
@@ -122,7 +144,7 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 - An incredibly simple header that is present throughout the game, much like an arcade game machine has the title of the game at the top.
 
 **Footer**
-<br />![Header Image](docs/other-images/general-footer.png)
+<br />![Footer Image](docs/other-images/general-footer.png)
 
 - Again, very simple with link to support the developer of the game. the icons change to red when hovered over and to blue when clicked to show that the icons have been interacted with.
 
@@ -319,7 +341,7 @@ Automated testing should be carried out when embarking on longer projects as ove
 
 | Script      | Validator Confirmation                                                 |
 | ----------- | ---------------------------------------------------------------------- |
-| script.js   | ![Script JS validation](docs/other-images/script-js-validator.png) |
+| script.js   | ![Script JS validation](docs/other-images/script-js-validator.png)     |
 | redirect.js | ![Redirect JS validation](docs/other-images/redirect-js-validator.png) |
 
 While the script.js file received seven warnings, they were just to note that confusing semantics can come about with referencing variables outside the scope. There were no errors in the code.
@@ -341,6 +363,16 @@ While the script.js file received seven warnings, they were just to note that co
 
 | User Story | Feature to Address User Story | Evidence |
 | ---------- | ----------------------------- | -------- |
+| I want to play an easy to pick up game in an old pixelated style that is fun | The game's mechanics are simple and easy to learn, with a humourous tone and old-school graphics | [Final Website](#final-website) |
+| I want to choose the knight's name | The first screen that appears after starting the game allows a player to choose the name for the knight which is used for the rest of the game | ![Character Name Input Image](docs/other-images/front-page-character-name-entry.png) |
+| I want to know the rules of the challenges before choosing my own path | There are two buttons that are displayed after the intial dialogue that allows the player learn about the challenges | ![Rules Choices Image](docs/other-images/hub-option-rules-buttons.png) |
+| I want to be able to choose the challenge I attempt first | The two challenges are displayed as soon as the player enters the hub area, allowing people to bypass all the dialogue if they want to go straight into the challenges | ![Challenge Room Buttons Image](docs/other-images/hub-challenge-buttons.png) |
+| I want to know when I click a button or a game tile | All buttons become more transparent when hovered over nad turn blue when clicked. The game tiles light up when they are clicked | ![Button Click Image](docs/other-images/general-button-press.png) |
+| I want to be entertained throughout with humourous dialogue | There is a lot of dialogue throughout the game which is attempting to be tongue-in-cheek giving the game more fun tone | ![Humurous Dialogue 1 Image](docs/other-images/humurous-dialogue-one.png)<br />![Humurous Dialogue 2 Image](docs/other-images/humurous-dialogue-two.png)<br /> ![Humurous Dialogue 3 Image](docs/other-images/humurous-dialogue-three.png)  |
+| I want to see a final section of the game to know its over in the syle of the game | There is asmall celebration when the prince is free which si very short andyou are told to stop celberating as soon as it is over | ![Full Celebration Image](docs/other-images/final-celebration-and-text.png) |
+| I want to support the dev in an easy way so I can follow other works by him | The footer has links to the various pages of the dev for the user to click on and support | ![Footer Image](docs/other-images/general-footer.png) |
+| I want to be able to play the game on a number of devices and browsers easily | The Browser and Device testing section show that the website can be viewed on a variety of devices and browsers without problem | [Browser & Device Testing](#browser--device-testing) |
+
 
 ### Common Elements Testing
 
@@ -402,25 +434,25 @@ While the script.js file received seven warnings, they were just to note that co
 
 **Browser Testing**
 
-| Browser         | Outcome | Pass/Fail |
-| --------------- | ------- | --------- |
-| Google Chrome   | No appearance, responsiveness or functionality issues | Pass |
-| Safari          | No appearance, responsiveness or functionality issues       | Pass         |
-| Mozilla Firefox | X       | X         |
-| Microsoft Edge  | No appearance, responsiveness or functionality issues | Pass         |
+| Browser         | Outcome                                               | Pass/Fail |
+| --------------- | ----------------------------------------------------- | --------- |
+| Google Chrome   | No appearance, responsiveness or functionality issues | Pass      |
+| Safari          | No appearance, responsiveness or functionality issues | Pass      |
+| Mozilla Firefox | No appearance, responsiveness or functionality issues | Pass      |
+| Microsoft Edge  | No appearance, responsiveness or functionality issues | Pass      |
 
 **Device Testing**
 
-| Device                   | Outcome | Pass/Fail |
-| ------------------------ | ------- | --------- |
-| iPhone SE                | X       | X         |
-| iPhone XR                | X       | X         |
-| iPhone 12 Pro            | X       | X         |
-| iPhone 14 Pro Max        | X       | X         |
-| Samsung Galaxy S20 Ultra | X       | X         |
-| iPad Pro                 | X       | X         |
-| Surface Pro 7            | X       | X         |
-| HP Laptop                | X       | X         |
+| Device                   | Outcome                                                                                                  | Pass/Fail |
+| ------------------------ | -------------------------------------------------------------------------------------------------------- | --------- |
+| iPhone SE                | No appearance, responsiveness or functionality issues                                                    | Pass      |
+| iPhone XR                | No appearance, responsiveness or functionality issues                                                    | Pass      |
+| iPhone 12 Pro            | No appearance, responsiveness or functionality issues                                                    | Pass      |
+| iPhone 14 Pro Max        | No appearance, responsiveness or functionality issues                                                    | Pass      |
+| Samsung Galaxy S20 Ultra | No appearance, responsiveness or functionality issues                                                    | Pass      |
+| iPad Pro                 | The game appears closer to what is intended when plaed with a horizontal screen, but there are no issues | Pass      |
+| Surface Pro 7            | The game appears closer to what is intended when plaed with a horizontal screen, but there are no issues | Pass      |
+| HP Laptop                | No appearance, responsiveness or functionality issues                                                    | Pass      |
 
 [Back to top ⇧](#Save-the-Prince)
 

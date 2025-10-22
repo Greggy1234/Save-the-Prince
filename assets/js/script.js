@@ -294,6 +294,7 @@ function loadingScreen(buttonID) {
     const heading = document.getElementById("loading-text");
     hero.classList.add("hero-left-position-left");
     let flashPosition = 1;
+    const colours = ["black", "yellow", "red"];
     const loadingAnimation = setInterval(function () {
         position++;
         hero.style.left = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
@@ -302,23 +303,9 @@ function loadingScreen(buttonID) {
         } else if (position % 2 === 1) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-right.webp");
             heading.innerText = heading.innerText + ".";
-            if (flashPosition === 1) {
-                heading.classList.remove("black");
-                heading.classList.add("blue");
-                flashPosition++;
-            } else if (flashPosition === 2) {
-                heading.classList.add("yellow");
-                heading.classList.remove("blue");
-                flashPosition++;
-            } else if (flashPosition === 3) {
-                heading.classList.add("red");
-                heading.classList.remove("yellow");
-                flashPosition++;
-            } else if (flashPosition === 4) {
-                heading.classList.remove("red");
-                heading.classList.add("black");
-                flashPosition = 1;
-            }
+            heading.classList.remove(colours[flashPosition - 1]);
+            heading.classList.add(colours[flashPosition % colours.length]);
+            flashPosition = (flashPosition % colours.length) + 1;
         }
         if (position === maxPosition) {
             clearInterval(loadingAnimation);
@@ -327,9 +314,7 @@ function loadingScreen(buttonID) {
             hero.classList.remove("hero-left-position-left");
             loadingLink.classList.remove("visible-hidden");
             hero.style.bottom = parseInt(hero.style.bottom) + "px";
-            heading.classList.remove("red");
-            heading.classList.remove("yellow");
-            heading.classList.remove("blue");
+            heading.classList.remove("red", "yellow", "blue");
             heading.classList.add("black");
         }
     }, 250);
@@ -350,7 +335,7 @@ function loadingScreenRight(buttonID) {
     const heading = document.getElementById("loading-text-right");
     hero.classList.add("hero-right-position-right");
     let flashPosition = 0;
-    const colors = ["black", "blue", "yellow", "red"];
+    const colours = ["black", "yellow", "red"];
     const loadingAnimation = setInterval(function () {
         position++;
         hero.style.right = ((width / maxPosition) * position - ((heroWidth / maxPosition) * position)) + "px";
@@ -359,9 +344,9 @@ function loadingScreenRight(buttonID) {
         } else if (position % 2 === 1) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-left.webp");
             heading.innerText = heading.innerText + ".";
-            heading.classList.remove(colors[flashPosition - 1]);
-            heading.classList.add(colors[flashPosition % colors.length]);
-            flashPosition = (flashPosition % colors.length) + 1;
+            heading.classList.remove(colours[flashPosition - 1]);
+            heading.classList.add(colours[flashPosition % colours.length]);
+            flashPosition = (flashPosition % colours.length) + 1;
         }
         if (position === maxPosition) {
             clearInterval(loadingAnimation);
@@ -382,7 +367,7 @@ function loadingScreenRight(buttonID) {
  */
 function flashingLogo() {
     let position = 0;
-    const colors = ["red", "blue", "yellow", "black"];
+    const colours = ["red", "blue", "yellow", "black"];
     const introLogo = document.getElementById("intro-page-logo");
     const introPageSection = document.getElementById("intro-page");
     const logoFlash = setInterval(() => {
@@ -390,9 +375,9 @@ function flashingLogo() {
             clearInterval(logoFlash);
             return;
         }
-        introLogo.classList.remove(colors[position]);
-        position = (position + 1) % colors.length;
-        introLogo.classList.add(colors[position]);
+        introLogo.classList.remove(colours[position]);
+        position = (position + 1) % colours.length;
+        introLogo.classList.add(colours[position]);
     }, 750);
 }
 
@@ -1557,7 +1542,7 @@ function finalAreaCelebration() {
     const finalAreaButton = document.getElementById("final-area-action-button");
     const finalAreaTextArea = document.getElementById("final-area-text-area");
     let flashPosition = 0;
-    const colors = ["black", "blue", "yellow", "red"];
+    const colours = ["black", "blue", "yellow", "red"];
     finalAreaCelebrateButton.classList.add("hidden");
     finalAreaButton.classList.remove("hidden");
     finalAreaButton.classList.add("visible-hidden");
@@ -1565,9 +1550,9 @@ function finalAreaCelebration() {
                     <br>
                     CONGRATS!!!!`;
     const textFlash = setInterval(function () {
-        headingText.classList.remove(colors[flashPosition - 1]);
-        headingText.classList.add(colors[flashPosition % colors.length]);
-        flashPosition = (flashPosition % colors.length) + 1;
+        headingText.classList.remove(colours[flashPosition - 1]);
+        headingText.classList.add(colours[flashPosition % colours.length]);
+        flashPosition = (flashPosition % colours.length) + 1;
     }, 250);
     for (let i = 0; i < 5; i++) {
         setTimeout(function () {
@@ -1599,14 +1584,14 @@ function resetGame() {
 */
 function flashingLogoErrorPage() {
     let position = 0;
-    const colors = ["red", "blue", "yellow", "black"];
+    const colours = ["red", "blue", "yellow", "black"];
     const introLogo = document.getElementById("intro-page-logo");
     const logoFlash = setInterval(() => {
         if (document.body.contains(introLogo)) {
             clearInterval(logoFlash);
         }
-        introLogo.classList.remove(colors[position]);
-        position = (position + 1) % colors.length;
-        introLogo.classList.add(colors[position]);
+        introLogo.classList.remove(colours[position]);
+        position = (position + 1) % colours.length;
+        introLogo.classList.add(colours[position]);
     }, 750);
 }

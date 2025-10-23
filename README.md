@@ -380,46 +380,56 @@ While the script.js file received seven warnings, they were just to note that co
 
 | Feature | Outcome | Pass/Fail |
 | ------- | ------- | --------- |
+ |Buttons | Hover effect is working correctly, and buttons are connected to their correct function allowing the game to function properly | Pass |
+ | Footer | Social links open in a new tab | Pass |
 
 - Intro Page Section
 
 | Feature | Outcome | Pass/Fail |
 | ------- | ------- | --------- |
+Flashing Logo | The logo flashes correctly cycling through the correct colours | Pass
 
 - Start Page Section
 
 | Feature | Outcome | Pass/Fail |
 | ------- | ------- | --------- |
+Character Name Entry | a Player's name is correctly recorded and stored for use throughout the game | Pass
 
 - Loading Screen Section
 
 | Feature | Outcome | Pass/Fail |
 | ------- | ------- | --------- |
+Flashing Text & Increasing Dots | The heading text flashes correctly cycling through the correct colours & dots increase as expected | Pass
+Moving Character | The Hero sprite moves in the correct direction to simulate loading the next area | Pass
 
 - Hub Area Section
 
 | Feature | Outcome | Pass/Fail |
 | ------- | ------- | --------- |
+Text & Dialogue | The correct text & dialogue are displayed when a user completes a game, completes the second game, and when returning from a game without completing it | Pass
+Game Explanation Options | The two options for buttons where the rules of the games are explained are viewable and offer the correct text when pressed | Pass
 
-- Game 1 Section
-
-| Feature | Outcome | Pass/Fail |
-| ------- | ------- | --------- |
-
-- Game 2 Section
+- Game Area Sections
 
 | Feature | Outcome | Pass/Fail |
 | ------- | ------- | --------- |
+Text & Dialogue | The correct text and dialogue is displayed htroughout both games, including when entering the area for the first time, after each round, beating the challenges, and returning to the challenge room after leaving and not beating it | Pass
+Game Tile Feedback | The game tiles in the game area provide feedback when a user clicks on them so the user know they have interacted with them | Pass
+Monster Deafeat Animations | The monsters display the intended defeat animations when the game has been beaten | Pass
 
 - Final Area Section
 
 | Feature | Outcome | Pass/Fail |
 | ------- | ------- | --------- |
+Text & Dialogue | The correct text and dialogue is displayed during this final area | Pass
+Celebration Animation | The celebration function is carrie dout as intended with confetti game tiles being displayed while a congrats heading flashes through the correct colours | Pass
 
 - Error Page
 
 | Feature | Outcome | Pass/Fail |
 | ------- | ------- | --------- |
+Flashing Error Message | The error message flashes correctly cycling through the correct colours | Pass
+Automatic JavaScript Redirect | THe page is redirected after 5 seconds correctly, and in case the JS loads improperly ont he page, there is an anchor link directing users back to the front page | Pass
 
 ### Lighthouse Testing
 

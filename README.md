@@ -280,7 +280,7 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
 - [Sprite Sheet Extractor](https://spritesheet-extractor.vercel.app/)
 
-  -This extracted the sprites used for the game from their respective style sheets
+  - This extracted the sprites used for the game from their respective style sheets
 
 - [GitHub](https://github.com/)
 
@@ -361,75 +361,74 @@ While the script.js file received seven warnings, they were just to note that co
 
 ### User Story Testing
 
-| User Story | Feature to Address User Story | Evidence |
-| ---------- | ----------------------------- | -------- |
-| I want to play an easy to pick up game in an old pixelated style that is fun | The game's mechanics are simple and easy to learn, with a humourous tone and old-school graphics | [Final Website](#final-website) |
-| I want to choose the knight's name | The first screen that appears after starting the game allows a player to choose the name for the knight which is used for the rest of the game | ![Character Name Input Image](docs/other-images/front-page-character-name-entry.png) |
-| I want to know the rules of the challenges before choosing my own path | There are two buttons that are displayed after the intial dialogue that allows the player learn about the challenges | ![Rules Choices Image](docs/other-images/hub-option-rules-buttons.png) |
-| I want to be able to choose the challenge I attempt first | The two challenges are displayed as soon as the player enters the hub area, allowing people to bypass all the dialogue if they want to go straight into the challenges | ![Challenge Room Buttons Image](docs/other-images/hub-challenge-buttons.png) |
-| I want to know when I click a button or a game tile | All buttons become more transparent when hovered over nad turn blue when clicked. The game tiles light up when they are clicked | ![Button Click Image](docs/other-images/general-button-press.png) |
-| I want to be entertained throughout with humourous dialogue | There is a lot of dialogue throughout the game which is attempting to be tongue-in-cheek giving the game more fun tone | ![Humurous Dialogue 1 Image](docs/other-images/humurous-dialogue-one.png)<br />![Humurous Dialogue 2 Image](docs/other-images/humurous-dialogue-two.png)<br /> ![Humurous Dialogue 3 Image](docs/other-images/humurous-dialogue-three.png)  |
-| I want to see a final section of the game to know its over in the syle of the game | There is asmall celebration when the prince is free which si very short andyou are told to stop celberating as soon as it is over | ![Full Celebration Image](docs/other-images/final-celebration-and-text.png) |
-| I want to support the dev in an easy way so I can follow other works by him | The footer has links to the various pages of the dev for the user to click on and support | ![Footer Image](docs/other-images/general-footer.png) |
-| I want to be able to play the game on a number of devices and browsers easily | The Browser and Device testing section show that the website can be viewed on a variety of devices and browsers without problem | [Browser & Device Testing](#browser--device-testing) |
-
+| User Story                                                                         | Feature to Address User Story                                                                                                                                          | Evidence                                                                                                                                                                                                                                   |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| I want to play an easy to pick up game in an old pixelated style that is fun       | The game's mechanics are simple and easy to learn, with a humourous tone and old-school graphics                                                                       | [Final Website](#final-website)                                                                                                                                                                                                            |
+| I want to choose the knight's name                                                 | The first screen that appears after starting the game allows a player to choose the name for the knight which is used for the rest of the game                         | ![Character Name Input Image](docs/other-images/front-page-character-name-entry.png)                                                                                                                                                       |
+| I want to know the rules of the challenges before choosing my own path             | There are two buttons that are displayed after the intial dialogue that allows the player learn about the challenges                                                   | ![Rules Choices Image](docs/other-images/hub-option-rules-buttons.png)                                                                                                                                                                     |
+| I want to be able to choose the challenge I attempt first                          | The two challenges are displayed as soon as the player enters the hub area, allowing people to bypass all the dialogue if they want to go straight into the challenges | ![Challenge Room Buttons Image](docs/other-images/hub-challenge-buttons.png)                                                                                                                                                               |
+| I want to know when I click a button or a game tile                                | All buttons become more transparent when hovered over nad turn blue when clicked. The game tiles light up when they are clicked                                        | ![Button Click Image](docs/other-images/general-button-press.png)                                                                                                                                                                          |
+| I want to be entertained throughout with humourous dialogue                        | There is a lot of dialogue throughout the game which is attempting to be tongue-in-cheek giving the game more fun tone                                                 | ![Humurous Dialogue 1 Image](docs/other-images/humurous-dialogue-one.png)<br />![Humurous Dialogue 2 Image](docs/other-images/humurous-dialogue-two.png)<br /> ![Humurous Dialogue 3 Image](docs/other-images/humurous-dialogue-three.png) |
+| I want to see a final section of the game to know its over in the syle of the game | There is asmall celebration when the prince is free which si very short andyou are told to stop celberating as soon as it is over                                      | ![Full Celebration Image](docs/other-images/final-celebration-and-text.png)                                                                                                                                                                |
+| I want to support the dev in an easy way so I can follow other works by him        | The footer has links to the various pages of the dev for the user to click on and support                                                                              | ![Footer Image](docs/other-images/general-footer.png)                                                                                                                                                                                      |
+| I want to be able to play the game on a number of devices and browsers easily      | The Browser and Device testing section show that the website can be viewed on a variety of devices and browsers without problem                                        | [Browser & Device Testing](#browser--device-testing)                                                                                                                                                                                       |
 
 ### Common Elements Testing
 
 - General
 
-| Feature | Outcome | Pass/Fail |
-| ------- | ------- | --------- |
- |Buttons | Hover effect is working correctly, and buttons are connected to their correct function allowing the game to function properly | Pass |
- | Footer | Social links open in a new tab | Pass |
+| Feature | Outcome                                                                                                                       | Pass/Fail |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- | --------- |
+| Buttons | Hover effect is working correctly, and buttons are connected to their correct function allowing the game to function properly | Pass      |
+| Footer  | Social links open in a new tab                                                                                                | Pass      |
 
 - Intro Page Section
 
-| Feature | Outcome | Pass/Fail |
-| ------- | ------- | --------- |
-Flashing Logo | The logo flashes correctly cycling through the correct colours | Pass
+| Feature       | Outcome                                                        | Pass/Fail |
+| ------------- | -------------------------------------------------------------- | --------- |
+| Flashing Logo | The logo flashes correctly cycling through the correct colours | Pass      |
 
 - Start Page Section
 
-| Feature | Outcome | Pass/Fail |
-| ------- | ------- | --------- |
-Character Name Entry | a Player's name is correctly recorded and stored for use throughout the game | Pass
+| Feature              | Outcome                                                                      | Pass/Fail |
+| -------------------- | ---------------------------------------------------------------------------- | --------- |
+| Character Name Entry | a Player's name is correctly recorded and stored for use throughout the game | Pass      |
 
 - Loading Screen Section
 
-| Feature | Outcome | Pass/Fail |
-| ------- | ------- | --------- |
-Flashing Text & Increasing Dots | The heading text flashes correctly cycling through the correct colours & dots increase as expected | Pass
-Moving Character | The Hero sprite moves in the correct direction to simulate loading the next area | Pass
+| Feature                         | Outcome                                                                                            | Pass/Fail |
+| ------------------------------- | -------------------------------------------------------------------------------------------------- | --------- |
+| Flashing Text & Increasing Dots | The heading text flashes correctly cycling through the correct colours & dots increase as expected | Pass      |
+| Moving Character                | The Hero sprite moves in the correct direction to simulate loading the next area                   | Pass      |
 
 - Hub Area Section
 
-| Feature | Outcome | Pass/Fail |
-| ------- | ------- | --------- |
-Text & Dialogue | The correct text & dialogue are displayed when a user completes a game, completes the second game, and when returning from a game without completing it | Pass
-Game Explanation Options | The two options for buttons where the rules of the games are explained are viewable and offer the correct text when pressed | Pass
+| Feature                  | Outcome                                                                                                                                                 | Pass/Fail |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| Text & Dialogue          | The correct text & dialogue are displayed when a user completes a game, completes the second game, and when returning from a game without completing it | Pass      |
+| Game Explanation Options | The two options for buttons where the rules of the games are explained are viewable and offer the correct text when pressed                             | Pass      |
 
 - Game Area Sections
 
-| Feature | Outcome | Pass/Fail |
-| ------- | ------- | --------- |
-Text & Dialogue | The correct text and dialogue is displayed htroughout both games, including when entering the area for the first time, after each round, beating the challenges, and returning to the challenge room after leaving and not beating it | Pass
-Game Tile Feedback | The game tiles in the game area provide feedback when a user clicks on them so the user know they have interacted with them | Pass
-Monster Deafeat Animations | The monsters display the intended defeat animations when the game has been beaten | Pass
+| Feature                    | Outcome                                                                                                                                                                                                                               | Pass/Fail |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| Text & Dialogue            | The correct text and dialogue is displayed htroughout both games, including when entering the area for the first time, after each round, beating the challenges, and returning to the challenge room after leaving and not beating it | Pass      |
+| Game Tile Feedback         | The game tiles in the game area provide feedback when a user clicks on them so the user know they have interacted with them                                                                                                           | Pass      |
+| Monster Deafeat Animations | The monsters display the intended defeat animations when the game has been beaten                                                                                                                                                     | Pass      |
 
 - Final Area Section
 
-| Feature | Outcome | Pass/Fail |
-| ------- | ------- | --------- |
-Text & Dialogue | The correct text and dialogue is displayed during this final area | Pass
-Celebration Animation | The celebration function is carrie dout as intended with confetti game tiles being displayed while a congrats heading flashes through the correct colours | Pass
+| Feature               | Outcome                                                                                                                                                   | Pass/Fail |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| Text & Dialogue       | The correct text and dialogue is displayed during this final area                                                                                         | Pass      |
+| Celebration Animation | The celebration function is carrie dout as intended with confetti game tiles being displayed while a congrats heading flashes through the correct colours | Pass      |
 
 - Error Page
 
-| Feature | Outcome | Pass/Fail |
-| ------- | ------- | --------- |
-Flashing Error Message | The error message flashes correctly cycling through the correct colours | Pass
-Automatic JavaScript Redirect | THe page is redirected after 5 seconds correctly, and in case the JS loads improperly ont he page, there is an anchor link directing users back to the front page | Pass
+| Feature                       | Outcome                                                                                                                                                           | Pass/Fail |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| Flashing Error Message        | The error message flashes correctly cycling through the correct colours                                                                                           | Pass      |
+| Automatic JavaScript Redirect | The page is redirected after 5 seconds correctly, and in case the JS loads improperly ont he page, there is an anchor link directing users back to the front page | Pass      |
 
 ### Lighthouse Testing
 
@@ -460,8 +459,8 @@ Automatic JavaScript Redirect | THe page is redirected after 5 seconds correctly
 | iPhone 12 Pro            | No appearance, responsiveness or functionality issues                                                    | Pass      |
 | iPhone 14 Pro Max        | No appearance, responsiveness or functionality issues                                                    | Pass      |
 | Samsung Galaxy S20 Ultra | No appearance, responsiveness or functionality issues                                                    | Pass      |
-| iPad Pro                 | The game appears closer to what is intended when plaed with a horizontal screen, but there are no issues | Pass      |
-| Surface Pro 7            | The game appears closer to what is intended when plaed with a horizontal screen, but there are no issues | Pass      |
+| iPad Pro                 | The game appears closer to what is intended when played with a horizontal screen, but there are no issues | Pass      |
+| Surface Pro 7            | The game appears closer to what is intended when played with a horizontal screen, but there are no issues | Pass      |
 | HP Laptop                | No appearance, responsiveness or functionality issues                                                    | Pass      |
 
 [Back to top ⇧](#Save-the-Prince)
@@ -509,6 +508,20 @@ To clone this project from GitHub to make further changes:
 
 ## Development Lifecycle
 
+**Planning & Design**
+
+* I came into this project wanting replicate an old-school, pixel art game which didn't take itself too seriously. I knew using JavaScript in a web brwser had its limitations for making games, so the gameplay had to be simple, and the general chracter of the game (i.e. text, dialogue, imagery) were instrumental for creating an experience that could replicate the nostalgia of ol-school pixel games
+
+* As the aim was video game like experience, I knew that the game had to played on one web page as continuous loads to new pages would take away from the overal experience, so the Balsamiq wireframes were created as sections of each part of the game as opposed to individual web pages. Initially, each game area had 12 boxes, but when laying out the elements, I could see that it would be far too cramped on mobile devices. This was also where I decided for the acade style permanent banners on the top and bottom of the screen in the main viewing area to make it seem like more old school.
+
+* I explored a large number of pixel fonts, but I also read online that lots of text in a pixelated format can be hard to read which Iw as aiming to avoid, so for the majority fo the dialogue and text, I used "VT323" which is a very readble pixel font, while I used "Press Start 2P" and [Megamax Jonathan Too](https://www.fontspace.com/megamax-jonathan-too-font-f124011), which is blockier with heavier pixels, for the title and heading fonts.
+
+**Development**
+
+
+**Testing & Deployment**
+
+
 [Back to top ⇧](#Save-the-Prince)
 
 ## Credits
@@ -540,6 +553,6 @@ To clone this project from GitHub to make further changes:
 
 ### Code
 
-- The FIsher Yates method of shuffling was used for Game 2, and it was taken from [W3Schools](https://www.w3schools.com/js/js_array_sort.asp)
+- The Fisher Yates method of shuffling was used for Game 2, and it was taken from [W3Schools](https://www.w3schools.com/js/js_array_sort.asp)
 
 - [Stack Overflow](https://stackoverflow.com/) and [W3Schools](https://www.w3schools.com/) were consulted throughout the project to check the code was correctly implemented

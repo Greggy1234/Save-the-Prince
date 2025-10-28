@@ -247,6 +247,11 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 
 ### Future Features & Pages
 
+- Add music that adds to the game experience
+- Allow the player to choose how the knight looks
+- Allow players to reset the games, and play at higher levels
+- Add more games, areas and monsters to flesh out the gaming experience
+
 [Back to top ⇧](#Save-the-Prince)
 
 ### Languages
@@ -508,7 +513,7 @@ To clone this project from GitHub to make further changes:
 
 ## Development Lifecycle
 
-**Planning & Design**
+### Planning & Design
 
 * I came into this project wanting replicate an old-school, pixel art game which didn't take itself too seriously. I knew using JavaScript in a web brwser had its limitations for making games, so the gameplay had to be simple, and the general chracter of the game (i.e. text, dialogue, imagery) were instrumental for creating an experience that could replicate the nostalgia of ol-school pixel games
 
@@ -516,11 +521,50 @@ To clone this project from GitHub to make further changes:
 
 * I explored a large number of pixel fonts, but I also read online that lots of text in a pixelated format can be hard to read which Iw as aiming to avoid, so for the majority fo the dialogue and text, I used "VT323" which is a very readble pixel font, while I used "Press Start 2P" and [Megamax Jonathan Too](https://www.fontspace.com/megamax-jonathan-too-font-f124011), which is blockier with heavier pixels, for the title and heading fonts.
 
-**Development**
+### Development
+
+**HTML & CSS**
+
+* The basic HTML structure of the game was completed relatively quickly as I knew each area would be a it's own section that could easily be hidden. The basic CSS also was completed without problems with spacing for the base elements added without difficulty. No bugs were found throught this initial developmenmt.
+
+* While filling the basic structure with elemnents, I started to find difficulties with keeping the many elements, especially in the game areas, visible but not too cramped. A lot of time was spent testing the boundries or keeping all the elements within the viewing area of the game without looking squashed, along with testing various font sizes so the user can still read the text. The most consistent bug I encountered was the elements forcing the elements below it outside the viewing area and forcing he screen tos croll horizontally, which was against the desired effect. All bugs were fixed though without problem.
+
+**Javascript**
+
+* Intro Page
+  - There were no bugs or problems with the flashing logo function or the start game button.
+
+* Front Page
+  - There were no bugs or problems with function capturing the input of the user when they enter the name for their knight.
+
+* Loading Pages
+  - The biggest difficulty here was figuring out how to keep the knight on the screen and not allowing him to walk off the dge of the screen. For many iterations of this function, the knight kept disappering off the edge to the right, but this was eventually solved by offsetting the width of the hero for each movement ot he right/left.
+  - As the loading page itself was used many times, a bug I encountered was when the change screen function moved to the laoding screen, the hero would start at the end of the page and continue off. Also, the dots at the top of the screen did not reset, so to fix I had to manually reset the position of everthing at the top of the function.
+
+* Hub Page
+  - There were no bugs or problems with the text dialogue or the buttons when entering the area, although a lot of work was needed in planning how to get each section of text to appear correctly so the user got the right dialogue and the game experience was kept at a good standard.
+  - The one big bug of this area was working out exactly how to show the correct dialogue when the user completes a challenge, as they can choose which challenge to compelte first and there is unique dialogue depending on which monster is defeated first, if the user exists a challenge area, and when the user completes both challenges. This was solved by storing the challenge completed in a the global object variable, and also adding in an attribute that sets if the dialoue has been played out for a victory.
+
+* Game 1 Area
+  - The functions in this area played out exactly as planned, as essentially I created a random number generator, and used that to flash the asociated boxes, and the user can then click on the boxes which feeds back to check if that number was played out in that position. Thanks to this planning, there were no bugs or problems for the actual game functions.
+  - The biggest bug of this area was finding out that if the user managed to leave the screen as the set interval function played (which showed which blocks to click), then no reset of the area occured and it soft locked the game. TO counter this, I removed all possibilities of a user changing the screen as that function played out by removing ht ereturn to the grasslands button, ensuring everything reset correctly.
 
 
-**Testing & Deployment**
+* Game 2 Area
+  - My main roadblock game almost instantly when I realised that I couldn;t easily randomise the arrays which the answers were in, which was essentially for replayability and to give the possibility of increasing the answer pool size in the future. This was solved easily though after discovering the Fisher Yates method.
+  - Like game 1, as I planned properly before starting the writing of the code, there were no bugs for the actual game functions, but the same problem occured if a player left the screen during the set timeout function which put the words on the screen. The same method of removing the return to the grasslands button.
 
+* Final Page
+  - Both the flashing text and the appearance of the celebration images work properly witout any bugs or problems as I re-used previously written code for these functions.
+
+* Error Page
+  - There were no bugs or problems with the flashing text function.
+  - The redirect function encountered a bug due to the fact this game is hosted on a Gitub, so I used the fact that GitHub uses an HTML page name 404 as the general error page, then allowing for the redirect to happen after 5 seconds, as opposed to just instantly changing the path name.
+
+### Testing & Deployment
+
+* Due to continuous testing as the game was being created, there were no major bugs encountered int he testing phase of the development lifecycle, however a minor bug that was fixed during this phase was a dialogue bug that occured in the hub area when someone left during the middle of the dialgue text which then did not reset the text when the player returned to the area. This was fixed by forcing resets at the change section function.
+* There were no bugs or problems witht he deployment of this site.
 
 [Back to top ⇧](#Save-the-Prince)
 

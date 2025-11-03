@@ -304,8 +304,8 @@ function loadingScreen(buttonID) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-right.webp");
             heading.innerText = heading.innerText + ".";
             heading.classList.remove(colours[flashPosition]);
-            heading.classList.add(colours[flashPosition % colours.length]);
-            flashPosition = (flashPosition % colours.length) + 1;
+            flashPosition = (flashPosition + 1) % colours.length;
+            heading.classList.add(colours[flashPosition]);
         }
         if (position === maxPosition) {
             clearInterval(loadingAnimation);
@@ -345,8 +345,8 @@ function loadingScreenRight(buttonID) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-left.webp");
             heading.innerText = heading.innerText + ".";
             heading.classList.remove(colours[flashPosition]);
-            heading.classList.add(colours[flashPosition % colours.length]);
-            flashPosition = (flashPosition % colours.length) + 1;
+            flashPosition = (flashPosition + 1) % colours.length;
+            heading.classList.add(colours[flashPosition]);
         }
         if (position === maxPosition) {
             clearInterval(loadingAnimation);
@@ -1551,8 +1551,8 @@ function finalAreaCelebration() {
                     CONGRATS!!!!`;
     const textFlash = setInterval(function () {
         headingText.classList.remove(colours[flashPosition]);
-        headingText.classList.add(colours[flashPosition % colours.length]);
-        flashPosition = (flashPosition % colours.length) + 1;
+        flashPosition = (flashPosition + 1) % colours.length;
+        headingText.classList.add(colours[flashPosition]);;
     }, 250);
     for (let i = 0; i < 5; i++) {
         setTimeout(function () {
@@ -1583,6 +1583,7 @@ function resetGame() {
 *This will flash the error message 
 */
 function flashingLogoErrorPage() {
+    const errorLogo = document.getElementById("error-page-logo");
     const introLogo = document.getElementById("intro-page-logo");
     let position = 0;
     const colours = ["red", "blue", "yellow", "black"];
@@ -1590,8 +1591,8 @@ function flashingLogoErrorPage() {
         if (document.body.contains(introLogo)) {
             clearInterval(logoFlash);
         }
-        introLogo.classList.remove(colours[position]);
+        errorLogo.classList.remove(colours[position]);
         position = (position + 1) % colours.length;
-        introLogo.classList.add(colours[position]);
+        errorLogo.classList.add(colours[position]);
     }, 750);
 }

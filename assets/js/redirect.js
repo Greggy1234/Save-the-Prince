@@ -12,9 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.replace("/Save-the-Prince/");
             }
         }
-    }
-        , 1000)
-
-
+    }, 1000);
 });
 

@@ -241,9 +241,9 @@ As it is a game with a fixed viewing are for screen size tablet and above, the d
 - This replicates the flashing logo of the intro screen, and keeps the old school feel of the game and gives the player an obvious indication that they shouldn't be on the page.
 
 **Automatic JavaScript Redirect**
-<br />![Redirect JS Code Image](docs/other-images/error-automatic-js-redirect.png)
+<br />![Redirect JS Code Image](docs/other-images/js-redirect.png)
 
-- This code isused on the error page so if a user arrives at a page they shouldn't be at, they will automatically beredirected back to the main page of the game after the page has loaded and at least 2seconds have passed. There is also a button present in case the JavaScript breaks so there is no chance a userwon;t be able to return
+- This code isused on the error page so if a user arrives at a page they shouldn't be at, they will automatically be redirected back to the main page of the game after the page has loaded and 5 seconds have passed. There is also a button present in case the JavaScript breaks so there is no chance a userwon;t be able to return
 
 ### Future Features & Pages
 

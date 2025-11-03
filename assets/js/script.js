@@ -293,7 +293,7 @@ function loadingScreen(buttonID) {
     loadingLink.classList.add("visible-hidden");
     const heading = document.getElementById("loading-text");
     hero.classList.add("hero-left-position-left");
-    let flashPosition = 1;
+    let flashPosition = 0;
     const colours = ["black", "yellow", "red"];
     const loadingAnimation = setInterval(function () {
         position++;
@@ -303,7 +303,7 @@ function loadingScreen(buttonID) {
         } else if (position % 2 === 1) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-right.webp");
             heading.innerText = heading.innerText + ".";
-            heading.classList.remove(colours[flashPosition - 1]);
+            heading.classList.remove(colours[flashPosition]);
             heading.classList.add(colours[flashPosition % colours.length]);
             flashPosition = (flashPosition % colours.length) + 1;
         }
@@ -344,7 +344,7 @@ function loadingScreenRight(buttonID) {
         } else if (position % 2 === 1) {
             hero.setAttribute("src", "assets/images/sprite-hero-walk-left.webp");
             heading.innerText = heading.innerText + ".";
-            heading.classList.remove(colours[flashPosition - 1]);
+            heading.classList.remove(colours[flashPosition]);
             heading.classList.add(colours[flashPosition % colours.length]);
             flashPosition = (flashPosition % colours.length) + 1;
         }
@@ -366,10 +366,10 @@ function loadingScreenRight(buttonID) {
  * This is used to create the flashing logo at the beginning of the game
  */
 function flashingLogo() {
-    let position = 0;
-    const colours = ["red", "blue", "yellow", "black"];
     const introLogo = document.getElementById("intro-page-logo");
     const introPageSection = document.getElementById("intro-page");
+    let position = 0;
+    const colours = ["red", "blue", "yellow", "black"];
     const logoFlash = setInterval(() => {
         if (introPageSection.classList.contains("hidden")) {
             clearInterval(logoFlash);
@@ -1550,7 +1550,7 @@ function finalAreaCelebration() {
                     <br>
                     CONGRATS!!!!`;
     const textFlash = setInterval(function () {
-        headingText.classList.remove(colours[flashPosition - 1]);
+        headingText.classList.remove(colours[flashPosition]);
         headingText.classList.add(colours[flashPosition % colours.length]);
         flashPosition = (flashPosition % colours.length) + 1;
     }, 250);
@@ -1583,9 +1583,9 @@ function resetGame() {
 *This will flash the error message 
 */
 function flashingLogoErrorPage() {
+    const introLogo = document.getElementById("intro-page-logo");
     let position = 0;
     const colours = ["red", "blue", "yellow", "black"];
-    const introLogo = document.getElementById("intro-page-logo");
     const logoFlash = setInterval(() => {
         if (document.body.contains(introLogo)) {
             clearInterval(logoFlash);

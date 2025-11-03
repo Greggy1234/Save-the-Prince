@@ -1552,7 +1552,7 @@ function finalAreaCelebration() {
     const textFlash = setInterval(function () {
         headingText.classList.remove(colours[flashPosition]);
         flashPosition = (flashPosition + 1) % colours.length;
-        headingText.classList.add(colours[flashPosition]);;
+        headingText.classList.add(colours[flashPosition]);
     }, 250);
     for (let i = 0; i < 5; i++) {
         setTimeout(function () {
